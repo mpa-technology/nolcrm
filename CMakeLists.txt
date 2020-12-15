@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
-project(mpacrm CXX)
+project(nolcrm CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 set_target_properties(${TARGET} PROPERTIES
@@ -23,6 +23,9 @@ set(SOURCES
     "DataBase/Service.cpp"
     "Settings/Settings.cpp"
     "DataBase/TableStorageImport.cpp"
+    "WidgetNewImport/WidgetNewImport.cpp"
+    "WidgetEditProduct/WidgetEditProduct.cpp"
+    "LoginWidget/LoginWidget.cpp"
     )
 
 set(HEADER
@@ -40,6 +43,9 @@ set(HEADER
     "DataBase/Service.hpp"
     "Settings/Settings.hpp"
     "DataBase/TableStorageImport.hpp"
+    "WidgetNewImport/WidgetNewImport.hpp"
+    "WidgetEditProduct/WidgetEditProduct.hpp"
+    "LoginWidget/LoginWidget.hpp"
     )
 
 set(UI
@@ -50,6 +56,9 @@ set(UI
     "WidgetProduct/WidgetProduct.ui"
     "WidgetShowProducts/WidgetShowProducts.ui"
     "WidgetStorage/WidgetStorage.ui"
+    "WidgetNewImport/WidgetNewImport.ui"
+    "WidgetEditProduct/WidgetEditProduct.ui"
+    "LoginWidget/LoginWidget.ui"
     )
 
 

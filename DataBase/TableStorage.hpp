@@ -1,6 +1,11 @@
 #pragma once
 #include "DataBase.hpp"
 
+struct Storage{
+quint64 pid;
+quint64 count;
+};
+
 
 class TableStorage{
 
@@ -22,6 +27,16 @@ public:
     static bool crateTable();
 
     static QSqlError addItem(const quint64& id);
+
+    static bool setCount(const quint64& id,const quint64& count);
+    static bool addCount(const quint64& id,const quint64& count);
+    static bool subCount(const quint64& id,const quint64& count);
+    static quint64 getCount(const quint64& id);
+
+
+    //TODO: rename
+    static Storage getItem(const quint64& id);
+
 
 
     //TODO: not test

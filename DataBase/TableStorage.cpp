@@ -1,6 +1,11 @@
 #include "TableStorage.hpp"
 
 
+
+
+
+
+
 TableStorage::TableStorage(){}
 
 TableStorage &TableStorage::self(){
@@ -52,6 +57,76 @@ QSqlError TableStorage::addItem(const quint64 &id){
     query.exec();
 
     return query.lastError();
+}
+
+bool TableStorage::setCount(const quint64 &id, const quint64 &count){
+    QSqlQuery query(DataBase::db());
+    query.prepare("UPDATE storage SET ProductsCount = :count  WHERE ProductsId=:Id ;");
+    query.bindValue(":count",count);
+    query.bindValue(":Id",id);
+    query.exec();
+    return query.lastError().type() == query.lastError().NoError;
+}
+
+bool TableStorage::addCount(const quint64 &id, const quint64 &count)
+{
+    QSqlQuery query(DataBase::db());
+    query.prepare("UPDATE storage SET ProductsCount=:count WHERE ProductsId=:Id;");
+    query.bindValue(":count",count+getCount(id));
+    query.bindValue(":Id",id);
+    query.exec();
+
+    if(query.lastError().type() != QSqlError::NoError){
+        qWarning()<<query.lastError();
+        return false;
+    }
+
+    return true;
+}
+
+bool TableStorage::subCount(const quint64 &id, const quint64 &count){
+
+    QSqlQuery query(DataBase::db());
+    query.prepare("UPDATE storage SET ProductsCount=:count WHERE ProductsId=:Id;");
+    query.bindValue(":count",getCount(id)-count);
+    query.bindValue(":Id",id);
+    query.exec();
+
+    if(query.lastError().type() != QSqlError::NoError){
+        qWarning()<<query.lastError();
+        return false;
+    }
+
+    return true;
+}
+
+quint64 TableStorage::getCount(const quint64 &id)
+{
+    QSqlQuery query(DataBase::db());
+    query.prepare("SELECT * FROM storage WHERE ProductsId=:Id ;");
+    query.bindValue(":Id",id);
+    query.exec();
+    query.next();
+
+    return query.value("ProductsCount").toULongLong();;
+}
+
+Storage TableStorage::getItem(const quint64 &id){
+    Storage storage;
+
+
+    QSqlQuery query(DataBase::db());
+    query.prepare("SELECT * FROM storage WHERE ProductsId=:Id ;");
+    query.bindValue(":Id",id);
+    query.exec();
+
+    query.next();
+
+   storage.pid =  query.value("ProductsId").toULongLong();
+   storage.count =  query.value("ProductsCount").toULongLong();;
+
+
+   return storage;
 }
 
 bool TableStorage::itemExist(const quint64 &id){

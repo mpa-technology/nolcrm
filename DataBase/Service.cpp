@@ -1,15 +1,21 @@
 #include "Service.hpp"
-
 GlobalService::GlobalService(){}
 
 bool GlobalService::initDataBase_(){
-    QSettings settings("mpacrm.conf",QSettings::NativeFormat);
+    auto& settings = Settings::self();
+    QString dataBaseName = settings.value("database/name","@NULL").toString();
+    QString hostName = settings.value("database/hostName","@NULL").toString();
+    QString userName = settings.value("database/userName","@NULL").toString();
+    QString userPassword = settings.value("database/userPassword","@NULL").toString();
+    QString dataBaseDriver = settings.value("database/driver","@NULL").toString();
 
-    QString dataBaseName = settings.value("database/dataBaseName","nolBase.db").toString();
-    QString hostName = settings.value("database/hostName",QString()).toString();
-    QString userName = settings.value("database/userName",QString()).toString();
-    QString userPassword = settings.value("database/userPassword",QString()).toString();
-    QString dataBaseDriver = settings.value("database/dataBaseDriver","QSQLITE").toString();
+    qDebug()<<dataBaseName;
+
+    if(dataBaseName == "@NULL" || hostName == "@NULL" || userName == "@NULL" || userPassword=="@NULL" || dataBaseDriver=="@NULL"){
+        qCritical()<<"int db faill";
+        return false;
+    }
+
 
 
     DataBase::init(dataBaseName,hostName,userName,userPassword,dataBaseDriver);
@@ -21,7 +27,6 @@ bool GlobalService::initDataBase_(){
     }
 
 
-    settings.sync();
 
     return true;
 }
@@ -54,6 +59,9 @@ void GlobalService::initTableBase(){
         throw std::runtime_error("Error init TableStorageImport");
     else qDebug()<<"TableStorageImport crateTable: ok";
 
+    if(!TableStorageExport::crateTable())
+        throw std::runtime_error("Error init TableStorageExport");
+    else qDebug()<<"TableStorageImport crateTable: ok";
 
 
 }

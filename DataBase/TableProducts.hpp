@@ -52,6 +52,9 @@ public:
 
     static QSqlError addProduct( const QString& name,const QString& category,const QString& manufacturer, const double& price, const double& manufacturerPrice,const QString& descriptions);
 
+    static bool editProduct(const Product& product);
+
+
     static QSqlError removeProduct(const quint64& id);
 
     static productList getAllProduct();

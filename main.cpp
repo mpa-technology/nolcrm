@@ -3,12 +3,14 @@
 #include <QSettings>
 #include <QtGlobal>
 #include <QFile>
+#include <QScopedPointer>
 
 #include "DataBase/Service.hpp"
-#include "MainWindow/MainWindow.hpp"
+#include <LoginWidget/LoginWidget.hpp>
 #include "DataBase/DataBase.hpp"
 #include "DataBase/TableStorage.hpp"
 #include "Settings/Settings.hpp"
+#include "MainWindow/MainWindow.hpp"
 
 struct logFile{
 
@@ -16,11 +18,12 @@ struct logFile{
 
     logFile(){
 
-        auto fileName = Settings::self().value("log/file","mpa.log").toString();
-        file  = fopen(fileName.toStdString().data(),"w+");
+        auto fileName = Settings::self().value("log/file","nolcrm.log").toString();
+        file = fopen(fileName.toStdString().data(),"a");
     }
 
     ~logFile(){
+        fflush(file);
         fclose(file);
     }
 
@@ -63,24 +66,28 @@ void MessageOutput(QtMsgType type, const QMessageLogContext &context, const QStr
 
 
 
-
-
 int main(int argc, char *argv[]){
 
     qInstallMessageHandler(MessageOutput);
 
-    QApplication mpacrmApp(argc, argv);
+    QApplication app(argc, argv);
 
-    try {
-        GlobalService::self().initTableBase();
-    } catch (const std::exception& exp) {
-        qCritical()<<exp.what();
-        return EXIT_FAILURE;
+    QScopedPointer<MainWindow>mw;
+    QScopedPointer<LoginWidget>lw;
+
+
+    if(Settings::mainSettingsLoad()){
+
+        if(!GlobalService::waekup())
+            return EXIT_FAILURE;
+
+        mw.reset(new MainWindow());
+        mw->show();
+    }else{
+        lw.reset(new LoginWidget());
+        lw->show();
     }
 
 
-    MainWindow w;
-    w.show();
-
-    return mpacrmApp.exec();
+    return app.exec();
 }

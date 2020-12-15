@@ -20,7 +20,7 @@ WidgetShowProducts::WidgetShowProducts(QWidget *parent) :
         item->setButtonLeft(tr("x"));
         item->setButtonRight(tr("Edit"));
         QObject::connect(item,SIGNAL(leftBtnClicked(Product)),this,SLOT(btd(Product)));
-        QObject::connect(item,SIGNAL(leftBtnClicked(Product)),this,SLOT(btdr(Product)));
+        QObject::connect(item,SIGNAL(rightBtnClicked(Product)),this,SLOT(btdr(Product)));
         ui->verticalLayout_fs->addWidget(item);
     }
 
@@ -54,6 +54,10 @@ if( QSqlError error =  TableProducts::removeProduct(pro.id) ; error.type() != QS
 }
 
 void WidgetShowProducts::btdr(Product pro){
+
+  auto ptr =  new WidgetEditProduct(pro);
+  ptr->show();
+
 
 }
 

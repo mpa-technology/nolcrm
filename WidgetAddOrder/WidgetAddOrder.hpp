@@ -2,8 +2,7 @@
 #include <QWidget>
 #include <QMessageBox>
 #include <QCloseEvent>
-#include <DataBase/TableProducts.hpp>
-#include <DataBase/TableOrders.hpp>
+#include <DataBase/Service.hpp>
 #include <WidgetProduct/WidgetProduct.hpp>
 
 namespace Ui {

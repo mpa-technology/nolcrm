@@ -21,8 +21,6 @@ class DataBase{
 
 public:
 
-
-
     static DataBase& self();
 
     static void init( const QString& dataBaseName, const QString& hostName, const QString& userName , const QString& userPassword , const QString& dataBaseDriver = "QSQLITE");

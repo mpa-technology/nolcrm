@@ -9,9 +9,7 @@
 #include <WidgetProduct/WidgetProduct.hpp>
 #include <WidgetShowProducts/WidgetShowProducts.hpp>
 #include <WidgetStorage/WidgetStorage.hpp>
-#include <DataBase/TableOrders.hpp>
-
-
+#include <WidgetNewImport/WidgetNewImport.hpp>
 
 
 namespace Ui {
@@ -26,8 +24,9 @@ class MainWindow : public QMainWindow
     WidgetAddProduct* widgetAddProduct_ = nullptr;
     WidgetAddOrder* widgetAddOrder_ = nullptr;
     WidgetShowOrder* widgetShowOrder_ = nullptr;
-    WidgetShowProducts* widgetShowProducts = nullptr;
-    WidgetStorage* widgetStorage = nullptr;
+    WidgetShowProducts* widgetShowProducts_ = nullptr;
+    WidgetStorage* widgetStorage_ = nullptr;
+    WidgetNewImport* widgetNewImport_ = nullptr;
 
     QVector<QWidget*>widgetList_;
 
@@ -49,11 +48,19 @@ private slots:
 
     void on_btnShowOrder_clicked();
 
+
+    //TODO:rename
     void on_pushButton_clicked();
 
+    //TODO:rename
     void on_pushButton_2_clicked();
 
+    //TODO:rename
     void on_pushButton_3_clicked();
+
+    void on_pushButton_6_clicked();
+
+    void on_pushButton_7_clicked();
 
 private:
     Ui::MainWindow *ui = nullptr;

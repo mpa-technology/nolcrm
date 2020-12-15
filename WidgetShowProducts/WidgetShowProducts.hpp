@@ -3,7 +3,7 @@
 #include <QMessageBox>
 #include <QDebug>
 #include <WidgetProduct/WidgetProduct.hpp>
-
+#include <WidgetEditProduct/WidgetEditProduct.hpp>
 
 namespace Ui {
 class WidgetShowProducts;

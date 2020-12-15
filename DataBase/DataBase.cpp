@@ -18,14 +18,14 @@ void DataBase::init(const QString &dataBaseName, const QString &hostName, const 
 
     base.dataBase_.setDatabaseName(dataBaseName);
 
-    base.dataBase_.setPort(5432);
+    //base.dataBase_.setPort(5432);
 
 
-    if(!hostName.isEmpty()) base.dataBase_.setHostName(hostName);
+    if(!hostName.isEmpty() || hostName == "@CLEAR" ) base.dataBase_.setHostName(hostName);
 
-    if(!userName.isEmpty()) base.dataBase_.setUserName(userName);
+    if(!userName.isEmpty()|| hostName == "@CLEAR") base.dataBase_.setUserName(userName);
 
-    if(!userPassword.isEmpty()) base.dataBase_.setPassword(userName);
+    if(!userPassword.isEmpty()|| hostName == "@CLEAR") base.dataBase_.setPassword(userName);
 
     base.isInit_ = true;
 
@@ -47,6 +47,11 @@ QSqlError DataBase::open(){
 
     if(self().dataBase_.lastError().type() == QSqlError::NoError)
         self().isOpen_ = true;
+
+
+    if(self().dataBase_.lastError().type() != QSqlError::NoError){
+        qCritical()<<self().dataBase_.lastError();
+    }
 
     return self().dataBase_.lastError();
 }

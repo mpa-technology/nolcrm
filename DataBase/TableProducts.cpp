@@ -67,6 +67,28 @@ QSqlError TableProducts::addProduct(const QString &name, const QString &category
     return query.lastError();
 }
 
+bool TableProducts::editProduct(const Product &product){
+    QSqlQuery query(DataBase::db());
+    query.prepare( R"(UPDATE products SET Name=:Name,Category=:Category,Manufacturer=:Manufacturer,Price=:Price,ManufacturerPrice=:ManufacturerPrice,Descriptions=:Descriptions WHERE Id=:Id )" );
+    query.bindValue(":Id",product.id);
+    query.bindValue(":Name",product.name);
+    query.bindValue(":Category",product.category);
+    query.bindValue(":Manufacturer",product.manufacturer);
+    query.bindValue(":Price",product.price);
+    query.bindValue(":ManufacturerPrice",product.manufacturerPrice);
+    query.bindValue(":Descriptions",product.descriptions);
+
+    query.exec();
+
+    if(query.lastError().type() != QSqlError::NoError){
+        qWarning()<<query.lastError();
+        return false;
+    }
+
+
+    return true;
+}
+
 TableProducts::productList TableProducts::getAllProduct(){
     productList list;
 

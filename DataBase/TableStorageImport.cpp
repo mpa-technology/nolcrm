@@ -73,8 +73,7 @@ bool TableStorageImport::newImport(const ImportStorage& importStorage){
     QSqlQuery query(DataBase::db());
     for(const auto& it : importStorage.products){
 
-        query.prepare(R"(INSERT INTO products(Code,ProductsId,ProductsCount,ProductsPrice,Data)
-                      VALUES(:Code,:ProductsId,:ProductsCount,:ProductsPrice,:Data)");
+        query.prepare(R"(INSERT INTO storageImport(Code,ProductsId,ProductsCount,ProductsPrice,Data) VALUES(:Code,:ProductsId,:ProductsCount,:ProductsPrice,:Data);)");
 
         query.bindValue(":Code",code);
         query.bindValue(":ProductsId",it.id);
@@ -85,9 +84,11 @@ bool TableStorageImport::newImport(const ImportStorage& importStorage){
         query.exec();
 
         if(query.lastError().type() != QSqlError::NoError){
+            qWarning()<<query.lastError();
             return false;
         }
 
+        return true;
     }
 
 

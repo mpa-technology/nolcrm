@@ -19,37 +19,41 @@ void MainWindow::initModule_(){
 
     widgetAddProduct_ = new WidgetAddProduct();
     ui->verticalLayout_3->addWidget(widgetAddProduct_);
-    widgetAddProduct_->hide();
     ui->btnAddProduct->setEnabled(true);
 
 
     widgetShowOrder_ = new WidgetShowOrder();
     ui->verticalLayout_3->addWidget(widgetShowOrder_);
-    widgetShowOrder_->hide();
     ui->btnShowOrder->setEnabled(true);
 
 
     widgetAddOrder_ = new WidgetAddOrder();
     ui->verticalLayout_3->addWidget(widgetAddOrder_);
-    widgetAddOrder_->hide();
     ui->btnAddOrder->setEnabled(true);
 
 
-    widgetShowProducts = new WidgetShowProducts();
-    ui->verticalLayout_3->addWidget(widgetShowProducts);
-    widgetShowProducts->hide();
+    widgetShowProducts_ = new WidgetShowProducts();
+    ui->verticalLayout_3->addWidget(widgetShowProducts_);
     ui->pushButton->setEnabled(true);
 
-    widgetStorage = new WidgetStorage();
-    ui->verticalLayout_3->addWidget(widgetStorage);
-    widgetStorage->hide();
+    widgetStorage_ = new WidgetStorage();
+    ui->verticalLayout_3->addWidget(widgetStorage_);
     ui->pushButton_2->setEnabled(true);
-
+    
+    
+    widgetNewImport_ = new WidgetNewImport();
+    ui->verticalLayout_3->addWidget(widgetNewImport_);
+    ui->pushButton_3->setEnabled(true);
+    
     widgetList_.push_back(widgetAddProduct_);
     widgetList_.push_back(widgetAddOrder_);
     widgetList_.push_back(widgetShowOrder_);
-    widgetList_.push_back(widgetShowProducts);
-    widgetList_.push_back(widgetStorage);
+    widgetList_.push_back(widgetShowProducts_);
+    widgetList_.push_back(widgetStorage_);
+    widgetList_.push_back(widgetNewImport_);
+
+    showWidget_(nullptr);
+
 
 }
 
@@ -68,6 +72,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 }
 
 MainWindow::~MainWindow(){
+    qDebug()<<"app shotdown";
     delete ui;
 }
 
@@ -84,14 +89,24 @@ void MainWindow::on_btnShowOrder_clicked(){
 }
 
 void MainWindow::on_pushButton_clicked(){
-    showWidget_(widgetShowProducts);
+    showWidget_(widgetShowProducts_);
 }
 
 
 void MainWindow::on_pushButton_2_clicked(){
-  showWidget_(widgetStorage);
+  showWidget_(widgetStorage_);
 }
 
 void MainWindow::on_pushButton_3_clicked(){
-   showWidget_(nullptr);
+   showWidget_(widgetNewImport_);
+}
+
+void MainWindow::on_pushButton_6_clicked()
+{
+    close();
+}
+
+void MainWindow::on_pushButton_7_clicked()
+{
+    QMessageBox::about(nullptr,"nolcrm","programVersion = 1.0");
 }

@@ -152,24 +152,24 @@ QSqlError TableOrders::addOrder(const int &productId, const double &productPrice
 
 quint64 TableOrders::findFreeCode_(){
 
-QSqlQuery query;
-query.prepare("SELECT Code FROM orders");
-query.exec();
+    QSqlQuery query;
+    query.prepare("SELECT Code FROM orders");
+    query.exec();
 
-QVector<quint64>codes;
+    QVector<quint64>codes;
 
-while (query.next())
-    codes.push_back(query.value("Code").toULongLong());
-
-
-quint64 code = 1;
-
-while (codes.indexOf(code)!=-1) {
-    code++;
-}
+    while (query.next())
+        codes.push_back(query.value("Code").toULongLong());
 
 
-return code;
+    quint64 code = 1;
+
+    while (codes.indexOf(code)!=-1) {
+        code++;
+    }
+
+
+    return code;
 }
 
 TableOrders &TableOrders::self(){

@@ -6,11 +6,7 @@
 class Settings{
 
 
-    Settings(){
-        settings_ = new QSettings("mpa-technology","mpacrm");
-        settings_->sync();
-        qDebug()<<"Settings:up" << settings_->fileName();
-    }
+    Settings();
     Settings(const Settings& root) = delete;
     Settings& operator=(const Settings&) = delete;
 
@@ -20,25 +16,20 @@ class Settings{
 
 public:
 
-    ~Settings(){
-        settings_->sync();
-        delete  settings_;
+    ~Settings();
+
+    static Settings& self();
+
+
+    void setValue( const QString& key, const QVariant& value);
+
+    QVariant value( const QString& key, const QVariant& defaultValue);
+
+
+    static bool mainSettingsLoad(){
+        QString dbName = Settings::self().value("database/name","@NULL").toString();
+        return dbName != "@NULL";
     }
-
-    static Settings& self(){
-        static Settings sig;
-        return sig;
-    }
-
-
-    void setValue( const QString& key, const QVariant& value){
-        settings_->setValue(key,value);
-    }
-
-    QVariant value( const QString& key, const QVariant& defaultValue){
-        return settings_->value(key,defaultValue);
-    }
-
 
 };
 

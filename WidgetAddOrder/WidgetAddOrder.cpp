@@ -65,6 +65,11 @@ void WidgetAddOrder::on_pushButton_clicked()
     }
 
 
+
+
+  //ExportService::newExport()
+
+
     if( QSqlError error =  TableOrders::addOrder(products,ui->dateEdit->date());error.type() != error.NoError){
         QMessageBox::warning(nullptr,tr("Error"),error.text());
         return;
@@ -72,6 +77,23 @@ void WidgetAddOrder::on_pushButton_clicked()
         QMessageBox::information(nullptr,tr("инфо"),tr("Заказ успешн добвалень"));
     }
 
+
+    if(!ui->checkBox->isChecked())
+        return;
+
+    ImportStorage stg;
+    stg.data = ui->dateEdit->date();
+
+
+    for(auto it : products){
+        ImportStorage::product pro;
+        pro.id = it.first;
+        pro.count = 1;
+        pro.price = it.second;
+        stg.addProduct(pro);
+    }
+
+   qDebug()<< ExportService::newExport(stg);
 
 }
 

@@ -27,7 +27,7 @@
           <x>0</x>
           <y>0</y>
           <width>1081</width>
-          <height>217</height>
+          <height>210</height>
          </rect>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_4">
@@ -79,6 +79,16 @@
       <widget class="QPushButton" name="pushButton">
        <property name="text">
         <string>Завершить заказ</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QCheckBox" name="checkBox">
+       <property name="text">
+        <string>Отгрузить товар</string>
+       </property>
+       <property name="checked">
+        <bool>true</bool>
        </property>
       </widget>
      </item>
