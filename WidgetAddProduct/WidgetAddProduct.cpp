@@ -35,15 +35,15 @@ void WidgetAddProduct::on_pushButton_clicked()
     product.manufacturer = manufacturer;
     product.manufacturerPrice = manufacturerPrice;
 
-    ProductService::self().addProduct(product);
 
-//    if(QSqlError error = TableProducts::addProduct(name,category,manufacturer,price,manufacturerPrice,descriptions); error.type() != QSqlError::NoError){
-//        qWarning()<<error;
-//        QMessageBox::warning(nullptr,tr("Ошыбка"),error.text());
-//        return;
-//    } else{
-//        QMessageBox::information(nullptr,tr("инфо"),tr("Продукт успешн добвалень"));
-//    }
+
+    if(ProductService::self().addProduct(product)){
+        QMessageBox::information(nullptr,tr("Товар"),tr("Продукт успешн добвалень"));
+        UpdateService::self().emitGlobalUpdate();
+    }
+    else
+        QMessageBox::warning(nullptr,tr("Импорт"),tr("Торвр ошыбка "));
+
 }
 
 void WidgetAddProduct::closeEvent(QCloseEvent *event){

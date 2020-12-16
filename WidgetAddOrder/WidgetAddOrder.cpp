@@ -67,9 +67,6 @@ void WidgetAddOrder::on_pushButton_clicked()
 
 
 
-  //ExportService::newExport()
-
-
     if( QSqlError error =  TableOrders::addOrder(products,ui->dateEdit->date());error.type() != error.NoError){
         QMessageBox::warning(nullptr,tr("Error"),error.text());
         return;
@@ -93,7 +90,12 @@ void WidgetAddOrder::on_pushButton_clicked()
         stg.addProduct(pro);
     }
 
-   qDebug()<< ExportService::newExport(stg);
+
+    if(!ExportService::newExport(stg))
+        QMessageBox::warning(nullptr,tr("Импорт"),tr("ExportService ошыбка "));
+
+
+    UpdateService::self().emitGlobalUpdate();
 
 }
 

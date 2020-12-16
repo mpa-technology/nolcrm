@@ -26,6 +26,8 @@ set(SOURCES
     "WidgetNewImport/WidgetNewImport.cpp"
     "WidgetEditProduct/WidgetEditProduct.cpp"
     "LoginWidget/LoginWidget.cpp"
+    "ShowImportWidget/ShowImportWidget.cpp"
+    "ShowExportWidget.cpp"
     )
 
 set(HEADER
@@ -46,6 +48,8 @@ set(HEADER
     "WidgetNewImport/WidgetNewImport.hpp"
     "WidgetEditProduct/WidgetEditProduct.hpp"
     "LoginWidget/LoginWidget.hpp"
+    "ShowImportWidget/ShowImportWidget.hpp"
+    "ShowExportWidget.hpp"
     )
 
 set(UI
@@ -59,6 +63,8 @@ set(UI
     "WidgetNewImport/WidgetNewImport.ui"
     "WidgetEditProduct/WidgetEditProduct.ui"
     "LoginWidget/LoginWidget.ui"
+    "ShowImportWidget/ShowImportWidget.ui"
+    "ShowExportWidget.ui"
     )
 
 

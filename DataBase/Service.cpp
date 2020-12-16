@@ -36,6 +36,17 @@ GlobalService &GlobalService::self(){
     return sig;
 }
 
+bool GlobalService::waekup(){
+    try {
+        GlobalService::self().initTableBase();
+    } catch (const std::exception& exp) {
+        qCritical()<<exp.what();
+        return false;
+    }
+
+    return true;
+}
+
 void GlobalService::initTableBase(){
 
     if(!initDataBase_())

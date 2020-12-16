@@ -9,7 +9,7 @@ void MainWindow::showWidget_(QWidget *wgt){
         if(it != wgt)
             it->hide();
         else if(it != nullptr)
-        it->show();
+            it->show();
     }
 
 
@@ -45,12 +45,27 @@ void MainWindow::initModule_(){
     ui->verticalLayout_3->addWidget(widgetNewImport_);
     ui->pushButton_3->setEnabled(true);
     
+
+    showImportWidget_ = new ShowImportWidget();
+    ui->verticalLayout_3->addWidget(showImportWidget_);
+    ui->pushButton_4->setEnabled(true);
+
+
+    showExportWidget_ = new ShowExportWidget();
+    ui->verticalLayout_3->addWidget(showExportWidget_);
+    ui->pushButton_5->setEnabled(true);
+
+
     widgetList_.push_back(widgetAddProduct_);
     widgetList_.push_back(widgetAddOrder_);
     widgetList_.push_back(widgetShowOrder_);
     widgetList_.push_back(widgetShowProducts_);
     widgetList_.push_back(widgetStorage_);
     widgetList_.push_back(widgetNewImport_);
+    widgetList_.push_back(showImportWidget_);
+    widgetList_.push_back(showExportWidget_);
+
+
 
     showWidget_(nullptr);
 
@@ -85,7 +100,7 @@ void MainWindow::on_btnAddOrder_clicked(){
 }
 
 void MainWindow::on_btnShowOrder_clicked(){
-   showWidget_(widgetShowOrder_);
+    showWidget_(widgetShowOrder_);
 }
 
 void MainWindow::on_pushButton_clicked(){
@@ -94,11 +109,11 @@ void MainWindow::on_pushButton_clicked(){
 
 
 void MainWindow::on_pushButton_2_clicked(){
-  showWidget_(widgetStorage_);
+    showWidget_(widgetStorage_);
 }
 
 void MainWindow::on_pushButton_3_clicked(){
-   showWidget_(widgetNewImport_);
+    showWidget_(widgetNewImport_);
 }
 
 void MainWindow::on_pushButton_6_clicked()
@@ -109,4 +124,19 @@ void MainWindow::on_pushButton_6_clicked()
 void MainWindow::on_pushButton_7_clicked()
 {
     QMessageBox::about(nullptr,"nolcrm","programVersion = 1.0");
+}
+
+void MainWindow::on_pushButton_4_clicked()
+{
+    showWidget_(showImportWidget_);
+}
+
+void MainWindow::on_pushButton_5_clicked()
+{
+    showWidget_(showExportWidget_);
+}
+
+void MainWindow::on_pushButton_8_clicked()
+{
+   //
 }

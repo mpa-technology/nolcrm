@@ -10,7 +10,8 @@
 #include <WidgetShowProducts/WidgetShowProducts.hpp>
 #include <WidgetStorage/WidgetStorage.hpp>
 #include <WidgetNewImport/WidgetNewImport.hpp>
-
+#include <ShowImportWidget/ShowImportWidget.hpp>
+#include <ShowExportWidget.hpp>
 
 namespace Ui {
 class MainWindow;
@@ -27,6 +28,8 @@ class MainWindow : public QMainWindow
     WidgetShowProducts* widgetShowProducts_ = nullptr;
     WidgetStorage* widgetStorage_ = nullptr;
     WidgetNewImport* widgetNewImport_ = nullptr;
+    ShowImportWidget* showImportWidget_ = nullptr;
+    ShowExportWidget* showExportWidget_ = nullptr;
 
     QVector<QWidget*>widgetList_;
 
@@ -61,6 +64,12 @@ private slots:
     void on_pushButton_6_clicked();
 
     void on_pushButton_7_clicked();
+
+    void on_pushButton_4_clicked();
+
+    void on_pushButton_5_clicked();
+
+    void on_pushButton_8_clicked();
 
 private:
     Ui::MainWindow *ui = nullptr;

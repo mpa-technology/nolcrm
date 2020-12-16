@@ -17,7 +17,9 @@ public:
     explicit WidgetShowOrder(QWidget *parent = nullptr);
     ~WidgetShowOrder();
 
+public slots:
 
+    void globalUpdate();
 
 private slots:
 

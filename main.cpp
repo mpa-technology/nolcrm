@@ -4,6 +4,7 @@
 #include <QtGlobal>
 #include <QFile>
 #include <QScopedPointer>
+#include <QSharedPointer>
 
 #include "DataBase/Service.hpp"
 #include <LoginWidget/LoginWidget.hpp>
@@ -11,6 +12,10 @@
 #include "DataBase/TableStorage.hpp"
 #include "Settings/Settings.hpp"
 #include "MainWindow/MainWindow.hpp"
+
+
+
+
 
 struct logFile{
 
@@ -86,8 +91,9 @@ int main(int argc, char *argv[]){
     }else{
         lw.reset(new LoginWidget());
         lw->show();
+
     }
 
-
+    UpdateService::self().emitGlobalUpdate();
     return app.exec();
 }

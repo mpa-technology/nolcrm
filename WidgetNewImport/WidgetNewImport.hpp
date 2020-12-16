@@ -1,6 +1,10 @@
 #pragma once
 #include <QWidget>
+#include <QMessageBox>
 #include <DataBase/TableProducts.hpp>
+#include <DataBase/TableStorageImport.hpp>
+#include <DataBase/Service.hpp>
+
 namespace Ui {
 class WidgetNewImport;
 }
@@ -14,6 +18,9 @@ public:
     ~WidgetNewImport();
 
 private slots:
+
+    void globalUpdate();
+
     void on_tableWidget_activated(const QModelIndex &index);
 
     void on_pushButton_clicked();

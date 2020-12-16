@@ -46,6 +46,16 @@ bool TableProducts::crateTable(){
     return true;
 }
 
+Product TableProducts::lastProduct(){
+
+    QSqlQuery query(DataBase::db());
+    query.prepare("SELECT MAX(Id) FROM products");
+    query.exec();
+    query.next();
+    auto id = query.value(0).toULongLong();
+    return TableProducts::getProductById(id).second;
+}
+
 QSqlError TableProducts::addProduct(const Product &product){
 
     return addProduct(product.name,product.category,product.manufacturer,product.price,product.manufacturerPrice,product.descriptions);

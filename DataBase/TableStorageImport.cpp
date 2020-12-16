@@ -71,6 +71,7 @@ bool TableStorageImport::crateTable(){
 bool TableStorageImport::newImport(const ImportStorage& importStorage){
     auto code = self().findFreeCode_();
     QSqlQuery query(DataBase::db());
+
     for(const auto& it : importStorage.products){
 
         query.prepare(R"(INSERT INTO storageImport(Code,ProductsId,ProductsCount,ProductsPrice,Data) VALUES(:Code,:ProductsId,:ProductsCount,:ProductsPrice,:Data);)");
@@ -88,12 +89,61 @@ bool TableStorageImport::newImport(const ImportStorage& importStorage){
             return false;
         }
 
-        return true;
+
     }
 
 
 
 
     return true;
+}
+
+QVector<ImportStorage> TableStorageImport::getAllImport(){
+    QSqlQuery query(DataBase::db());
+    query.prepare("SELECT * FROM storageImport");
+    if(!query.exec()){
+        qCritical()<<query.lastError();
+    }
+
+    QVector<ImportStorage>f;
+
+    ImportStorage stg;
+    stg.code = -1;
+
+    while (query.next()) {
+    auto code = query.value("Code").toLongLong();
+    auto ProductsCount = query.value("ProductsCount").toLongLong();
+    auto ProductsId = query.value("ProductsId").toLongLong();
+    auto ProductsPrice = query.value("ProductsId").toDouble();
+    auto Data = query.value("Data").toDate();
+
+    ImportStorage::product pro;
+    pro.id = ProductsId;
+    pro.count = ProductsCount;
+    pro.price = ProductsPrice;
+
+    if(stg.code == -1){
+        stg.addProduct(pro);
+        stg.code = code;
+        stg.data = Data;
+        continue;
+    }
+
+
+    if(stg.code == code){
+        stg.addProduct(pro);
+        continue;
+    }
+
+    f.push_back(stg);
+    stg = ImportStorage();
+    stg.code = -1;
+
+}
+
+    if(stg.code != -1)
+    f.push_back(stg);
+
+    return f;
 }
 

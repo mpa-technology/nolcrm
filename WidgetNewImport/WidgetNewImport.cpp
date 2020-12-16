@@ -1,8 +1,6 @@
 #include "WidgetNewImport.hpp"
 #include "ui_WidgetNewImport.h"
 
-#include <DataBase/TableStorageImport.hpp>
-#include <DataBase/Service.hpp>
 
 WidgetNewImport::WidgetNewImport(QWidget *parent) :
     QWidget(parent),
@@ -10,16 +8,9 @@ WidgetNewImport::WidgetNewImport(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    const auto pro = TableProducts::getAllProduct();
 
-    for(const auto& it : pro){
-        const auto row = ui->tableWidget->rowCount();
-        ui->tableWidget->setRowCount(row+1);
+    QObject::connect(&UpdateService::self(),SIGNAL(globalUpdate()),this,SLOT(globalUpdate()));
 
-        ui->tableWidget->setItem(row,0,new QTableWidgetItem(QString::number(it.id)));
-        ui->tableWidget->setItem(row,1,new QTableWidgetItem(it.name));
-
-    }
 
 
 
@@ -29,6 +20,21 @@ WidgetNewImport::WidgetNewImport(QWidget *parent) :
 WidgetNewImport::~WidgetNewImport()
 {
     delete ui;
+}
+
+void WidgetNewImport::globalUpdate(){
+
+    const auto pro = TableProducts::getAllProduct();
+    ui->tableWidget->setRowCount(0);
+    for(const auto& it : pro){
+        const auto row = ui->tableWidget->rowCount();
+        ui->tableWidget->setRowCount(row+1);
+
+        ui->tableWidget->setItem(row,0,new QTableWidgetItem(QString::number(it.id)));
+        ui->tableWidget->setItem(row,1,new QTableWidgetItem(it.name));
+
+    }
+
 }
 
 void WidgetNewImport::on_tableWidget_activated(const QModelIndex &index){
@@ -63,6 +69,11 @@ void WidgetNewImport::on_pushButton_clicked(){
     }
 
 
-   qDebug()<<ImportService::newImport(is);
+    if(ImportService::newImport(is)){
+        QMessageBox::information(nullptr,tr("Импорт"),tr("импорт успешно создан"));
+        UpdateService::self().emitGlobalUpdate();
+    }
+    else
+        QMessageBox::warning(nullptr,tr("Импорт"),tr("импорт ошыбка создан"));
 
 }

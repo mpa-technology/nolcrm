@@ -2,12 +2,16 @@
 #include "ui_WidgetShowOrder.h"
 
 
+#include <DataBase/Service.hpp>
 
 WidgetShowOrder::WidgetShowOrder(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::WidgetShowOrder)
 {
     ui->setupUi(this);
+
+   QObject::connect(&UpdateService::self(),SIGNAL(globalUpdate()),this,SLOT(globalUpdate()));
+
 
     updateTable();
 
@@ -18,12 +22,19 @@ WidgetShowOrder::~WidgetShowOrder()
     delete ui;
 }
 
+void WidgetShowOrder::globalUpdate(){
+
+    ui->tableWidget->setRowCount(0);
+    updateTable();
+
+}
+
 
 
 void WidgetShowOrder::updateTable(){
 
     auto ptd = TableOrders::hhgetAllOrder();
-
+    ui->tableWidget->setRowCount(0);
 
     for(const auto& it : ptd){
 

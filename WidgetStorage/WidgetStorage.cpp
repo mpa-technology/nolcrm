@@ -10,6 +10,23 @@ WidgetStorage::WidgetStorage(QWidget *parent) :
 {
     ui->setupUi(this);
 
+
+    QObject::connect(&UpdateService::self(),SIGNAL(globalUpdate()),this,SLOT(globalUpdate()));
+
+
+
+
+}
+
+WidgetStorage::~WidgetStorage()
+{
+    delete ui;
+}
+
+void WidgetStorage::globalUpdate(){
+
+    ui->tableWidget->setRowCount(0);
+
     const auto pro = TableProducts::getAllProduct();
 
     for(const auto& it : pro){
@@ -23,9 +40,4 @@ WidgetStorage::WidgetStorage(QWidget *parent) :
 
     }
 
-}
-
-WidgetStorage::~WidgetStorage()
-{
-    delete ui;
 }

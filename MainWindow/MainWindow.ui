@@ -54,6 +54,16 @@
           </widget>
          </item>
          <item>
+          <widget class="QPushButton" name="pushButton_8">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="text">
+            <string>Добавить экспорт</string>
+           </property>
+          </widget>
+         </item>
+         <item>
           <widget class="QPushButton" name="pushButton_5">
            <property name="enabled">
             <bool>false</bool>
@@ -102,22 +112,22 @@
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_5">
          <item>
-          <widget class="QPushButton" name="btnShowOrder">
-           <property name="enabled">
-            <bool>false</bool>
-           </property>
-           <property name="text">
-            <string>Покозать закзы</string>
-           </property>
-          </widget>
-         </item>
-         <item>
           <widget class="QPushButton" name="btnAddOrder">
            <property name="enabled">
             <bool>false</bool>
            </property>
            <property name="text">
             <string>Добавить заказ</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="btnShowOrder">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="text">
+            <string>Покозать закзы</string>
            </property>
           </widget>
          </item>

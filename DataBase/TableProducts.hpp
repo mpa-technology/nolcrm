@@ -38,15 +38,7 @@ public:
 
     static bool crateTable();
 
-    static Product lastProduct(){
-
-        QSqlQuery query(DataBase::db());
-        query.prepare("SELECT MAX(Id) FROM products");
-        query.exec();
-        query.next();
-        auto id = query.value(0).toULongLong();
-        return TableProducts::getProductById(id).second;
-    }
+    static Product lastProduct();
 
     static  QSqlError addProduct( const Product& product);
 

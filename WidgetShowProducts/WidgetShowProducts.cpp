@@ -17,8 +17,8 @@ WidgetShowProducts::WidgetShowProducts(QWidget *parent) :
     for(const auto& it : TableProducts::getAllProduct()){
         auto* item = new WidgetProduct();
         item->setProduct(it);
-        item->setButtonLeft(tr("x"));
-        item->setButtonRight(tr("Edit"));
+        item->setButtonLeft(tr("Удалить"));
+        item->setButtonRight(tr("Изминить"));
         QObject::connect(item,SIGNAL(leftBtnClicked(Product)),this,SLOT(btd(Product)));
         QObject::connect(item,SIGNAL(rightBtnClicked(Product)),this,SLOT(btdr(Product)));
         ui->verticalLayout_fs->addWidget(item);
@@ -40,7 +40,7 @@ QMessageBox msg;
 
 msg.addButton(QMessageBox::StandardButton::Yes);
 msg.addButton(QMessageBox::StandardButton::No);
-msg.setText(tr("Вы хотите удалитьт това"));
+msg.setText(tr("Вы хотите удалитьт товар"));
 
 if(msg.exec() == QMessageBox::No)
     return;

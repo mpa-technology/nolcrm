@@ -9,6 +9,9 @@
 #include "TableStorageImport.hpp"
 
 
+
+
+
 class GlobalService{
 
     GlobalService();
@@ -23,19 +26,33 @@ public:
     static GlobalService& self();
 
 
-    static  bool waekup(){
-        try {
-            GlobalService::self().initTableBase();
-        } catch (const std::exception& exp) {
-            qCritical()<<exp.what();
-            return false;
-        }
-
-        return true;
-    }
+    static  bool waekup();
 
 
     void initTableBase();
+
+
+};
+
+
+class UpdateService : public QObject{
+    Q_OBJECT
+
+public:
+
+    static UpdateService& self(){
+        static UpdateService sig;
+        return sig;
+    }
+
+    void emitGlobalUpdate(){
+        qDebug()<<"emit globalUpdate";
+        emit globalUpdate();
+    }
+
+signals:
+void globalUpdate();
+
 
 
 };
@@ -54,19 +71,26 @@ public:
         return sig;
     }
 
-    void addProduct( const Product& product){
+    bool addProduct( const Product& product){
 
-        TableProducts::addProduct(product);
+       if(auto sqlerror = TableProducts::addProduct(product).type(); sqlerror != QSqlError::NoError){
+           qWarning()<<sqlerror;
+           return  false;
+       }
         auto newP = TableProducts::lastProduct();
-        TableStorage::addItem(newP.id);
+
+        if(auto sqlerror = TableStorage::addItem(newP.id).type(); sqlerror != QSqlError::NoError){
+            qWarning()<<sqlerror;
+            return  false;
+        }
 
 
+
+        return true;
     }
 
 
 };
-
-
 
 
 class ImportService{
@@ -82,7 +106,6 @@ public:
     }
 
     static  bool newImport ( const ImportStorage& is){
-
 
         if(!TableStorageImport::newImport(is)){
             return false;

@@ -1,5 +1,6 @@
 #pragma once
 #include <QWidget>
+#include <QMessageBox>
 #include <DataBase/TableProducts.hpp>
 
 namespace Ui {
