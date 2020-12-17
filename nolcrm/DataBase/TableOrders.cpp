@@ -1,143 +1,16 @@
+/*
+    SPDX-FileCopyrightText: 2020 Maxim Palshin <palshin.maxim.alekseevich@gmail.com>
+    SPDX-License-Identifier: BSD 3-Clause "New" or "Revised" License
+*/
+
+
 #include "TableOrders.hpp"
 #include "DataBase.hpp"
 
 TableOrders::TableOrders(){}
 
-TableOrders::hordersList TableOrders::hgetAllOrder(){
 
-    QSqlQuery query(DataBase::db());
-    query.prepare(R"(SELECT * FROM orders )");
-    query.exec();
-
-    if(query.lastError().type() != QSqlError::NoError){
-        qWarning()<<query.lastError();
-        return {};
-    }
-
-
-    hordersList list;
-
-    while (query.next()) {
-        int id =  query.value("Id").toInt();
-        int code = query.value("Code").toInt();
-        int pid = query.value("ProductsId").toInt();
-        double pp = query.value("ProductsPrice").toDouble();
-        bool ins = false;
-
-
-        for(auto&it:list){
-            if(it.first==code){
-                Orders ord;
-                ord.id = id;
-                ord.code = code;
-                ord.product = {pid,pp};
-                it.second.push_back(ord);
-                ins = true;
-                break;
-            }
-        }
-
-        if(!ins){
-            Orders ord;
-            ord.id = id;
-            ord.code = code;
-            ord.product = {pid,pp};
-            list.push_back({code,{ord}});
-
-        }
-
-    }
-
-    return list;
-}
-
-QVector<Order> TableOrders::hhgetAllOrder()
-{
-
-
-    QSqlQuery query(DataBase::db());
-    query.prepare(R"(SELECT * FROM orders )");
-    query.exec();
-
-    if(query.lastError().type() != QSqlError::NoError){
-        qWarning()<<query.lastError();
-        return {};
-    }
-
-    QVector<Order>  list;
-
-    while (query.next()) {
-
-
-        int id =  query.value("Id").toInt();
-        int code = query.value("Code").toInt();
-        int pid = query.value("ProductsId").toInt();
-        double pp = query.value("ProductsPrice").toDouble();
-        QDate data = query.value("Data").toDate();
-
-        bool flag = false;
-
-        for(auto& it : list){
-
-            if(it.code == code){
-                it.fpice += pp;
-                it.products.push_back(pid);
-                it.orders.push_back(id);
-                flag = true;
-                continue;
-            }
-
-
-        }
-
-        if(flag) continue;
-
-        Order order;
-        order.code = code;
-        order.fpice = pp;
-        order.data = data;
-        order.orders.push_back(id);
-        order.products.push_back(pid);
-        list.push_back(order);
-    }
-
-
-    return list;
-}
-
-TableOrders::ordersList TableOrders::getAllOrder(){
-
-    QSqlQuery query(DataBase::db());
-    query.prepare(R"(SELECT * FROM orders )");
-    query.exec();
-
-    if(query.lastError().type() != QSqlError::NoError){
-        qWarning()<<query.lastError();
-        return {};
-    }
-
-
-    ordersList list;
-
-    while (query.next()) {
-        int id =  query.value("Id").toInt();
-        int code = query.value("Code").toInt();
-        int pid = query.value("ProductsId").toInt();
-        double pp = query.value("ProductsPrice").toDouble();
-        Orders ord;
-        ord.id = id;
-        ord.code = code;
-        ord.product = {pid,pp};
-        list.push_back(ord);
-
-
-
-    }
-
-    return list;
-}
-
-QSqlError TableOrders::addOrder(const int &productId, const double &productPrice, const quint64 &code, const QDate &data){
+bool TableOrders::addOrder(const int &productId, const double &productPrice, const quint64 &code, const QDate &data){
 
     QSqlQuery query(DataBase::db());
     query.prepare( R"( INSERT INTO orders(Code,ProductsId,ProductsPrice,Data) VALUES(:Code,:ProductsId,:ProductsPrice,:Data); )" );
@@ -147,7 +20,13 @@ QSqlError TableOrders::addOrder(const int &productId, const double &productPrice
     query.bindValue(":Data",data);
     query.exec();
 
-    return query.lastError();
+
+    if(query.lastError().type()!=QSqlError::NoError){
+        qWarning()<<query.lastError();
+        return false;
+    }
+
+    return true;
 }
 
 quint64 TableOrders::findFreeCode_(){
@@ -213,78 +92,139 @@ bool TableOrders::crateTable(){
     return true;
 }
 
+QVector<Order> TableOrders::getAllOrder(){
+    QSqlQuery query(DataBase::db());
+    query.prepare(R"(SELECT * FROM orders )");
+    query.exec();
 
-QSqlError TableOrders::addOrder(QVector<QPair<int, double> > products, const QDate &data){
+    if(query.lastError().type() != QSqlError::NoError){
+        qWarning()<<query.lastError();
+        return {};
+    }
+
+
+
+    QMap<qint64,Order>mapExportStorage;
+
+
+
+    while (query.next()) {
+        auto code = query.value("Code").toLongLong();
+
+        auto ProductsId = query.value("ProductsId").toLongLong();
+        auto ProductsPrice = query.value("ProductsPrice").toDouble();
+        auto Data = query.value("Data").toDate();
+
+
+        Order::product pro;
+        pro.id = ProductsId;
+        pro.price = ProductsPrice;
+
+        if(mapExportStorage.find(code)==mapExportStorage.end()){
+            Order stg;
+            stg.code = code;
+            stg.data = Data;
+            stg.addProduct(pro);
+            mapExportStorage.insert(code,stg);
+            continue;
+        }
+
+
+        mapExportStorage.find(code).value().addProduct(pro);
+
+
+
+    }
+
+
+    QVector<Order>listExportStorage;
+
+    for(auto it: mapExportStorage)
+        listExportStorage.push_back(it);
+
+
+    return listExportStorage;
+}
+
+
+bool TableOrders::addOrder(QVector<QPair<int, double> > products, const QDate &data){
 
     auto code = findFreeCode_();
 
     for(const auto&it:products){
-        if( QSqlError error = addOrder(it.first,it.second,code,data); error.type() !=QSqlError::NoError)
-            return error;
+        if( !addOrder(it.first,it.second,code,data))
+            return false;
     }
 
 
-    return {};
+    return true;
 }
 
-QSqlError TableOrders::addOrder(QVector<QPair<int, double> > products, const quint64 &code, const QDate &data){
+bool TableOrders::addOrder(QVector<QPair<int, double> > products, const quint64 &code, const QDate &data){
 
 
     for(const auto&it:products){
-        if( QSqlError error = addOrder(it.first,it.second,code,data); error.type() !=QSqlError::NoError)
-            return error;
+        if( addOrder(it.first,it.second,code,data))
+            return false;
     }
 
 
     return {};
 }
 
-Order TableOrders::hhgetOrderByCode(const quint64 &code){
+Order TableOrders::getOrderByCode(const quint64 &code){
 
-    for(const auto& it :  hhgetAllOrder())
+    for(const auto& it :  getAllOrder())
         if(it.code == code)
             return it;
 
     return {};
 }
 
-QSqlError TableOrders::removeOrderByCode(const quint64 &code){
+bool TableOrders::removeOrderByCode(const quint64 &code){
     QSqlQuery query;
     query.prepare("DELETE FROM orders WHERE Code = :code");
     query.bindValue(":code",code);
     query.exec();
 
-    if(query.lastError().type() != QSqlError::NoError)
+    if(query.lastError().type() != QSqlError::NoError){
         qDebug()<<query.lastError();
+        return false;
+    }
 
 
 
-    return query.lastError();
+    return true;
 }
 
-Order TableOrders::hgetOrderByData(const QDate &data){
+Order TableOrders::getOrderByData(const QDate &data){
 
-    //QSqlQuery query;
-    //query.prepare("SELECT * FROM products WHERE Data=:data");
-    //query.bindValue(":data",data);
 
-    for(const auto& it : hhgetAllOrder())
+    for(const auto& it : getAllOrder())
         if(it.data == data)
             return it;
 
     return {};
 }
 
-QVector<Order> TableOrders::hgetOrderByData(const int &year, const int &month){
+QVector<Order> TableOrders::getOrderByData(const int &year, const int &month){
 
-    //QSqlQuery query;
-    //query.prepare("SELECT * FROM products WHERE Data=:data");
-    //query.bindValue(":data",data);
 
     QVector<Order> list;
 
-    for(const auto& it : hhgetAllOrder())
+    for(const auto& it : getAllOrder())
         if(it.data.month() == month && it.data.year())
+            list.push_back(it);
+
+    return list;
+}
+
+QVector<Order> TableOrders::getOrderByData(const int &year, const int &month, const int &day)
+{
+    QVector<Order> list;
+
+    for(const auto& it : getAllOrder())
+        if(it.data.month() == month && it.data.year() && it.data.day() == day)
             list.push_back(it);
 
     return list;

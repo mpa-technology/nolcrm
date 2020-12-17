@@ -1,3 +1,9 @@
+/*
+    SPDX-FileCopyrightText: 2020 Maxim Palshin <palshin.maxim.alekseevich@gmail.com>
+    SPDX-License-Identifier: BSD 3-Clause "New" or "Revised" License
+*/
+
+
 #ifndef NOLCRM_DATABASE_HPP
 #define NOLCRM_DATABASE_HPP
 
@@ -5,7 +11,7 @@
 #include <QSqlDatabase>
 #include <QSqlError>
 #include <QSqlQuery>
-
+#include <Settings/Settings.hpp>
 
 
 class DataBase{
@@ -22,19 +28,19 @@ class DataBase{
 
 
 public:
-    ~DataBase(){
-        qDebug()<<"DataBase down";
-    }
+    ~DataBase();
 
     static DataBase& self();
 
-    static void init( const QString& dataBaseName, const QString& hostName, const QString& userName , const QString& userPassword , const QString& dataBaseDriver = "QSQLITE");
+    static bool init();
+
 
     static QStringList table();
 
     static QSqlDatabase& db();
 
-    static QSqlError open();
+    static bool open();
+
 
 
 

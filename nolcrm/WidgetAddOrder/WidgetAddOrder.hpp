@@ -1,3 +1,9 @@
+/*  SPDX-License-Identifier: BSD 3-Clause "New" or "Revised" License
+    SPDX-FileCopyrightText: 2020 Maxim Palshin <palshin.maxim.alekseevich@gmail.com>
+    SPDX-License-Identifier: BSD 3-Clause "New" or "Revised" License
+*/
+
+
 #ifndef NOLCRM_WIDGETADDORDER_HPP
 #define NOLCRM_WIDGETADDORDER_HPP
 
@@ -5,9 +11,11 @@
 #include <QWidget>
 #include <QMessageBox>
 #include <QCloseEvent>
-#include <DataBase/Service.hpp>
-#include <WidgetProduct/WidgetProduct.hpp>
 
+#include <WidgetProduct/WidgetProduct.hpp>
+#include <Servers/UpdateService.hpp>
+#include <Servers/ExportService.hpp>
+#include <DataBase/TableOrders.hpp>
 namespace Ui {
 class WidgetAddOrder;
 }

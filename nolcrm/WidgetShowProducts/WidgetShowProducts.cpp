@@ -1,10 +1,14 @@
+/*
+    SPDX-FileCopyrightText: 2020 Maxim Palshin <palshin.maxim.alekseevich@gmail.com>
+    SPDX-License-Identifier: BSD 3-Clause "New" or "Revised" License
+*/
+
+
+
 #include "WidgetShowProducts.hpp"
 #include "ui_WidgetShowProducts.h"
 
-#include <QTextDocument>
-#include <QPrinter>
-#include <QFile>
-#include <QFileDialog>
+
 
 
 WidgetShowProducts::WidgetShowProducts(QWidget *parent) :
@@ -13,16 +17,7 @@ WidgetShowProducts::WidgetShowProducts(QWidget *parent) :
 {
     ui->setupUi(this);
 
-
-    for(const auto& it : TableProducts::getAllProduct()){
-        auto* item = new WidgetProduct();
-        item->setProduct(it);
-        item->setButtonLeft(tr("Удалить"));
-        item->setButtonRight(tr("Изминить"));
-        QObject::connect(item,SIGNAL(leftBtnClicked(Product)),this,SLOT(btd(Product)));
-        QObject::connect(item,SIGNAL(rightBtnClicked(Product)),this,SLOT(btdr(Product)));
-        ui->verticalLayout_fs->addWidget(item);
-    }
+    QObject::connect(&UpdateService::self(),SIGNAL(globalUpdate()),this,SLOT(globalUpdate()));
 
 
 }
@@ -45,9 +40,7 @@ msg.setText(tr("Вы хотите удалитьт товар"));
 if(msg.exec() == QMessageBox::No)
     return;
 
-if( QSqlError error =  TableProducts::removeProduct(pro.id) ; error.type() != QSqlError::NoError){
-    qDebug()<<error;
-}
+TableProducts::removeProduct(pro.id);
 
 
 
@@ -61,15 +54,30 @@ void WidgetShowProducts::btdr(Product pro){
 
 }
 
-void WidgetShowProducts::on_pushButton_2_clicked()
+void WidgetShowProducts::globalUpdate()
 {
 
+    QLayoutItem* wgt;
+
+    while ((wgt = ui->verticalLayout_fs->takeAt(0))!=0 ) {
+        delete wgt;
+    }
 
 
 
-
+    for(const auto& it : TableProducts::getAllProduct()){
+        auto* item = new WidgetProduct();
+        item->setProduct(it);
+        item->setButtonLeft(tr("Удалить"));
+        item->setButtonRight(tr("Изминить"));
+        QObject::connect(item,SIGNAL(leftBtnClicked(Product)),this,SLOT(btd(Product)));
+        QObject::connect(item,SIGNAL(rightBtnClicked(Product)),this,SLOT(btdr(Product)));
+        ui->verticalLayout_fs->addWidget(item);
+    }
 
 }
+
+
 
 void WidgetShowProducts::on_pushButton_clicked()
 {

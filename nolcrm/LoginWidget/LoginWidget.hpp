@@ -1,3 +1,9 @@
+/*
+    SPDX-FileCopyrightText: 2020 Maxim Palshin <palshin.maxim.alekseevich@gmail.com>
+    SPDX-License-Identifier: BSD 3-Clause "New" or "Revised" License
+*/
+
+
 #ifndef NOLCRM_LOGINWIDGET_HPP
 #define NOLCRM_LOGINWIDGET_HPP
 
@@ -5,6 +11,7 @@
 #include <QFileDialog>
 #include <MainWindow/MainWindow.hpp>
 #include <Settings/Settings.hpp>
+#include <Servers/GlobalService.hpp>
 
 
 namespace Ui {
@@ -20,6 +27,8 @@ public:
     ~LoginWidget();
 
 private slots:
+
+
     void on_pushButton_clicked();
 
     void on_pushButton_2_clicked();

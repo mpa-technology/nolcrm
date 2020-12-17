@@ -1,14 +1,19 @@
+/*
+    SPDX-FileCopyrightText: 2020 Maxim Palshin <palshin.maxim.alekseevich@gmail.com>
+    SPDX-License-Identifier: BSD 3-Clause "New" or "Revised" License
+*/
+
+
+
 #ifndef NOLCRM_WIDGETNEWEXPORT_HPP
 #define NOLCRM_WIDGETNEWEXPORT_HPP
-
-
 
 
 #include <QWidget>
 #include <QMessageBox>
 #include <DataBase/TableProducts.hpp>
-#include <DataBase/TableStorageImport.hpp>
-#include <DataBase/Service.hpp>
+#include <Servers/UpdateService.hpp>
+#include <Servers/ExportService.hpp>
 
 namespace Ui {
 class WidgetNewExport;

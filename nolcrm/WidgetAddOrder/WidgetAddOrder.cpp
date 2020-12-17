@@ -1,3 +1,9 @@
+/*  SPDX-License-Identifier: BSD 3-Clause "New" or "Revised" License
+    SPDX-FileCopyrightText: 2020 Maxim Palshin <palshin.maxim.alekseevich@gmail.com>
+    SPDX-License-Identifier: BSD 3-Clause "New" or "Revised" License
+*/
+
+
 #include "WidgetAddOrder/WidgetAddOrder.hpp"
 #include "ui_WidgetAddOrder.h"
 
@@ -67,8 +73,8 @@ void WidgetAddOrder::on_pushButton_clicked()
 
 
 
-    if( QSqlError error =  TableOrders::addOrder(products,ui->dateEdit->date());error.type() != error.NoError){
-        QMessageBox::warning(nullptr,tr("Error"),error.text());
+    if(!TableOrders::addOrder(products,ui->dateEdit->date())){
+        QMessageBox::warning(nullptr,tr("Error"),"error");
         return;
     }else{
         QMessageBox::information(nullptr,tr("инфо"),tr("Заказ успешн добвалень"));
@@ -78,12 +84,12 @@ void WidgetAddOrder::on_pushButton_clicked()
     if(!ui->checkBox->isChecked())
         return;
 
-    ImportStorage stg;
+    ExportStorage stg;
     stg.data = ui->dateEdit->date();
 
 
     for(auto it : products){
-        ImportStorage::product pro;
+        ExportStorage::product pro;
         pro.id = it.first;
         pro.count = 1;
         pro.price = it.second;

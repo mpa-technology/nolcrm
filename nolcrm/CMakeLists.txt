@@ -3,9 +3,19 @@ project(nolcrm CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 set_target_properties(${TARGET} PROPERTIES
-            CXX_STANDARD 17
-            CXX_EXTENSIONS ON
-            )
+    CXX_STANDARD 17
+    CXX_EXTENSIONS ON
+    )
+
+
+set(PROJECT_VERSION_MAJOR 1)
+set(PROJECT_VERSION_MINOR 2)
+set(PROJECT_VERSION_PATCH 0)
+set(NOLCRM_BUILD_TYPE ${CMAKE_BUILD_TYPE})
+set(NOLCRM_VERSION_MAJOR ${PROJECT_VERSION_MAJOR})
+set(NOLCRM_VERSION_MINOR ${PROJECT_VERSION_MINOR})
+set(NOLCRM_VERSION_PATCH ${PROJECT_VERSION_PATCH})
+
 
 set(SOURCES
     "main.cpp"
@@ -20,7 +30,6 @@ set(SOURCES
     "WidgetShowProducts/WidgetShowProducts.cpp"
     "WidgetStorage/WidgetStorage.cpp"
     "DataBase/TableStorage.cpp"
-    "DataBase/Service.cpp"
     "Settings/Settings.cpp"
     "DataBase/TableStorageImport.cpp"
     "WidgetNewImport/WidgetNewImport.cpp"
@@ -29,6 +38,14 @@ set(SOURCES
     "ShowImportWidget/ShowImportWidget.cpp"
     "ShowExportWidget/ShowExportWidget.cpp"
     "WidgetNewExport/WidgetNewExport.cpp"
+    "Servers/UpdateService.cpp"
+    "Servers/ProgramService.cpp"
+    "Servers/ProductService.cpp"
+    "Servers/ImportService.cpp"
+    "Servers/ExportService.cpp"
+    "Servers/GlobalService.cpp"
+    "DataBase/TableStorageExport.cpp"
+    "Tool.cpp"
     )
 
 set(HEADER
@@ -43,7 +60,6 @@ set(HEADER
     "DataBase/TableOrders.hpp"
     "WidgetStorage/WidgetStorage.hpp"
     "DataBase/TableStorage.hpp"
-    "DataBase/Service.hpp"
     "Settings/Settings.hpp"
     "DataBase/TableStorageImport.hpp"
     "WidgetNewImport/WidgetNewImport.hpp"
@@ -53,6 +69,14 @@ set(HEADER
     "ShowExportWidget/ShowExportWidget.hpp"
     "WidgetNewExport/WidgetNewExport.hpp"
     "main.hpp"
+    "Servers/UpdateService.hpp"
+    "Servers/ProgramService.hpp"
+    "Servers/ProductService.hpp"
+    "Servers/ImportService.hpp"
+    "Servers/ExportService.hpp"
+    "Servers/GlobalService.hpp"
+    "DataBase/TableStorageExport.hpp"
+    "Tool.hpp"
     )
 
 set(UI
@@ -70,6 +94,10 @@ set(UI
     "ShowExportWidget/ShowExportWidget.ui"
     "WidgetNewExport/WidgetNewExport.ui"
     )
+
+
+
+configure_file("Servers/cmake_m.in" "Servers/cmake_m.hpp")
 
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)

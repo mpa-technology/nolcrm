@@ -1,3 +1,9 @@
+/*
+    SPDX-FileCopyrightText: 2020 Maxim Palshin <palshin.maxim.alekseevich@gmail.com>
+    SPDX-License-Identifier: BSD 3-Clause "New" or "Revised" License
+*/
+
+
 #include "TableStorageImport.hpp"
 
 quint64 TableStorageImport::findFreeCode_(){
@@ -105,45 +111,56 @@ QVector<ImportStorage> TableStorageImport::getAllImport(){
         qCritical()<<query.lastError();
     }
 
-    QVector<ImportStorage>f;
 
-    ImportStorage stg;
-    stg.code = -1;
+    QMap<qint64,ImportStorage>mapExportStorage;
+
+
 
     while (query.next()) {
-    auto code = query.value("Code").toLongLong();
-    auto ProductsCount = query.value("ProductsCount").toLongLong();
-    auto ProductsId = query.value("ProductsId").toLongLong();
-    auto ProductsPrice = query.value("ProductsId").toDouble();
-    auto Data = query.value("Data").toDate();
+        auto code = query.value("Code").toLongLong();
+        auto ProductsCount = query.value("ProductsCount").toLongLong();
+        auto ProductsId = query.value("ProductsId").toLongLong();
+        auto ProductsPrice = query.value("ProductsPrice").toDouble();
+        auto Data = query.value("Data").toDate();
 
-    ImportStorage::product pro;
-    pro.id = ProductsId;
-    pro.count = ProductsCount;
-    pro.price = ProductsPrice;
 
-    if(stg.code == -1){
-        stg.addProduct(pro);
-        stg.code = code;
-        stg.data = Data;
-        continue;
+        ImportStorage::product pro;
+        pro.id = ProductsId;
+        pro.count = ProductsCount;
+        pro.price = ProductsPrice;
+
+        if(mapExportStorage.find(code)==mapExportStorage.end()){
+            ImportStorage stg;
+            stg.code = code;
+            stg.data = Data;
+            stg.addProduct(pro);
+            mapExportStorage.insert(code,stg);
+            continue;
+        }
+
+
+        mapExportStorage.find(code).value().addProduct(pro);
+
+
+
     }
 
 
-    if(stg.code == code){
-        stg.addProduct(pro);
-        continue;
-    }
+    QVector<ImportStorage>listExportStorage;
 
-    f.push_back(stg);
-    stg = ImportStorage();
-    stg.code = -1;
+    for(auto it: mapExportStorage)
+        listExportStorage.push_back(it);
 
+
+    return listExportStorage;
 }
 
-    if(stg.code != -1)
-    f.push_back(stg);
+ImportStorage TableStorageImport::getImport(const quint64 code){
 
-    return f;
+    for(auto& it : getAllImport())
+        if(it.code == code)
+            return it;
+
+    return {};
 }
 

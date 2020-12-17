@@ -1,8 +1,11 @@
+/*
+    SPDX-FileCopyrightText: 2020 Maxim Palshin <palshin.maxim.alekseevich@gmail.com>
+    SPDX-License-Identifier: BSD 3-Clause "New" or "Revised" License
+*/
+
+
+
 #include "TableStorage.hpp"
-
-
-
-
 
 
 
@@ -48,7 +51,7 @@ bool TableStorage::crateTable(){
     return true;
 }
 
-QSqlError TableStorage::addItem(const quint64 &id){
+bool TableStorage::addItem(const quint64 &id){
     QSqlQuery query(DataBase::db());
 
     query.prepare( R"( INSERT INTO storage(ProductsId,ProductsCount) VALUES(:ProductsId,:ProductsCount); )" );
@@ -56,7 +59,12 @@ QSqlError TableStorage::addItem(const quint64 &id){
     query.bindValue(":ProductsCount",0);
     query.exec();
 
-    return query.lastError();
+    if(query.lastError().type()!=QSqlError::NoError){
+        qWarning()<<query.lastError();
+        return false;
+    }
+
+    return true;
 }
 
 bool TableStorage::setCount(const quint64 &id, const quint64 &count){
@@ -84,7 +92,13 @@ bool TableStorage::addCount(const quint64 &id, const quint64 &count)
     return true;
 }
 
+
 bool TableStorage::subCount(const quint64 &id, const quint64 &count){
+
+//    if(subOverflow(getCount(id),count)){
+//        qWarning()<<"count - currentCount < 0";
+//        return false;
+//    }
 
     QSqlQuery query(DataBase::db());
     query.prepare("UPDATE storage SET ProductsCount=:count WHERE ProductsId=:Id;");

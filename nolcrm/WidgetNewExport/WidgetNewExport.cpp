@@ -1,3 +1,10 @@
+/*
+    SPDX-FileCopyrightText: 2020 Maxim Palshin <palshin.maxim.alekseevich@gmail.com>
+    SPDX-License-Identifier: BSD 3-Clause "New" or "Revised" License
+*/
+
+
+
 #include "WidgetNewExport.hpp"
 #include "ui_WidgetNewExport.h"
 
@@ -34,7 +41,7 @@ void WidgetNewExport::on_tableWidget_activated(const QModelIndex &index)
 {
     auto item =  ui->tableWidget->item(index.row(),0)->text().toULongLong();
 
-    const auto pro = TableProducts::getProductById(item).second;
+    const auto pro = TableProducts::getProductById(item);
 
     const auto row = ui->tableWidget_2->rowCount();
     ui->tableWidget_2->setRowCount(row+1);
@@ -46,7 +53,7 @@ void WidgetNewExport::on_tableWidget_activated(const QModelIndex &index)
 
 void WidgetNewExport::on_pushButton_clicked()
 {
-    ImportStorage is;
+    ExportStorage is;
     is.data = QDate::currentDate();
 
 
@@ -54,10 +61,10 @@ void WidgetNewExport::on_pushButton_clicked()
         auto id = ui->tableWidget_2->item(i,0)->text().toULongLong();
         auto count = ui->tableWidget_2->item(i,2)->text().toULongLong();
 
-        ImportStorage::product pro;
+        ExportStorage::product pro;
         pro.id = id;
         pro.count = count;
-        pro.price = TableProducts::getProductById(id).second.price;
+        pro.price = TableProducts::getProductById(id).price;
         is.addProduct(pro);
     }
 

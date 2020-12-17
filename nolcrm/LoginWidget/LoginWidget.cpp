@@ -1,3 +1,8 @@
+/*
+    SPDX-FileCopyrightText: 2020 Maxim Palshin <palshin.maxim.alekseevich@gmail.com>
+    SPDX-License-Identifier: BSD 3-Clause "New" or "Revised" License
+*/
+
 #include "LoginWidget.hpp"
 #include "ui_LoginWidget.h"
 
@@ -31,6 +36,7 @@ void LoginWidget::on_pushButton_clicked()
         settings.setValue("database/hostName","@CLEAR");
         settings.setValue("database/userName","@CLEAR");
         settings.setValue("database/userPassword","@CLEAR");
+        settings.setValue("database/port","@CLEAR");
         settings.setValue("database/driver","QSQLITE");
         if(!GlobalService::waekup()){
             QMessageBox::warning(nullptr,"error","error");

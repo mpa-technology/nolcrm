@@ -1,11 +1,30 @@
-#ifndef UPDATESERVICE_HPP
-#define UPDATESERVICE_HPP
+/*
+    SPDX-FileCopyrightText: 2020 Maxim Palshin <palshin.maxim.alekseevich@gmail.com>
+    SPDX-License-Identifier: BSD 3-Clause "New" or "Revised" License
+*/
 
+#ifndef NOL_CRM_UPDATESERVICE_HPP
+#define NOL_CRM_UPDATESERVICE_HPP
 
-class UpdateService
-{
+#include <QObject>
+#include <QDebug>
+
+class UpdateService : public QObject{
+    Q_OBJECT
+
 public:
-    UpdateService();
+
+    static UpdateService& self();
+
+    void emitGlobalUpdate();
+
+signals:
+    void globalUpdate();
+
+
+
 };
 
-#endif // UPDATESERVICE_HPP
+
+
+#endif

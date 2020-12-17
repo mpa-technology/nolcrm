@@ -1,3 +1,10 @@
+/*
+    SPDX-FileCopyrightText: 2020 Maxim Palshin <palshin.maxim.alekseevich@gmail.com>
+    SPDX-License-Identifier: BSD 3-Clause "New" or "Revised" License
+*/
+
+
+
 #include "Settings.hpp"
 
 
@@ -18,9 +25,9 @@ Settings &Settings::self(){
 }
 
 void Settings::setValue(const QString &key, const QVariant &value){
-    settings_->setValue(key,value);
+    self().settings_->setValue(key,value);
 }
 
 QVariant Settings::value(const QString &key, const QVariant &defaultValue){
-    return settings_->value(key,defaultValue);
+    return self().settings_->value(key,defaultValue);
 }

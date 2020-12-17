@@ -1,3 +1,10 @@
+/*
+    SPDX-FileCopyrightText: 2020 Maxim Palshin <palshin.maxim.alekseevich@gmail.com>
+    SPDX-License-Identifier: BSD 3-Clause "New" or "Revised" License
+*/
+
+
+
 #include "ShowExportWidget.hpp"
 #include "ui_ShowExportWidget.h"
 
@@ -15,7 +22,7 @@ ShowExportWidget::~ShowExportWidget()
 
 void ShowExportWidget::globalUpdate()
 {
-    auto stg = TableStorageExport::getAllExport();
+    auto stg = ExportService::getAllExport();
     ui->tableWidget->setRowCount(0);
 
 
@@ -43,8 +50,11 @@ void ShowExportWidget::on_tableWidget_activated(const QModelIndex &index)
     QString str;
     str.append(QString::number(is.code)).append(is.data.toString()).append("\n");
 
-    for(auto& it : is.products)
-        str.append(TableProducts::getProductById(it.id).second.name).append(QString::number(it.count));
+    for(auto& it : is.products){
+        str.append("<p>").append(TableProducts::getProductById(it.id).name).append("</p>");
+        str.append("<p>").append(QString::number(it.count)).append("</p>");
 
-    ui->textBrowser->setText(str);
+    }
+
+    ui->textBrowser->setHtml(str);
 }

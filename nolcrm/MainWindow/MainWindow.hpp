@@ -1,3 +1,10 @@
+/*
+    SPDX-FileCopyrightText: 2020 Maxim Palshin <palshin.maxim.alekseevich@gmail.com>
+    SPDX-License-Identifier: BSD 3-Clause "New" or "Revised" License
+*/
+
+
+
 #ifndef NOLCRM_MAINWINDOW_HPP
 #define NOLCRM_MAINWINDOW_HPP
 
@@ -15,6 +22,8 @@
 #include <ShowImportWidget/ShowImportWidget.hpp>
 #include <ShowExportWidget/ShowExportWidget.hpp>
 #include <WidgetNewExport/WidgetNewExport.hpp>
+#include <Servers/ProgramService.hpp>
+#include <DataBase/TableOrders.hpp>
 
 namespace Ui {
 class MainWindow;

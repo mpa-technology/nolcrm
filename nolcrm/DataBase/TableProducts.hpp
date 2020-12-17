@@ -1,3 +1,10 @@
+/*
+    SPDX-FileCopyrightText: 2020 Maxim Palshin <palshin.maxim.alekseevich@gmail.com>
+    SPDX-License-Identifier: BSD 3-Clause "New" or "Revised" License
+*/
+
+
+
 #ifndef NOLCRM_TABLEPRODUCTS_HPP
 #define NOLCRM_TABLEPRODUCTS_HPP
 
@@ -43,18 +50,17 @@ public:
 
     static Product lastProduct();
 
-    static  QSqlError addProduct( const Product& product);
+    static  bool addProduct( const Product& product);
 
-    static QSqlError addProduct( const QString& name,const QString& category,const QString& manufacturer, const double& price, const double& manufacturerPrice,const QString& descriptions);
+    static bool addProduct( const QString& name,const QString& category,const QString& manufacturer, const double& price, const double& manufacturerPrice,const QString& descriptions);
 
     static bool editProduct(const Product& product);
 
-
-    static QSqlError removeProduct(const quint64& id);
+    static bool removeProduct(const quint64& id);
 
     static productList getAllProduct();
 
-    static QPair<QSqlError,Product> getProductById(const quint64& id);
+    static Product getProductById(const quint64& id);
 
 };
 

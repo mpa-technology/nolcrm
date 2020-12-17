@@ -1,3 +1,10 @@
+/*
+    SPDX-FileCopyrightText: 2020 Maxim Palshin <palshin.maxim.alekseevich@gmail.com>
+    SPDX-License-Identifier: BSD 3-Clause "New" or "Revised" License
+*/
+
+
+
 #ifndef NOLCRM_WIDGETADDPRODUCT_HPP
 #define NOLCRM_WIDGETADDPRODUCT_HPP
 
@@ -6,7 +13,8 @@
 #include <QSqlError>
 #include <QMessageBox>
 #include <QDebug>
-#include <DataBase/Service.hpp>
+#include <Servers/UpdateService.hpp>
+#include <Servers/ProductService.hpp>
 
 namespace Ui {
 class WidgetAddProduct;

@@ -1,3 +1,10 @@
+/*
+    SPDX-FileCopyrightText: 2020 Maxim Palshin <palshin.maxim.alekseevich@gmail.com>
+    SPDX-License-Identifier: BSD 3-Clause "New" or "Revised" License
+*/
+
+
+
 #ifndef NOLCRM_SETTINGS_HPP
 #define NOLCRM_SETTINGS_HPP
 
@@ -23,9 +30,9 @@ public:
     static Settings& self();
 
 
-    void setValue( const QString& key, const QVariant& value);
+    static void setValue( const QString& key, const QVariant& value);
 
-    QVariant value( const QString& key, const QVariant& defaultValue);
+    static QVariant value( const QString& key, const QVariant& defaultValue);
 
 
     static bool mainSettingsLoad(){

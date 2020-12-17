@@ -1,3 +1,9 @@
+/*
+    SPDX-FileCopyrightText: 2020 Maxim Palshin <palshin.maxim.alekseevich@gmail.com>
+    SPDX-License-Identifier: BSD 3-Clause "New" or "Revised" License
+*/
+
+
 #ifndef NOLCRM_TABLEORDERS_HPP
 #define NOLCRM_TABLEORDERS_HPP
 
@@ -11,22 +17,38 @@
 
 #include "DataBase.hpp"
 
-struct Orders{
-    quint64 id;
-    quint64 code;
-    QPair<int,double> product;
-};
+
+
+
 
 
 struct Order{
+    struct product{
+        quint64 id;
+        quint64 price;
+    };
 
-    double fpice;
+
+    QVector<product>products;
+    qint64 code = -1;
     QDate data;
-    quint64 code;
-    QVector<quint64>orders;
-    QVector<quint64>products;
-};
 
+
+    quint64 getSum()const{
+    quint64 sum = 0;
+
+    for(const auto& it : products)
+    sum += it.price;
+
+    return sum;
+    }
+
+    void addProduct(const product& pro){
+        products.push_back(pro);
+    }
+
+
+};
 
 
 
@@ -50,32 +72,22 @@ public:
     static bool crateTable();
 
 
-    //TODO:rename
-    typedef QVector<QPair<quint64,QVector<Orders>>>  hordersList;
-    typedef QVector<Orders>  ordersList;
+    static QVector<Order> getAllOrder();
 
-    //TODO:rename
-    static hordersList hgetAllOrder();
-    //TODO:rename
-    static QVector<Order> hhgetAllOrder();
+    static Order getOrderByCode(const quint64& code);
 
-    static ordersList getAllOrder();
+    static bool addOrder(const int& productId,const double& productPrice,const quint64& code,const QDate& data);
 
-    static Order hhgetOrderByCode(const quint64& code);
+    static bool addOrder(QVector<QPair<int,double>>products,const QDate& data);
 
-    static QSqlError addOrder(const int& productId,const double& productPrice,const quint64& code,const QDate& data);
+    static bool addOrder(QVector<QPair<int,double>>products,const quint64& code,const QDate& data);
 
-    static QSqlError addOrder(QVector<QPair<int,double>>products,const QDate& data);
+    static bool removeOrderByCode(const quint64& code);
 
-    static QSqlError addOrder(QVector<QPair<int,double>>products,const quint64& code,const QDate& data);
+    static Order getOrderByData(const QDate& data);
 
-    static QSqlError removeOrderByCode(const quint64& code);
-
-    //TODO:rename
-    static Order hgetOrderByData(const QDate& data);
-
-    //TODO:rename
-    static QVector<Order> hgetOrderByData(const int& year, const int& month);
+    static QVector<Order> getOrderByData(const int& year, const int& month);
+    static QVector<Order> getOrderByData(const int& year, const int& month, const int& day);
 
 
 

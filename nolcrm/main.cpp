@@ -1,5 +1,9 @@
-#include <main.hpp>
+/*
+    SPDX-FileCopyrightText: 2020 Maxim Palshin <palshin.maxim.alekseevich@gmail.com>
+    SPDX-License-Identifier: BSD 3-Clause "New" or "Revised" License
+*/
 
+#include <main.hpp>
 
 
 
@@ -26,32 +30,55 @@ void MessageOutput(QtMsgType type, const QMessageLogContext &context, const QStr
     auto data = QDate::currentDate().toString();
     auto time = QTime::currentTime().toString();
 
-    switch (type) {
-#ifdef NOLCRM_CRM_DEBUG
-    case QtDebugMsg:
-        fprintf(stderr, "%s : %s Debug: %s : (%s:%u, %s)\n",data.toStdString().data(),time.toStdString().data(),localMsg.constData(), context.file, context.line, context.function);
-        fprintf(logf.file, "%s : %s Debug: %s : (%s:%u, %s)\n",data.toStdString().data(),time.toStdString().data(),localMsg.constData(), context.file, context.line, context.function);
-        break;
-#else
-    case QtDebugMsg:break;
-#endif
-    case QtInfoMsg:
-        fprintf(stderr, "%s : %s Info: %s : (%s:%u, %s)\n",data.toStdString().data(),time.toStdString().data(),localMsg.constData(), context.file, context.line, context.function);
-        fprintf(logf.file, "%s : %s Info: %s : (%s:%u, %s)\n",data.toStdString().data(),time.toStdString().data(),localMsg.constData(), context.file, context.line, context.function);
-        break;
-    case QtWarningMsg:
-        fprintf(stderr, "%s : %s Warning: %s : (%s:%u, %s)\n",data.toStdString().data(),time.toStdString().data(),localMsg.constData(), context.file, context.line, context.function);
-        fprintf(logf.file, "%s : %s Warning: %s : (%s:%u, %s)\n",data.toStdString().data(),time.toStdString().data(),localMsg.constData(), context.file, context.line, context.function);
-        break;
-    case QtCriticalMsg:
-        fprintf(stderr, "%s : %s Critical: %s : (%s:%u, %s)\n",data.toStdString().data(),time.toStdString().data(),localMsg.constData(), context.file, context.line, context.function);
-        fprintf(logf.file, "%s : %s Critical: %s : (%s:%u, %s)\n",data.toStdString().data(),time.toStdString().data(),localMsg.constData(), context.file, context.line, context.function);
-        break;
-    case QtFatalMsg:
-        fprintf(stderr, "%s : %s Fatal: %s : (%s:%u, %s)\n",data.toStdString().data(),time.toStdString().data(),localMsg.constData(), context.file, context.line, context.function);
-        fprintf(logf.file, "%s : %s Fatal: %s : (%s:%u, %s)\n",data.toStdString().data(),time.toStdString().data(),localMsg.constData(), context.file, context.line, context.function);
-        abort();
+    //TODO: reples
+    if(ProgramService::buildType()==ProgramService::RELEASE){
+
+        switch (type) {
+        case QtDebugMsg:break;
+        case QtInfoMsg:
+            fprintf(stderr, "%s : %s Info: %s : (%s:%u, %s)\n",data.toStdString().data(),time.toStdString().data(),localMsg.constData(), context.file, context.line, context.function);
+            fprintf(logf.file, "%s : %s Info: %s : (%s:%u, %s)\n",data.toStdString().data(),time.toStdString().data(),localMsg.constData(), context.file, context.line, context.function);
+            break;
+        case QtWarningMsg:
+            fprintf(stderr, "%s : %s Warning: %s : (%s:%u, %s)\n",data.toStdString().data(),time.toStdString().data(),localMsg.constData(), context.file, context.line, context.function);
+            fprintf(logf.file, "%s : %s Warning: %s : (%s:%u, %s)\n",data.toStdString().data(),time.toStdString().data(),localMsg.constData(), context.file, context.line, context.function);
+            break;
+        case QtCriticalMsg:
+            fprintf(stderr, "%s : %s Critical: %s : (%s:%u, %s)\n",data.toStdString().data(),time.toStdString().data(),localMsg.constData(), context.file, context.line, context.function);
+            fprintf(logf.file, "%s : %s Critical: %s : (%s:%u, %s)\n",data.toStdString().data(),time.toStdString().data(),localMsg.constData(), context.file, context.line, context.function);
+            break;
+        case QtFatalMsg:
+            fprintf(stderr, "%s : %s Fatal: %s : (%s:%u, %s)\n",data.toStdString().data(),time.toStdString().data(),localMsg.constData(), context.file, context.line, context.function);
+            fprintf(logf.file, "%s : %s Fatal: %s : (%s:%u, %s)\n",data.toStdString().data(),time.toStdString().data(),localMsg.constData(), context.file, context.line, context.function);
+            abort();
+        }
     }
+    else{
+        switch (type) {
+        case QtDebugMsg:
+            fprintf(stderr, "%s : %s Debug: %s : (%s:%u, %s)\n",data.toStdString().data(),time.toStdString().data(),localMsg.constData(), context.file, context.line, context.function);
+            fprintf(logf.file, "%s : %s Debug: %s : (%s:%u, %s)\n",data.toStdString().data(),time.toStdString().data(),localMsg.constData(), context.file, context.line, context.function);
+            break;
+        case QtInfoMsg:
+            fprintf(stderr, "%s : %s Info: %s : (%s:%u, %s)\n",data.toStdString().data(),time.toStdString().data(),localMsg.constData(), context.file, context.line, context.function);
+            fprintf(logf.file, "%s : %s Info: %s : (%s:%u, %s)\n",data.toStdString().data(),time.toStdString().data(),localMsg.constData(), context.file, context.line, context.function);
+            break;
+        case QtWarningMsg:
+            fprintf(stderr, "%s : %s Warning: %s : (%s:%u, %s)\n",data.toStdString().data(),time.toStdString().data(),localMsg.constData(), context.file, context.line, context.function);
+            fprintf(logf.file, "%s : %s Warning: %s : (%s:%u, %s)\n",data.toStdString().data(),time.toStdString().data(),localMsg.constData(), context.file, context.line, context.function);
+            break;
+        case QtCriticalMsg:
+            fprintf(stderr, "%s : %s Critical: %s : (%s:%u, %s)\n",data.toStdString().data(),time.toStdString().data(),localMsg.constData(), context.file, context.line, context.function);
+            fprintf(logf.file, "%s : %s Critical: %s : (%s:%u, %s)\n",data.toStdString().data(),time.toStdString().data(),localMsg.constData(), context.file, context.line, context.function);
+            break;
+        case QtFatalMsg:
+            fprintf(stderr, "%s : %s Fatal: %s : (%s:%u, %s)\n",data.toStdString().data(),time.toStdString().data(),localMsg.constData(), context.file, context.line, context.function);
+            fprintf(logf.file, "%s : %s Fatal: %s : (%s:%u, %s)\n",data.toStdString().data(),time.toStdString().data(),localMsg.constData(), context.file, context.line, context.function);
+            abort();
+        }
+
+    }
+
 }
 
 int main(int argc, char *argv[]){
@@ -60,22 +87,20 @@ int main(int argc, char *argv[]){
 
     QApplication app(argc, argv);
 
-    QScopedPointer<MainWindow>mw;
-    QScopedPointer<LoginWidget>lw;
-
+    qDebug() << "buildType: " << ProgramService::buildTypeString();
+    QWidget* startWindow;
 
     if(Settings::mainSettingsLoad()){
 
         if(!GlobalService::waekup())
             return EXIT_FAILURE;
 
-        mw.reset(new MainWindow());
-        mw->show();
-    }else{
-        lw.reset(new LoginWidget());
-        lw->show();
+        startWindow = new MainWindow();
+    }else
+        startWindow = new LoginWidget();
 
-    }
+
+    startWindow->show();
 
     UpdateService::self().emitGlobalUpdate();
     return app.exec();

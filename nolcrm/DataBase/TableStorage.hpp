@@ -1,7 +1,15 @@
+/*
+    SPDX-FileCopyrightText: 2020 Maxim Palshin <palshin.maxim.alekseevich@gmail.com>
+    SPDX-License-Identifier: BSD 3-Clause "New" or "Revised" License
+*/
+
+
 #ifndef NOLCRM_TABLESTORAGE_HPP
 #define NOLCRM_TABLESTORAGE_HPP
 
+#include <Tool.hpp>
 #include "DataBase.hpp"
+
 
 struct Storage{
 quint64 pid;
@@ -28,7 +36,7 @@ public:
 
     static bool crateTable();
 
-    static QSqlError addItem(const quint64& id);
+    static bool addItem(const quint64& id);
 
     static bool setCount(const quint64& id,const quint64& count);
     static bool addCount(const quint64& id,const quint64& count);

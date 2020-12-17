@@ -1,3 +1,10 @@
+/*
+    SPDX-FileCopyrightText: 2020 Maxim Palshin <palshin.maxim.alekseevich@gmail.com>
+    SPDX-License-Identifier: BSD 3-Clause "New" or "Revised" License
+*/
+
+
+
 #include "ShowImportWidget.hpp"
 #include "ui_ShowImportWidget.h"
 
@@ -44,13 +51,18 @@ void ShowImportWidget::on_tableWidget_activated(const QModelIndex &index){
     }
 
 
-    QString str;
-    str.append(QString::number(is.code)).append(is.data.toString()).append("\n");
+    QString html;
 
-    for(auto& it : is.products)
-        str.append(TableProducts::getProductById(it.id).second.name).append(QString::number(it.count));
+    html.append("<p>").append(QString::number(is.code)).append(is.data.toString()).append("</p>");
+    html.append("<p>").append(QString::number(is.getSum())).append("</p>");
+    for(auto& it : is.products){
+        html.append("<p>").append(TableProducts::getProductById(it.id).name).append("</p>");
+        html.append("<p>").append(QString::number(it.count)).append("</p>");
 
-    ui->textBrowser->setText(str);
+    }
+
+
+    ui->textBrowser->setHtml(html);
 
 
 }

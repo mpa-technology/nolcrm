@@ -1,0 +1,27 @@
+/*
+    SPDX-FileCopyrightText: 2020 Maxim Palshin <palshin.maxim.alekseevich@gmail.com>
+    SPDX-License-Identifier: BSD 3-Clause "New" or "Revised" License
+*/
+
+
+
+#ifndef NOLCRM_CMAKE_M_HPP
+#define NOLCRM_CMAKE_M_HPP
+
+
+
+
+#define NOLCRM_BUILD_TYPE "@NOLCRM_BUILD_TYPE@";
+#define NOLCRM_VERSION_MAJOR "@NOLCRM_VERSION_MAJOR@"
+#define NOLCRM_VERSION_MINOR "@NOLCRM_VERSION_MINOR@"
+#define NOLCRM_VERSION_PATCH "@NOLCRM_VERSION_PATCH@"
+
+
+
+
+
+
+
+
+
+#endif // NOLCRM_CMAKE_M_HPP
