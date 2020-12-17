@@ -9,9 +9,9 @@
 
 
 #include <QWidget>
-#include <Servers/UpdateService.hpp>
-#include <DataBase/TableProducts.hpp>
-#include <DataBase/TableStorageImport.hpp>
+#include "../Servers/UpdateService.hpp"
+#include "../DataBase/TableProducts.hpp"
+#include "../DataBase/TableStorageImport.hpp"
 
 namespace Ui {
 class ShowImportWidget;

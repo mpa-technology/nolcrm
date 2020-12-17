@@ -13,9 +13,13 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)
 
+
+
 find_package(Qt5 REQUIRED COMPONENTS Core Widgets Sql PrintSupport)
 
 add_executable(${PROJECT_NAME} "main.cpp")
+
+
 
 install(TARGETS ${PROJECT_NAME} DESTINATION bin)
 

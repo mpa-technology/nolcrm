@@ -11,10 +11,12 @@
 
 #include <QWidget>
 #include <QMessageBox>
-#include <DataBase/TableProducts.hpp>
-#include <DataBase/TableStorageImport.hpp>
-#include <Servers/UpdateService.hpp>
-#include <Servers/ImportService.hpp>
+
+#include "../DataBase/TableProducts.hpp"
+#include "../DataBase/TableStorageImport.hpp"
+#include "../Servers/UpdateService.hpp"
+#include "../Servers/ImportService.hpp"
+
 namespace Ui {
 class WidgetNewImport;
 }

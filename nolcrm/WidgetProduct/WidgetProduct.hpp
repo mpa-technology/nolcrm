@@ -8,7 +8,7 @@
 #define NOLCRM_WIDGETPRODUCT_HPP
 
 #include <QWidget>
-#include <DataBase/TableProducts.hpp>
+#include "../DataBase/TableProducts.hpp"
 
 namespace Ui {
 class WidgetProduct;

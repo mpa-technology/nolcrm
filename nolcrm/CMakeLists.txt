@@ -16,6 +16,7 @@ set(NOLCRM_VERSION_MAJOR ${PROJECT_VERSION_MAJOR})
 set(NOLCRM_VERSION_MINOR ${PROJECT_VERSION_MINOR})
 set(NOLCRM_VERSION_PATCH ${PROJECT_VERSION_PATCH})
 
+configure_file(${PROJECT_SOURCE_DIR}/Servers/cmake_m.in ${PROJECT_SOURCE_DIR}/Servers/cmake_m.hpp)
 
 set(SOURCES
     "main.cpp"
@@ -97,7 +98,7 @@ set(UI
 
 
 
-configure_file("Servers/cmake_m.in" "Servers/cmake_m.hpp")
+
 
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)

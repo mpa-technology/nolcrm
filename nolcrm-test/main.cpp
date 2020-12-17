@@ -4,12 +4,14 @@
 */
 
 #include <gtest/gtest.h>
-//#include "../nolcrm/Settings/Settings.hpp"
-//#include "../nolcrm/DataBase/Service.hpp"
-//#include "../nolcrm/main.hpp"
+#include "../nolcrm/main.hpp"
 
 
 
+
+TEST(Main,Main){
+
+}
 
 int main(int argc, char *argv[]){
 

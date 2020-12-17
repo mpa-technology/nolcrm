@@ -6,8 +6,8 @@
 #ifndef NOL_CRM_PRODUCTSERVICE_HPP
 #define NOL_CRM_PRODUCTSERVICE_HPP
 
-#include <DataBase/TableProducts.hpp>
-#include <DataBase/TableStorage.hpp>
+#include "../DataBase/TableProducts.hpp"
+#include "../DataBase/TableStorage.hpp"
 
 class ProductService{
     ProductService();

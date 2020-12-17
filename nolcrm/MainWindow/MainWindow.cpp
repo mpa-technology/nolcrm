@@ -6,7 +6,6 @@
 
 #include "MainWindow.hpp"
 #include "ui_MainWindow.h"
-#include <QFuture>
 
 
 void MainWindow::showWidget_(QWidget *wgt){

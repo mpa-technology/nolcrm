@@ -9,9 +9,10 @@
 
 
 #include <QWidget>
-#include <DataBase/TableProducts.hpp>
-#include <DataBase/TableOrders.hpp>
-#include <Servers/UpdateService.hpp>
+
+#include "../DataBase/TableProducts.hpp"
+#include "../DataBase/TableOrders.hpp"
+#include "../Servers/UpdateService.hpp"
 
 namespace Ui {
 class WidgetShowOrder;

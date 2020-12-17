@@ -7,7 +7,7 @@
 #define CRM_NOL_PROGRAMSERVICE_HPP
 
 #include <QString>
-#include <Servers/cmake_m.hpp>
+#include "cmake_m.hpp"
 
 class ProgramService{
 

@@ -15,7 +15,7 @@
 #include <QScopedPointer>
 #include <QSharedPointer>
 
-#include <LoginWidget/LoginWidget.hpp>
+#include "LoginWidget/LoginWidget.hpp"
 #include "DataBase/DataBase.hpp"
 #include "DataBase/TableStorage.hpp"
 #include "Settings/Settings.hpp"

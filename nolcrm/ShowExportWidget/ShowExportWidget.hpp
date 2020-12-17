@@ -9,9 +9,10 @@
 
 
 #include <QWidget>
-#include <Servers/UpdateService.hpp>
-#include <Servers/ExportService.hpp>
-#include <DataBase/TableProducts.hpp>
+
+#include "../Servers/UpdateService.hpp"
+#include "../Servers/ExportService.hpp"
+#include "../DataBase/TableProducts.hpp"
 
 namespace Ui {
 class ShowExportWidget;

@@ -12,18 +12,18 @@
 #include <QMainWindow>
 #include <QDate>
 
-#include <WidgetAddOrder/WidgetAddOrder.hpp>
-#include <WidgetAddProduct/WidgetAddProduct.hpp>
-#include <WidgetShowOrder/WidgetShowOrder.hpp>
-#include <WidgetProduct/WidgetProduct.hpp>
-#include <WidgetShowProducts/WidgetShowProducts.hpp>
-#include <WidgetStorage/WidgetStorage.hpp>
-#include <WidgetNewImport/WidgetNewImport.hpp>
-#include <ShowImportWidget/ShowImportWidget.hpp>
-#include <ShowExportWidget/ShowExportWidget.hpp>
-#include <WidgetNewExport/WidgetNewExport.hpp>
-#include <Servers/ProgramService.hpp>
-#include <DataBase/TableOrders.hpp>
+#include "../WidgetAddOrder/WidgetAddOrder.hpp"
+#include "../WidgetAddProduct/WidgetAddProduct.hpp"
+#include "../WidgetShowOrder/WidgetShowOrder.hpp"
+#include "../WidgetProduct/WidgetProduct.hpp"
+#include "../WidgetShowProducts/WidgetShowProducts.hpp"
+#include "../WidgetStorage/WidgetStorage.hpp"
+#include "../WidgetNewImport/WidgetNewImport.hpp"
+#include "../ShowImportWidget/ShowImportWidget.hpp"
+#include "../ShowExportWidget/ShowExportWidget.hpp"
+#include "../WidgetNewExport/WidgetNewExport.hpp"
+#include "../Servers/ProgramService.hpp"
+#include "../DataBase/TableOrders.hpp"
 
 namespace Ui {
 class MainWindow;

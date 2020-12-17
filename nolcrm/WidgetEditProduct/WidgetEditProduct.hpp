@@ -11,7 +11,8 @@
 
 #include <QWidget>
 #include <QMessageBox>
-#include <DataBase/TableProducts.hpp>
+
+#include "../DataBase/TableProducts.hpp"
 
 namespace Ui {
 class WidgetEditProduct;

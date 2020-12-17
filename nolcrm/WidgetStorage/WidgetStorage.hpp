@@ -8,10 +8,8 @@
 #ifndef NOLCRM_WDGETSTORAGE_HPP
 #define NOLCRM_WDGETSTORAGE_HPP
 
-
-
 #include <QWidget>
-#include <Servers/UpdateService.hpp>
+#include "../Servers/UpdateService.hpp"
 
 namespace Ui {
 class WidgetStorage;

@@ -14,9 +14,10 @@
 #include <QPrinter>
 #include <QFile>
 #include <QFileDialog>
-#include <Servers/UpdateService.hpp>
-#include <WidgetProduct/WidgetProduct.hpp>
-#include <WidgetEditProduct/WidgetEditProduct.hpp>
+
+#include "../Servers/UpdateService.hpp"
+#include "../WidgetProduct/WidgetProduct.hpp"
+#include "../WidgetEditProduct/WidgetEditProduct.hpp"
 
 
 namespace Ui {

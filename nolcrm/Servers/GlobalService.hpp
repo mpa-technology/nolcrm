@@ -1,17 +1,21 @@
-#ifndef NOL_CRM_GLOBALSERVICE_HPP
-#define NOL_CRM_GLOBALSERVICE_HPP
-#include <QDebug>
-#include <DataBase/DataBase.hpp>
-#include <DataBase/TableOrders.hpp>
-#include <DataBase/TableProducts.hpp>
 /*
     SPDX-FileCopyrightText: 2020 Maxim Palshin <palshin.maxim.alekseevich@gmail.com>
     SPDX-License-Identifier: BSD 3-Clause "New" or "Revised" License
 */
 
-#include <DataBase/TableStorage.hpp>
-#include <DataBase/TableStorageImport.hpp>
-#include <DataBase/TableStorageExport.hpp>
+#ifndef NOL_CRM_GLOBALSERVICE_HPP
+#define NOL_CRM_GLOBALSERVICE_HPP
+
+#include <QDebug>
+
+#include "../DataBase/DataBase.hpp"
+#include "../DataBase/TableOrders.hpp"
+#include "../DataBase/TableProducts.hpp"
+
+
+#include "../DataBase/TableStorage.hpp"
+#include "../DataBase/TableStorageImport.hpp"
+#include "../DataBase/TableStorageExport.hpp"
 
 class GlobalService{
 

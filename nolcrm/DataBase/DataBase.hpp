@@ -11,7 +11,7 @@
 #include <QSqlDatabase>
 #include <QSqlError>
 #include <QSqlQuery>
-#include <Settings/Settings.hpp>
+#include "../Settings/Settings.hpp"
 
 
 class DataBase{

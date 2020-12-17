@@ -9,9 +9,9 @@
 
 #include <QWidget>
 #include <QFileDialog>
-#include <MainWindow/MainWindow.hpp>
-#include <Settings/Settings.hpp>
-#include <Servers/GlobalService.hpp>
+#include "../MainWindow/MainWindow.hpp"
+#include "../Settings/Settings.hpp"
+#include "../Servers/GlobalService.hpp"
 
 
 namespace Ui {
