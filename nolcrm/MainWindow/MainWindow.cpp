@@ -23,46 +23,46 @@ void MainWindow::showWidget_(QWidget *wgt){
 void MainWindow::initModule_(){
 
     widgetAddProduct_ = new WidgetAddProduct();
-    ui->verticalLayout_3->addWidget(widgetAddProduct_);
+    ui->inlineVerticalLayout->addWidget(widgetAddProduct_);
     ui->btnAddProduct->setEnabled(true);
 
 
     widgetShowOrder_ = new WidgetShowOrder();
-    ui->verticalLayout_3->addWidget(widgetShowOrder_);
+    ui->inlineVerticalLayout->addWidget(widgetShowOrder_);
     ui->btnShowOrder->setEnabled(true);
 
 
     widgetAddOrder_ = new WidgetAddOrder();
-    ui->verticalLayout_3->addWidget(widgetAddOrder_);
+    ui->inlineVerticalLayout->addWidget(widgetAddOrder_);
     ui->btnAddOrder->setEnabled(true);
 
 
     widgetShowProducts_ = new WidgetShowProducts();
-    ui->verticalLayout_3->addWidget(widgetShowProducts_);
-    ui->pushButton->setEnabled(true);
+    ui->inlineVerticalLayout->addWidget(widgetShowProducts_);
+    ui->btnShowProduct->setEnabled(true);
 
     widgetStorage_ = new WidgetStorage();
-    ui->verticalLayout_3->addWidget(widgetStorage_);
-    ui->pushButton_2->setEnabled(true);
+    ui->inlineVerticalLayout->addWidget(widgetStorage_);
+    ui->btnShowStorage->setEnabled(true);
     
     
     widgetNewImport_ = new WidgetNewImport();
-    ui->verticalLayout_3->addWidget(widgetNewImport_);
-    ui->pushButton_3->setEnabled(true);
+    ui->inlineVerticalLayout->addWidget(widgetNewImport_);
+    ui->btnNewImport->setEnabled(true);
     
 
     showImportWidget_ = new ShowImportWidget();
-    ui->verticalLayout_3->addWidget(showImportWidget_);
-    ui->pushButton_4->setEnabled(true);
+    ui->inlineVerticalLayout->addWidget(showImportWidget_);
+    ui->btnShowImport->setEnabled(true);
 
 
     showExportWidget_ = new ShowExportWidget();
-    ui->verticalLayout_3->addWidget(showExportWidget_);
-    ui->pushButton_5->setEnabled(true);
+    ui->inlineVerticalLayout->addWidget(showExportWidget_);
+    ui->btnShowExport->setEnabled(true);
 
     widgetNewExport_ = new WidgetNewExport();
-    ui->verticalLayout_3->addWidget(widgetNewExport_);
-    ui->pushButton_8->setEnabled(true);
+    ui->inlineVerticalLayout->addWidget(widgetNewExport_);
+    ui->btnNewExport->setEnabled(true);
 
     widgetList_.push_back(widgetAddProduct_);
     widgetList_.push_back(widgetAddOrder_);
@@ -147,27 +147,39 @@ void MainWindow::on_btnShowOrder_clicked(){
     showWidget_(widgetShowOrder_);
 }
 
-void MainWindow::on_pushButton_clicked(){
+
+void MainWindow::on_btnShowStorage_clicked()
+{
+      showWidget_(widgetStorage_);
+}
+
+void MainWindow::on_btnNewImport_clicked()
+{
+     showWidget_(widgetNewImport_);
+}
+
+void MainWindow::on_btnNewExport_clicked()
+{
+       showWidget_(widgetNewExport_);
+}
+
+void MainWindow::on_btnShowImport_clicked()
+{
+    showWidget_(showImportWidget_);
+}
+
+void MainWindow::on_btnShowExport_clicked()
+{
+       showWidget_(showExportWidget_);
+}
+
+void MainWindow::on_btnShowProduct_clicked()
+{
     showWidget_(widgetShowProducts_);
 }
 
-
-void MainWindow::on_pushButton_2_clicked(){
-    showWidget_(widgetStorage_);
-}
-
-void MainWindow::on_pushButton_3_clicked(){
-    showWidget_(widgetNewImport_);
-}
-
-void MainWindow::on_pushButton_6_clicked()
+void MainWindow::on_btnAbout_clicked()
 {
-    close();
-}
-
-void MainWindow::on_pushButton_7_clicked(){   
-
-
     QString text;
     text.append(tr("Версия программы: ")).append(ProgramService::version()).append('\n');
     text.append(tr("Тип сборки программы: ")).append(ProgramService::buildTypeString()).append('\n');
@@ -177,17 +189,7 @@ void MainWindow::on_pushButton_7_clicked(){
     QMessageBox::about(nullptr,"nolcrm",text);
 }
 
-void MainWindow::on_pushButton_4_clicked()
+void MainWindow::on_btnExit_clicked()
 {
-    showWidget_(showImportWidget_);
-}
-
-void MainWindow::on_pushButton_5_clicked()
-{
-    showWidget_(showExportWidget_);
-}
-
-void MainWindow::on_pushButton_8_clicked()
-{
-    showWidget_(widgetNewExport_);
+        close();
 }

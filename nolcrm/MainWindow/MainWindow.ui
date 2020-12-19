@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1158</width>
-    <height>540</height>
+    <height>664</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,18 +16,18 @@
   <widget class="QWidget" name="centralWidget">
    <layout class="QHBoxLayout" name="horizontalLayout">
     <item>
-     <layout class="QVBoxLayout" name="verticalLayout">
+     <layout class="QVBoxLayout" name="mainVerticalLayout">
       <item>
        <widget class="QTextBrowser" name="textBrowser"/>
       </item>
       <item>
-       <widget class="QGroupBox" name="groupBox_3">
+       <widget class="QGroupBox" name="groupStorage">
         <property name="title">
          <string>Склад</string>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_6">
          <item>
-          <widget class="QPushButton" name="pushButton_2">
+          <widget class="QPushButton" name="btnShowStorage">
            <property name="enabled">
             <bool>false</bool>
            </property>
@@ -37,7 +37,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton_3">
+          <widget class="QPushButton" name="btnNewImport">
            <property name="enabled">
             <bool>false</bool>
            </property>
@@ -47,7 +47,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton_8">
+          <widget class="QPushButton" name="btnNewExport">
            <property name="enabled">
             <bool>false</bool>
            </property>
@@ -57,7 +57,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton_4">
+          <widget class="QPushButton" name="btnShowImport">
            <property name="enabled">
             <bool>false</bool>
            </property>
@@ -67,7 +67,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton_5">
+          <widget class="QPushButton" name="btnShowExport">
            <property name="enabled">
             <bool>false</bool>
            </property>
@@ -80,13 +80,13 @@
        </widget>
       </item>
       <item>
-       <widget class="QGroupBox" name="groupBox">
+       <widget class="QGroupBox" name="groupProduct">
         <property name="title">
          <string>Товары</string>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_4">
          <item>
-          <widget class="QPushButton" name="pushButton">
+          <widget class="QPushButton" name="btnShowProduct">
            <property name="enabled">
             <bool>false</bool>
            </property>
@@ -109,7 +109,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QGroupBox" name="groupBox_2">
+       <widget class="QGroupBox" name="groupOrder">
         <property name="title">
          <string>Заказы</string>
         </property>
@@ -138,14 +138,14 @@
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="pushButton_7">
+       <widget class="QPushButton" name="btnAbout">
         <property name="text">
          <string>О программе</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="pushButton_6">
+       <widget class="QPushButton" name="btnExit">
         <property name="text">
          <string>Выйти</string>
         </property>
@@ -170,10 +170,10 @@
      </spacer>
     </item>
     <item>
-     <widget class="QWidget" name="widget" native="true">
+     <widget class="QWidget" name="inlineWidget" native="true">
       <layout class="QVBoxLayout" name="verticalLayout_3">
        <item>
-        <layout class="QVBoxLayout" name="verticalLayout_2"/>
+        <layout class="QVBoxLayout" name="inlineVerticalLayout"/>
        </item>
       </layout>
      </widget>

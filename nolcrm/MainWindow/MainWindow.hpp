@@ -66,24 +66,21 @@ private slots:
     void on_btnShowOrder_clicked();
 
 
-    //TODO:rename
-    void on_pushButton_clicked();
+    void on_btnShowStorage_clicked();
 
-    //TODO:rename
-    void on_pushButton_2_clicked();
+    void on_btnNewImport_clicked();
 
-    //TODO:rename
-    void on_pushButton_3_clicked();
-    //TODO:rename
-    void on_pushButton_6_clicked();
-    //TODO:rename
-    void on_pushButton_7_clicked();
-    //TODO:rename
-    void on_pushButton_4_clicked();
-    //TODO:rename
-    void on_pushButton_5_clicked();
-    //TODO:rename
-    void on_pushButton_8_clicked();
+    void on_btnNewExport_clicked();
+
+    void on_btnShowImport_clicked();
+
+    void on_btnShowExport_clicked();
+
+    void on_btnShowProduct_clicked();
+
+    void on_btnAbout_clicked();
+
+    void on_btnExit_clicked();
 
 private:
     Ui::MainWindow *ui = nullptr;
