@@ -29,6 +29,7 @@ void WidgetProduct::setProduct(const Product &product){
     ui->lblName->setText(product.name);
     ui->lblManufacturer->setText(product.manufacturer);
     ui->lblPrice->setText(QString::number(product.price)+tr("₽"));
+    ui->lblCatigory->setText(product.category);
     product_ = product;
 
 }
