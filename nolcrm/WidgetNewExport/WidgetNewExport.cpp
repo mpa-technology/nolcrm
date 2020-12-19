@@ -8,6 +8,14 @@
 #include "WidgetNewExport.hpp"
 #include "ui_WidgetNewExport.h"
 
+void WidgetNewExport::removeCell_(const QModelIndex &index)
+{
+    qDebug()<<"ok";
+
+    ui->tableWidget_2->removeRow(index.row());
+
+}
+
 WidgetNewExport::WidgetNewExport(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::WidgetNewExport)
@@ -37,8 +45,9 @@ void WidgetNewExport::globalUpdate(){
 
 }
 
-void WidgetNewExport::on_tableWidget_activated(const QModelIndex &index)
-{
+void WidgetNewExport::on_tableWidget_activated(const QModelIndex &index){
+
+
     auto item =  ui->tableWidget->item(index.row(),0)->text().toULongLong();
 
     const auto pro = TableProducts::getProductById(item);
@@ -49,6 +58,8 @@ void WidgetNewExport::on_tableWidget_activated(const QModelIndex &index)
     ui->tableWidget_2->setItem(row,0,new QTableWidgetItem(QString::number(pro.id)));
     ui->tableWidget_2->setItem(row,1,new QTableWidgetItem(pro.name));
     ui->tableWidget_2->setItem(row,2,new QTableWidgetItem("0"));
+    ui->tableWidget_2->setItem(row,3,new QTableWidgetItem(tr("Удалить")));
+
 }
 
 void WidgetNewExport::on_pushButton_clicked()
@@ -75,4 +86,12 @@ void WidgetNewExport::on_pushButton_clicked()
     }
     else
         QMessageBox::warning(nullptr,tr("Импорт"),tr("export ошыбка создан"));
+}
+
+void WidgetNewExport::on_tableWidget_2_activated(const QModelIndex &index)
+{
+    if(index.column() == 3){
+        removeCell_(index);
+        return;
+    }
 }

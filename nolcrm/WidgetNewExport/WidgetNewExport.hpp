@@ -24,6 +24,8 @@ class WidgetNewExport : public QWidget
 {
     Q_OBJECT
 
+    void removeCell_(const QModelIndex& index);
+
 public:
     explicit WidgetNewExport(QWidget *parent = nullptr);
     ~WidgetNewExport();
@@ -37,6 +39,8 @@ private slots:
     void on_tableWidget_activated(const QModelIndex &index);
 
     void on_pushButton_clicked();
+
+    void on_tableWidget_2_activated(const QModelIndex &index);
 
 private:
     Ui::WidgetNewExport *ui;
