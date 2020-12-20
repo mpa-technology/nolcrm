@@ -143,13 +143,4 @@ Storage TableStorage::getItem(const quint64 &id){
    return storage;
 }
 
-bool TableStorage::itemExist(const quint64 &id){
 
-    QSqlQuery query(DataBase::db());
-    query.prepare("SELECT * FROM storage WHERE Id=:Id ;");
-    query.exec();
-    query.next();
-    qDebug()<<query.value(0);
-
-    return query.value(0).toBool();
-}
