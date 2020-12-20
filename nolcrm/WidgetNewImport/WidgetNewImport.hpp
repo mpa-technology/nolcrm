@@ -14,7 +14,7 @@
 
 #include "../DataBase/TableProducts.hpp"
 #include "../DataBase/TableStorageImport.hpp"
-#include "../Servers/UpdateService.hpp"
+#include "../Servers/GlobalEmitService.hpp"
 #include "../Servers/ImportService.hpp"
 
 namespace Ui {

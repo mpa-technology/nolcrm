@@ -5,7 +5,7 @@
 
 #include "GlobalService.hpp"
 
-#include "UpdateService.hpp"
+#include "GlobalEmitService.hpp"
 
 #include "../DataBase/DataBase.hpp"
 #include "../DataBase/TableOrders.hpp"
@@ -22,7 +22,7 @@ GlobalService::GlobalService(){
 
     Timers_.cache->setInterval(Settings::value("cache/autoClearCacheTime",50000).toInt());
     //Timers_.cache->
-    QObject::connect(Timers_.cache,SIGNAL(timeout()),&UpdateService::self(),SLOT(emitGloablCacheClear()));
+    QObject::connect(Timers_.cache,SIGNAL(timeout()),&GlobalEmitService::self(),SLOT(emitGloablCacheClear()));
 
 
 }

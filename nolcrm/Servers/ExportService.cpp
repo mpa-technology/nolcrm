@@ -8,7 +8,7 @@
 
 ExportService::ExportService(){
     allExportCache_.isCache = false;
-    QObject::connect(&UpdateService::self(),SIGNAL(gloablCacheClear()),this,SLOT(gloablCacheClear()));
+    QObject::connect(&GlobalEmitService::self(),SIGNAL(gloablCacheClear()),this,SLOT(gloablCacheClear()));
 
 }
 

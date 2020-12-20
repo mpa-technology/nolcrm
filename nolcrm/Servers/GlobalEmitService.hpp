@@ -9,12 +9,12 @@
 #include <QObject>
 #include <QDebug>
 
-class UpdateService : public QObject{
+class GlobalEmitService : public QObject{
     Q_OBJECT
 
 public:
 
-    static UpdateService& self();
+    static GlobalEmitService& self();
 
 public slots:
 

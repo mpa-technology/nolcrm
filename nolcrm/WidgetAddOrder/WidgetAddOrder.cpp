@@ -101,7 +101,7 @@ void WidgetAddOrder::on_pushButton_clicked()
         QMessageBox::warning(nullptr,tr("Импорт"),tr("ExportService ошыбка "));
 
 
-    UpdateService::self().emitGlobalUpdate();
+    GlobalEmitService::self().emitGlobalUpdate();
 
 }
 

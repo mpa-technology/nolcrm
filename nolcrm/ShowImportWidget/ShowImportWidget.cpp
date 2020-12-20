@@ -14,7 +14,7 @@ ShowImportWidget::ShowImportWidget(QWidget *parent) :
     ui(new Ui::ShowImportWidget){
     ui->setupUi(this);
 
-    QObject::connect(&UpdateService::self(),SIGNAL(globalUpdate()),this,SLOT(globalUpdate()));
+    QObject::connect(&GlobalEmitService::self(),SIGNAL(globalUpdate()),this,SLOT(globalUpdate()));
 
 }
 

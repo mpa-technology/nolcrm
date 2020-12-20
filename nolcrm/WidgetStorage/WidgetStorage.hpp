@@ -9,7 +9,7 @@
 #define NOLCRM_WDGETSTORAGE_HPP
 
 #include <QWidget>
-#include "../Servers/UpdateService.hpp"
+#include "../Servers/GlobalEmitService.hpp"
 
 namespace Ui {
 class WidgetStorage;

@@ -12,7 +12,7 @@
 
 #include "../DataBase/TableProducts.hpp"
 #include "../DataBase/TableOrders.hpp"
-#include "../Servers/UpdateService.hpp"
+#include "../Servers/GlobalEmitService.hpp"
 
 namespace Ui {
 class WidgetShowOrder;

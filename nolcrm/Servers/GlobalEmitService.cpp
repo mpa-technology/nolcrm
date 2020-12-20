@@ -3,20 +3,20 @@
     SPDX-License-Identifier: BSD 3-Clause "New" or "Revised" License
 */
 
-#include "UpdateService.hpp"
+#include "GlobalEmitService.hpp"
 
 
-UpdateService &UpdateService::self(){
-    static UpdateService sig;
+GlobalEmitService &GlobalEmitService::self(){
+    static GlobalEmitService sig;
     return sig;
 }
 
-void UpdateService::emitGlobalUpdate(){
+void GlobalEmitService::emitGlobalUpdate(){
     qDebug()<<"emit globalUpdate";
     emit globalUpdate();
 }
 
-void UpdateService::emitGloablCacheClear(){
+void GlobalEmitService::emitGloablCacheClear(){
     qDebug()<<"emit gloablCacheClear";
     emit gloablCacheClear();
 }

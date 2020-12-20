@@ -9,7 +9,7 @@
 
 
 #include <QWidget>
-#include "../Servers/UpdateService.hpp"
+#include "../Servers/GlobalEmitService.hpp"
 #include "../DataBase/TableProducts.hpp"
 #include "../Servers/ImportService.hpp"
 

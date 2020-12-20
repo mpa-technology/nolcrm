@@ -78,7 +78,7 @@ App::App(int argc, char **argv){
 
     startWindow->show();
 
-    UpdateService::self().emitGlobalUpdate();
+    GlobalEmitService::self().emitGlobalUpdate();
 
 
 }

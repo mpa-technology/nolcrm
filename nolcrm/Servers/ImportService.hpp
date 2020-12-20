@@ -6,7 +6,7 @@
 #ifndef NOL_CRM_IMPORTSERVICE_HPP
 #define NOL_CRM_IMPORTSERVICE_HPP
 
-#include "UpdateService.hpp"
+#include "GlobalEmitService.hpp"
 #include "../DataBase/TableStorageImport.hpp"
 #include "../DataBase/TableStorage.hpp"
 

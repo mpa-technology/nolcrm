@@ -21,7 +21,7 @@
 #include "Settings/Settings.hpp"
 #include "MainWindow/MainWindow.hpp"
 #include "Servers/ProgramService.hpp"
-#include "Servers/UpdateService.hpp"
+#include "Servers/GlobalEmitService.hpp"
 #include "Servers/GlobalService.hpp"
 
 class App{

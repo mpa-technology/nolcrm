@@ -9,7 +9,7 @@
 
 ImportService::ImportService(){
 
-    QObject::connect(&UpdateService::self(),SIGNAL(gloablCacheClear()),this,SLOT(gloablCacheClear()));
+    QObject::connect(&GlobalEmitService::self(),SIGNAL(gloablCacheClear()),this,SLOT(gloablCacheClear()));
     allImportCache_.isCache = false;
 }
 

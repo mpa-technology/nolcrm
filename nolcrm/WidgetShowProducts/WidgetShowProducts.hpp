@@ -15,7 +15,7 @@
 #include <QFile>
 #include <QFileDialog>
 
-#include "../Servers/UpdateService.hpp"
+#include "../Servers/GlobalEmitService.hpp"
 #include "../WidgetProduct/WidgetProduct.hpp"
 #include "../WidgetEditProduct/WidgetEditProduct.hpp"
 

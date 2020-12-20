@@ -12,7 +12,7 @@ ShowExportWidget::ShowExportWidget(QWidget *parent) :
     QWidget(parent),ui(new Ui::ShowExportWidget){
     ui->setupUi(this);
 
-    QObject::connect(&UpdateService::self(),SIGNAL(globalUpdate()),this,SLOT(globalUpdate()));
+    QObject::connect(&GlobalEmitService::self(),SIGNAL(globalUpdate()),this,SLOT(globalUpdate()));
 }
 
 ShowExportWidget::~ShowExportWidget()

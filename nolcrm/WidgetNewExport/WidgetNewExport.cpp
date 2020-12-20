@@ -21,7 +21,7 @@ WidgetNewExport::WidgetNewExport(QWidget *parent) :
     ui(new Ui::WidgetNewExport)
 {
     ui->setupUi(this);
-    QObject::connect(&UpdateService::self(),SIGNAL(globalUpdate()),this,SLOT(globalUpdate()));
+    QObject::connect(&GlobalEmitService::self(),SIGNAL(globalUpdate()),this,SLOT(globalUpdate()));
 }
 
 WidgetNewExport::~WidgetNewExport()
@@ -82,7 +82,7 @@ void WidgetNewExport::on_pushButton_clicked()
 
     if(ExportService::newExport(is)){
         QMessageBox::information(nullptr,tr("Импорт"),tr("export успешно создан"));
-        UpdateService::self().emitGlobalUpdate();
+        GlobalEmitService::self().emitGlobalUpdate();
     }
     else
         QMessageBox::warning(nullptr,tr("Импорт"),tr("export ошыбка создан"));

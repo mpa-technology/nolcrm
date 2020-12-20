@@ -16,7 +16,7 @@ WidgetNewImport::WidgetNewImport(QWidget *parent) :
     ui->setupUi(this);
 
 
-    QObject::connect(&UpdateService::self(),SIGNAL(globalUpdate()),this,SLOT(globalUpdate()));
+    QObject::connect(&GlobalEmitService::self(),SIGNAL(globalUpdate()),this,SLOT(globalUpdate()));
 
 
 
@@ -88,7 +88,7 @@ void WidgetNewImport::on_btnNewImport_clicked()
 
     if(ImportService::newImport(is)){
         QMessageBox::information(nullptr,tr("Импорт"),tr("импорт успешно создан"));
-        UpdateService::self().emitGlobalUpdate();
+        GlobalEmitService::self().emitGlobalUpdate();
     }
     else
         QMessageBox::warning(nullptr,tr("Импорт"),tr("импорт ошыбка"));

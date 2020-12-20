@@ -16,7 +16,7 @@ WidgetShowOrder::WidgetShowOrder(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    QObject::connect(&UpdateService::self(),SIGNAL(globalUpdate()),this,SLOT(globalUpdate()));
+    QObject::connect(&GlobalEmitService::self(),SIGNAL(globalUpdate()),this,SLOT(globalUpdate()));
 
 
     updateTable();

@@ -13,7 +13,7 @@
 #include <QCloseEvent>
 
 #include "../WidgetProduct/WidgetProduct.hpp"
-#include "../Servers/UpdateService.hpp"
+#include "../Servers/GlobalEmitService.hpp"
 #include "../Servers/ExportService.hpp"
 #include "../DataBase/TableOrders.hpp"
 

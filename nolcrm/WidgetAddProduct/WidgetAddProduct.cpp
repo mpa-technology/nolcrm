@@ -46,7 +46,7 @@ void WidgetAddProduct::on_pushButton_clicked()
 
     if(ProductService::self().addProduct(product)){
         QMessageBox::information(nullptr,tr("Товар"),tr("Продукт успешн добвалень"));
-        UpdateService::self().emitGlobalUpdate();
+        GlobalEmitService::self().emitGlobalUpdate();
         ui->lineEdit->clear();
         ui->lineEdit_2->clear();
         ui->lineEdit_5->clear();
