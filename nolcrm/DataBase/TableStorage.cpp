@@ -95,10 +95,10 @@ bool TableStorage::addCount(const quint64 &id, const quint64 &count)
 
 bool TableStorage::subCount(const quint64 &id, const quint64 &count){
 
-//    if(subOverflow(getCount(id),count)){
-//        qWarning()<<"count - currentCount < 0";
-//        return false;
-//    }
+    if(subOverflow(getCount(id),count)){
+        qWarning()<<"count - currentCount < 0";
+        return false;
+    }
 
     QSqlQuery query(DataBase::db());
     query.prepare("UPDATE storage SET ProductsCount=:count WHERE ProductsId=:Id;");
