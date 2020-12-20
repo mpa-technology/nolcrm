@@ -24,18 +24,28 @@
 #include "Servers/UpdateService.hpp"
 #include "Servers/GlobalService.hpp"
 
-struct logFile{
+class App{
 
-    FILE* file = nullptr;
 
-    logFile();
+    QApplication* qApplication_ = nullptr;
 
-    ~logFile();
+
+
+    static void MessageOutput_(QtMsgType type, const QMessageLogContext &context, const QString &msg);
+
+
+
+public:
+
+    App(int argc, char** argv);
+
+    ~App();
+
+
+    int run();
+
 
 };
-
-
-void MessageOutput(QtMsgType type, const QMessageLogContext &context, const QString &msg);
 
 
 
