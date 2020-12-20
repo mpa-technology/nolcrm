@@ -46,7 +46,9 @@ void WidgetNewImport::globalUpdate(){
 
 }
 
-void WidgetNewImport::on_tableWidget_activated(const QModelIndex &index){
+
+void WidgetNewImport::on_tableProduct_activated(const QModelIndex &index)
+{
     auto item =  ui->tableProduct->item(index.row(),0)->text().toULongLong();
 
     const auto pro = TableProducts::getProductById(item);
@@ -58,11 +60,16 @@ void WidgetNewImport::on_tableWidget_activated(const QModelIndex &index){
     ui->tableNewImportProduct->setItem(row,1,new QTableWidgetItem(pro.name));
     ui->tableNewImportProduct->setItem(row,2,new QTableWidgetItem("0"));
     ui->tableNewImportProduct->setItem(row,3,new QTableWidgetItem(tr("Удалить")));
-
 }
 
-void WidgetNewImport::on_pushButton_clicked(){
+void WidgetNewImport::on_tableNewImportProduct_activated(const QModelIndex &index)
+{
+    if(index.column() == 3)
+        ui->tableNewImportProduct->removeRow(index.row());
+}
 
+void WidgetNewImport::on_btnNewImport_clicked()
+{
     ImportStorage is;
     is.data = QDate::currentDate();
 
@@ -85,11 +92,4 @@ void WidgetNewImport::on_pushButton_clicked(){
     }
     else
         QMessageBox::warning(nullptr,tr("Импорт"),tr("импорт ошыбка создан"));
-
-}
-
-void WidgetNewImport::on_tableWidget_2_activated(const QModelIndex &index)
-{
-   if(index.row() == 3)
-       ui->tableNewImportProduct->removeRow(index.row());
 }

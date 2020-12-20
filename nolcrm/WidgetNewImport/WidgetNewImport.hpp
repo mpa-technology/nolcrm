@@ -33,11 +33,12 @@ private slots:
 
     void globalUpdate();
 
-    void on_tableWidget_activated(const QModelIndex &index);
 
-    void on_pushButton_clicked();
+    void on_tableProduct_activated(const QModelIndex &index);
 
-    void on_tableWidget_2_activated(const QModelIndex &index);
+    void on_tableNewImportProduct_activated(const QModelIndex &index);
+
+    void on_btnNewImport_clicked();
 
 private:
     Ui::WidgetNewImport *ui;
