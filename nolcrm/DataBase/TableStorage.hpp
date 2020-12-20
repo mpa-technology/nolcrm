@@ -43,14 +43,10 @@ public:
     static bool subCount(const quint64& id,const quint64& count);
     static quint64 getCount(const quint64& id);
 
-
-    //TODO: rename
     static Storage getItem(const quint64& id);
 
 
 
-    //TODO: not test
-    static bool itemExist(const quint64& id);
 
 };
 
