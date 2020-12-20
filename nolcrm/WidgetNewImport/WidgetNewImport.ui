@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>835</width>
+    <height>522</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -15,21 +15,31 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <widget class="QTableWidget" name="tableWidget">
+    <widget class="QTableWidget" name="tableProduct">
      <column>
       <property name="text">
-       <string>id</string>
+       <string>Код</string>
       </property>
      </column>
      <column>
       <property name="text">
-       <string>name</string>
+       <string>Названия</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Катигория</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Производитель</string>
       </property>
      </column>
     </widget>
    </item>
    <item>
-    <widget class="QTableWidget" name="tableWidget_2">
+    <widget class="QTableWidget" name="tableNewImportProduct">
      <column>
       <property name="text">
        <string>id</string>
@@ -45,10 +55,15 @@
        <string>count</string>
       </property>
      </column>
+     <column>
+      <property name="text">
+       <string>Удалить</string>
+      </property>
+     </column>
     </widget>
    </item>
    <item>
-    <widget class="QPushButton" name="pushButton">
+    <widget class="QPushButton" name="btnNewImport">
      <property name="text">
       <string>PushButton</string>
      </property>

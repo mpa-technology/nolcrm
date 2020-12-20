@@ -37,6 +37,8 @@ private slots:
 
     void on_pushButton_clicked();
 
+    void on_tableWidget_2_activated(const QModelIndex &index);
+
 private:
     Ui::WidgetNewImport *ui;
 };
