@@ -14,6 +14,13 @@ class ProductService{
     ProductService(const ProductService& root) = delete;
     ProductService& operator=(const ProductService&) = delete;
 
+
+    struct {
+        bool isCache = false;
+        QVector<Product> list;
+    }allProductCache_;
+
+
 public:
 
 
@@ -21,6 +28,22 @@ public:
 
     bool addProduct( const Product& product);
 
+    static size_t cacheSize(){
+        return self().allProductCache_.list.size() * sizeof (Product);
+    }
+
+
+    QVector<Product>getAllProduct(){
+        auto& th = self();
+
+        if(th.allProductCache_.isCache)
+            return th.allProductCache_.list;
+
+        th.allProductCache_.list = TableProducts::getAllProduct();
+        th.allProductCache_.isCache = true;
+
+        return th.allProductCache_.list;
+    }
 
 };
 

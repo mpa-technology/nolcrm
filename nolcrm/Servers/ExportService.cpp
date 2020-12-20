@@ -7,7 +7,8 @@
 
 
 ExportService::ExportService(){
-    allExport_.isCache = false;
+    allExportCache_.isCache = false;
+    QObject::connect(&UpdateService::self(),SIGNAL(gloablCacheClear()),this,SLOT(gloablCacheClear()));
 
 }
 
@@ -28,15 +29,15 @@ bool ExportService::newExport(const ExportStorage &is){
             return false;
     }
 
-    self().allExport_.isCache = false;
-    self().allExport_.list.clear();
+    self().allExportCache_.isCache = false;
+    self().allExportCache_.list.clear();
 
     return true;
 }
 
 QVector<ExportStorage> ExportService::getAllExport(){
 
-    auto& ae = self().allExport_;
+    auto& ae = self().allExportCache_;
 
     if(ae.isCache)
         return ae.list;
@@ -49,7 +50,7 @@ QVector<ExportStorage> ExportService::getAllExport(){
 
 ExportStorage ExportService::getExport(const quint64 &code)
 {
-    auto& ae = self().allExport_;
+    auto& ae = self().allExportCache_;
     if(ae.isCache){
         for(const auto& it : ae.list)
             if(it.code == code)
@@ -66,4 +67,13 @@ ExportStorage ExportService::getExport(const quint64 &code)
 
 
     return {};
+}
+
+
+
+
+void ExportService::gloablCacheClear()
+{
+    allExportCache_.isCache = false;
+    allExportCache_.list.clear();
 }

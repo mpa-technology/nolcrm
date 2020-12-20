@@ -6,14 +6,22 @@
 #ifndef NOL_CRM_IMPORTSERVICE_HPP
 #define NOL_CRM_IMPORTSERVICE_HPP
 
-
+#include "UpdateService.hpp"
 #include "../DataBase/TableStorageImport.hpp"
 #include "../DataBase/TableStorage.hpp"
 
-class ImportService{
+class ImportService : public QObject{
+    Q_OBJECT
+
     ImportService();
     ImportService(const ImportService& root) = delete;
     ImportService& operator=(const ImportService&) = delete;
+
+
+    struct {
+        bool isCache = false;
+        QVector<ImportStorage> list;
+    }allImportCache_;
 
 public:
 
@@ -21,6 +29,16 @@ public:
 
     static  bool newImport ( const ImportStorage& is);
 
+    static QVector<ImportStorage> getAllImport();
+
+
+
+    static size_t cacheSize(){
+        return self().allImportCache_.list.size() * sizeof (ImportStorage);
+    }
+
+public slots:
+    void gloablCacheClear();
 
 };
 

@@ -25,8 +25,6 @@ public:
 
     static QString buildTypeString();
 
-
-
     static QString version();
 
     static QString name();

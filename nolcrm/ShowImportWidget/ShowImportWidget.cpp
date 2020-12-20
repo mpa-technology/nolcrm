@@ -21,10 +21,11 @@ ShowImportWidget::ShowImportWidget(QWidget *parent) :
 ShowImportWidget::~ShowImportWidget(){
     delete ui;
 }
-
+#include "../Servers/GlobalService.hpp"
 void ShowImportWidget::globalUpdate(){
 
-    auto stg = TableStorageImport::getAllImport();
+
+    auto stg = ImportService::getAllImport();
     ui->tableWidget->setRowCount(0);
 
 

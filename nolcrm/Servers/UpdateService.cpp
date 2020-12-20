@@ -15,3 +15,8 @@ void UpdateService::emitGlobalUpdate(){
     qDebug()<<"emit globalUpdate";
     emit globalUpdate();
 }
+
+void UpdateService::emitGloablCacheClear(){
+    qDebug()<<"emit gloablCacheClear";
+    emit gloablCacheClear();
+}

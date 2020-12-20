@@ -16,10 +16,15 @@ public:
 
     static UpdateService& self();
 
+public slots:
+
     void emitGlobalUpdate();
+    void emitGloablCacheClear();
+
 
 signals:
     void globalUpdate();
+    void gloablCacheClear();
 
 
 

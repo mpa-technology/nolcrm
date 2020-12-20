@@ -7,15 +7,9 @@
 #define NOL_CRM_GLOBALSERVICE_HPP
 
 #include <QDebug>
-
-#include "../DataBase/DataBase.hpp"
-#include "../DataBase/TableOrders.hpp"
-#include "../DataBase/TableProducts.hpp"
+#include <QTimer>
 
 
-#include "../DataBase/TableStorage.hpp"
-#include "../DataBase/TableStorageImport.hpp"
-#include "../DataBase/TableStorageExport.hpp"
 
 class GlobalService{
 
@@ -26,18 +20,25 @@ class GlobalService{
     bool initDataBase_();
 
 
+    struct{
+    QTimer* cache;
+    }Timers_;
+
+
+
+
 public:
 
     ~GlobalService();
 
     static GlobalService& self();
 
-
     static  bool waekup();
-
 
     void initTableBase();
 
+
+    static size_t cacheSize();
 
 
 };

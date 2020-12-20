@@ -22,9 +22,6 @@ int main(int argc, char *argv[]){
 
 void App::MessageOutput_(QtMsgType type, const QMessageLogContext &context, const QString &msg){
 
-
-
-
     QByteArray localMsg = msg.toLocal8Bit();
 
     auto data = QDate::currentDate().toString();
@@ -33,7 +30,7 @@ void App::MessageOutput_(QtMsgType type, const QMessageLogContext &context, cons
     switch (type) {
     case QtDebugMsg:
 
-        if(ProgramService::buildType()!=ProgramService::RELEASE){
+        if(ProgramService::buildType() != ProgramService::RELEASE){
             fprintf(stderr, "%s : %s Debug: %s : (%s:%u, %s)\n",data.toStdString().data(),time.toStdString().data(),localMsg.constData(), context.file, context.line, context.function);
         }
 

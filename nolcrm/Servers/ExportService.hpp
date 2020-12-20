@@ -5,10 +5,14 @@
 
 #ifndef NOL_CRM_EXPORTSERVICE_HPP
 #define NOL_CRM_EXPORTSERVICE_HPP
+
+#include "UpdateService.hpp"
 #include "../DataBase/TableStorage.hpp"
 #include "../DataBase/TableStorageExport.hpp"
 
-class ExportService{
+class ExportService: public QObject{
+    Q_OBJECT
+
     ExportService();
     ExportService(const ExportService& root) = delete;
     ExportService& operator=(const ExportService&) = delete;
@@ -16,7 +20,7 @@ class ExportService{
     struct {
         bool isCache = false;
         QVector<ExportStorage>list;
-    }allExport_;
+    }allExportCache_;
 
 
 public:
@@ -28,6 +32,15 @@ public:
     static QVector<ExportStorage> getAllExport();
     
     static ExportStorage getExport(const quint64& code);
+
+    static size_t cacheSize(){
+        return self().allExportCache_.list.size() * sizeof (ExportStorage);
+    }
+
+
+public slots:
+    void gloablCacheClear();
+
 
 };
 

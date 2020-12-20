@@ -91,5 +91,5 @@ void WidgetNewImport::on_btnNewImport_clicked()
         UpdateService::self().emitGlobalUpdate();
     }
     else
-        QMessageBox::warning(nullptr,tr("Импорт"),tr("импорт ошыбка создан"));
+        QMessageBox::warning(nullptr,tr("Импорт"),tr("импорт ошыбка"));
 }

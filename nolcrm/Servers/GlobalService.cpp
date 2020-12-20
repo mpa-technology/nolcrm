@@ -5,8 +5,27 @@
 
 #include "GlobalService.hpp"
 
+#include "UpdateService.hpp"
 
-GlobalService::GlobalService(){}
+#include "../DataBase/DataBase.hpp"
+#include "../DataBase/TableOrders.hpp"
+#include "../DataBase/TableProducts.hpp"
+
+
+#include "../DataBase/TableStorage.hpp"
+#include "../DataBase/TableStorageImport.hpp"
+#include "../DataBase/TableStorageExport.hpp"
+
+GlobalService::GlobalService(){
+
+    Timers_.cache = new QTimer();
+
+    Timers_.cache->setInterval(Settings::value("cache/autoClearCacheTime",50000).toInt());
+    //Timers_.cache->
+    QObject::connect(Timers_.cache,SIGNAL(timeout()),&UpdateService::self(),SLOT(emitGloablCacheClear()));
+
+
+}
 
 bool GlobalService::initDataBase_(){
 
@@ -35,6 +54,8 @@ bool GlobalService::waekup(){
         qCritical()<<exp.what();
         return false;
     }
+    self().Timers_.cache->start();
+
 
     return true;
 }
@@ -69,6 +90,20 @@ void GlobalService::initTableBase(){
 
 }
 
+
+
 GlobalService::~GlobalService(){
     qDebug()<<"GlobalService down";
+}
+
+
+
+#include "ImportService.hpp"
+#include "ExportService.hpp"
+#include "ProductService.hpp"
+
+
+size_t GlobalService::cacheSize(){
+
+    return ImportService::cacheSize() + ExportService::cacheSize() + ProductService::cacheSize();
 }

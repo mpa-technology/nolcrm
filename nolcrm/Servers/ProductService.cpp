@@ -25,6 +25,10 @@ bool ProductService::addProduct(const Product &product){
     }
 
 
+   self().allProductCache_.list.clear();
+   self().allProductCache_.isCache = false;
+
 
     return true;
 }
+

@@ -7,7 +7,11 @@
 
 
 
-ImportService::ImportService(){}
+ImportService::ImportService(){
+
+    QObject::connect(&UpdateService::self(),SIGNAL(gloablCacheClear()),this,SLOT(gloablCacheClear()));
+    allImportCache_.isCache = false;
+}
 
 ImportService &ImportService::self(){
     static ImportService sig;
@@ -26,5 +30,26 @@ bool ImportService::newImport(const ImportStorage &is){
     }
 
 
+    self().allImportCache_.list.clear();
+    self().allImportCache_.isCache = false;
+
     return true;
+}
+
+QVector<ImportStorage> ImportService::getAllImport(){
+    auto& th = self();
+
+
+    if(th.allImportCache_.isCache)
+        return th.allImportCache_.list;
+
+    th.allImportCache_.list =  TableStorageImport::getAllImport();
+    th.allImportCache_.isCache = true;
+
+    return th.allImportCache_.list;
+}
+
+void ImportService::gloablCacheClear(){
+    allImportCache_.isCache = false;
+    allImportCache_.list.clear();
 }

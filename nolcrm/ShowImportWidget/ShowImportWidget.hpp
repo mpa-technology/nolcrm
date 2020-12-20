@@ -11,7 +11,7 @@
 #include <QWidget>
 #include "../Servers/UpdateService.hpp"
 #include "../DataBase/TableProducts.hpp"
-#include "../DataBase/TableStorageImport.hpp"
+#include "../Servers/ImportService.hpp"
 
 namespace Ui {
 class ShowImportWidget;
