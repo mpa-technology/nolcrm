@@ -10,12 +10,12 @@
 
 #include <QWidget>
 #include <QMessageBox>
-#include <QCloseEvent>
 
 #include "../WidgetProduct/WidgetProduct.hpp"
 #include "../Servers/GlobalEmitService.hpp"
 #include "../Servers/ExportService.hpp"
 #include "../DataBase/TableOrders.hpp"
+#include "../Servers/ProductService.hpp"
 
 namespace Ui {
 class WidgetAddOrder;
@@ -45,7 +45,6 @@ private:
     Ui::WidgetAddOrder *ui;
 
 
-    void closeEvent(QCloseEvent* event);
 
 };
 

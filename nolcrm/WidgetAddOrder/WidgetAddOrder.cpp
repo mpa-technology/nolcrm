@@ -20,7 +20,7 @@ WidgetAddOrder::WidgetAddOrder(QWidget *parent) :
 
 
 
-    for(const auto& it : TableProducts::getAllProduct()){
+    for(const auto& it : ProductService::getAllProduct()){
         auto* item = new WidgetProduct();
         item->setProduct(it);
         item->setButtonLeft("add");
@@ -49,7 +49,7 @@ void WidgetAddOrder::show(){
 
 void WidgetAddOrder::on_pushButton_clicked()
 {
-    auto allPro = TableProducts::getAllProduct();
+    auto allPro = ProductService::getAllProduct();
     QVector<QPair<int,double>>products;
 
     for(int i = 0; i != ui->tableWidget->rowCount();++i){
@@ -107,12 +107,7 @@ void WidgetAddOrder::on_pushButton_clicked()
 
 
 
-void WidgetAddOrder::closeEvent(QCloseEvent *event){
-    ui->tableWidget->setRowCount(0);
 
-
-    event->accept();
-}
 
 
 

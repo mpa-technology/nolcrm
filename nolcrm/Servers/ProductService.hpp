@@ -33,7 +33,7 @@ public:
     }
 
 
-    QVector<Product>getAllProduct(){
+    static  QVector<Product>getAllProduct(){
         auto& th = self();
 
         if(th.allProductCache_.isCache)
