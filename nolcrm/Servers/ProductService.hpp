@@ -30,9 +30,6 @@ public:
 
     bool addProduct( const Product& product);
 
-    static size_t cacheSize();
-
-
     static  QVector<Product>getAllProduct();
 
 public slots:

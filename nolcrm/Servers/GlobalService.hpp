@@ -38,7 +38,7 @@ public:
     void initTableBase();
 
 
-    static size_t cacheSize();
+
 
 
 };

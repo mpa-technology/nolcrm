@@ -34,10 +34,6 @@ bool ProductService::addProduct(const Product &product){
     return true;
 }
 
-size_t ProductService::cacheSize(){
-    return self().allProductCache_.list.size() * sizeof (Product);
-}
-
 QVector<Product> ProductService::getAllProduct(){
     auto& th = self();
 

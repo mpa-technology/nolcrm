@@ -35,9 +35,7 @@ bool OrderService::addOrder(const QVector<QPair<int, double> > &products, const 
     return true;
 }
 
-size_t OrderService::cacheSize(){
-    return self().allOrderCache_.list.size() * sizeof (Order);
-}
+
 
 void OrderService::gloablCacheClear(){
     self().allOrderCache_.isCache = false;

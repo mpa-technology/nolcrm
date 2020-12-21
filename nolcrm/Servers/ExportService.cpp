@@ -69,6 +69,10 @@ ExportStorage ExportService::getExport(const quint64 &code)
     return {};
 }
 
+size_t ExportService::cacheSize(){
+    return self().allExportCache_.list.size() * sizeof (ExportStorage);
+}
+
 
 
 

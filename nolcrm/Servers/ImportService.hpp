@@ -33,9 +33,7 @@ public:
 
 
 
-    static size_t cacheSize(){
-        return self().allImportCache_.list.size() * sizeof (ImportStorage);
-    }
+
 
 public slots:
     void gloablCacheClear();

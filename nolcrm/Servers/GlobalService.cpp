@@ -21,7 +21,6 @@ GlobalService::GlobalService(){
     Timers_.cache = new QTimer();
 
     Timers_.cache->setInterval(Settings::value("cache/autoClearCacheTime",50000).toInt());
-    //Timers_.cache->
     QObject::connect(Timers_.cache,SIGNAL(timeout()),&GlobalEmitService::self(),SLOT(emitGloablCacheClear()));
 
 
@@ -97,13 +96,3 @@ GlobalService::~GlobalService(){
 }
 
 
-
-#include "ImportService.hpp"
-#include "ExportService.hpp"
-#include "ProductService.hpp"
-
-
-size_t GlobalService::cacheSize(){
-
-    return ImportService::cacheSize() + ExportService::cacheSize() + ProductService::cacheSize();
-}

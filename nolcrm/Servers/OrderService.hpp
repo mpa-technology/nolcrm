@@ -28,7 +28,7 @@ public:
 
     static bool addOrder(const QVector<QPair<int,double>>& products,const QDate& data = QDate::currentDate());
 
-    static size_t cacheSize();
+
 
 public slots:
     void gloablCacheClear();

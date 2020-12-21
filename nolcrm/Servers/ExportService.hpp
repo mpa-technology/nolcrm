@@ -33,9 +33,7 @@ public:
     
     static ExportStorage getExport(const quint64& code);
 
-    static size_t cacheSize(){
-        return self().allExportCache_.list.size() * sizeof (ExportStorage);
-    }
+    static size_t cacheSize();
 
 
 public slots:
