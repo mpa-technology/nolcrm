@@ -20,11 +20,11 @@ QSqlError TableStorage::lastError(){
     return TableStorage::self().lastError_;
 }
 
-bool TableStorage::crateTable(){
+void TableStorage::crateTable(){
 
     if(DataBase::table().contains("storage")){
         TableStorage::self().tableCreate_ = true;
-        return true;
+        return;
     }
 
     QSqlQuery query(DataBase::db());
@@ -42,16 +42,15 @@ bool TableStorage::crateTable(){
         qCritical()<<query.lastError();
         TableStorage::self().tableCreate_ = false;
         TableStorage::self().lastError_ = query.lastError();
-        return false;
+        throw retrunDBError(query.lastError());
     }
 
     TableStorage::self().tableCreate_ = true;
 
 
-    return true;
 }
 
-bool TableStorage::addItem(const quint64 &id){
+void TableStorage::addItem(const quint64 &id){
     QSqlQuery query(DataBase::db());
 
     query.prepare( R"( INSERT INTO storage(ProductsId,ProductsCount) VALUES(:ProductsId,:ProductsCount); )" );
@@ -61,22 +60,21 @@ bool TableStorage::addItem(const quint64 &id){
 
     if(query.lastError().type()!=QSqlError::NoError){
         qWarning()<<query.lastError();
-        return false;
+        throw retrunDBError(query.lastError());
     }
 
-    return true;
 }
 
-bool TableStorage::setCount(const quint64 &id, const quint64 &count){
+void TableStorage::setCount(const quint64 &id, const quint64 &count){
     QSqlQuery query(DataBase::db());
     query.prepare("UPDATE storage SET ProductsCount = :count  WHERE ProductsId=:Id ;");
     query.bindValue(":count",count);
     query.bindValue(":Id",id);
     query.exec();
-    return query.lastError().type() == query.lastError().NoError;
+    throw retrunDBError(query.lastError());
 }
 
-bool TableStorage::addCount(const quint64 &id, const quint64 &count)
+void TableStorage::addCount(const quint64 &id, const quint64 &count)
 {
     QSqlQuery query(DataBase::db());
     query.prepare("UPDATE storage SET ProductsCount=:count WHERE ProductsId=:Id;");
@@ -86,19 +84,18 @@ bool TableStorage::addCount(const quint64 &id, const quint64 &count)
 
     if(query.lastError().type() != QSqlError::NoError){
         qWarning()<<query.lastError();
-        return false;
+        throw retrunDBError(query.lastError());
     }
 
-    return true;
 }
 
 
-bool TableStorage::subCount(const quint64 &id, const quint64 &count){
+void TableStorage::subCount(const quint64 &id, const quint64 &count){
 
-    if(subOverflow(getCount(id),count)){
-        qWarning()<<"count - currentCount < 0";
-        return false;
-    }
+    if(subOverflow(getCount(id),count))
+        throw retrunDBError("count - currentCount < 0");
+
+
 
     QSqlQuery query(DataBase::db());
     query.prepare("UPDATE storage SET ProductsCount=:count WHERE ProductsId=:Id;");
@@ -108,10 +105,10 @@ bool TableStorage::subCount(const quint64 &id, const quint64 &count){
 
     if(query.lastError().type() != QSqlError::NoError){
         qWarning()<<query.lastError();
-        return false;
+        throw retrunDBError(query.lastError());
     }
 
-    return true;
+
 }
 
 quint64 TableStorage::getCount(const quint64 &id)

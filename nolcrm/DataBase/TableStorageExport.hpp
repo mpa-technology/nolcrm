@@ -54,9 +54,9 @@ public:
 
     static QSqlError lastError();
 
-    static bool crateTable();
+    static void crateTable();
 
-    static bool newExport(const ExportStorage& importStorage);
+    static void newExport(const ExportStorage& importStorage);
 
 
     static QVector<ExportStorage> getAllExport();

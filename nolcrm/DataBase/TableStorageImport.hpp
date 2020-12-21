@@ -59,9 +59,9 @@ public:
 
     static QSqlError lastError();
 
-    static bool crateTable();
+    static void crateTable();
 
-    static bool newImport(const ImportStorage& importStorage);
+    static void newImport(const ImportStorage& importStorage);
 
     static QVector<ImportStorage> getAllImport();
 

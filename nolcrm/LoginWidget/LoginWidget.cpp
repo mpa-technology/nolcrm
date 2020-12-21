@@ -38,10 +38,14 @@ void LoginWidget::on_pushButton_clicked()
         settings.setValue("database/userPassword","@CLEAR");
         settings.setValue("database/port","@CLEAR");
         settings.setValue("database/driver","QSQLITE");
-        if(!GlobalService::waekup()){
+
+        try {
+            GlobalService::waekup();
+        } catch (...) {
             QMessageBox::warning(nullptr,"error","error");
             return;
         }
+
 
     }
 

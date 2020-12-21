@@ -33,7 +33,7 @@ public:
 
     static GlobalService& self();
 
-    static  bool waekup();
+    static  void waekup();
 
     void initTableBase();
 

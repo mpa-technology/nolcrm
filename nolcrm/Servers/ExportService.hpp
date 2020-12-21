@@ -27,7 +27,7 @@ public:
 
     static ExportService& self();
 
-    static  bool newExport( const ExportStorage& is);
+    static  void newExport( const ExportStorage& is);
 
     static QVector<ExportStorage> getAllExport();
     

@@ -46,17 +46,16 @@ GlobalService &GlobalService::self(){
     return sig;
 }
 
-bool GlobalService::waekup(){
+void GlobalService::waekup(){
     try {
         GlobalService::self().initTableBase();
     } catch (const std::exception& exp) {
         qCritical()<<exp.what();
-        return false;
+        return;
     }
     self().Timers_.cache->start();
 
 
-    return true;
 }
 
 void GlobalService::initTableBase(){
@@ -66,25 +65,24 @@ void GlobalService::initTableBase(){
     else qDebug()<<"dataBase init: ok";
 
 
-    if(!TableProducts::crateTable())
-        throw std::runtime_error("Error init TableProducts");
-    else qDebug()<<"TableProducts crateTable: ok";
 
-    if(!TableOrders::crateTable())
-        throw std::runtime_error("Error init TableOrders");
-    else qDebug()<<"TableOrders crateTable: ok";
 
-    if(!TableStorage::crateTable())
-        throw std::runtime_error("Error init TableStorage");
-    else qDebug()<<"TableStorage crateTable: ok";
 
-    if(!TableStorageImport::crateTable())
-        throw std::runtime_error("Error init TableStorageImport");
-    else qDebug()<<"TableStorageImport crateTable: ok";
 
-    if(!TableStorageExport::crateTable())
-        throw std::runtime_error("Error init TableStorageExport");
-    else qDebug()<<"TableStorageExport crateTable: ok";
+    TableProducts::crateTable();
+    qDebug()<<"TableProducts crateTable: ok";
+
+    TableOrders::crateTable();
+    qDebug()<<"TableOrders crateTable: ok";
+
+    TableStorage::crateTable();
+    qDebug()<<"TableStorage crateTable: ok";
+
+    TableStorageImport::crateTable();
+    qDebug()<<"TableStorageImport crateTable: ok";
+
+    TableStorageExport::crateTable();
+    qDebug()<<"TableStorageExport crateTable: ok";
 
 
 }

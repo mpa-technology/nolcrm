@@ -18,22 +18,20 @@ ImportService &ImportService::self(){
     return sig;
 }
 
-bool ImportService::newImport(const ImportStorage &is){
+void ImportService::newImport(const ImportStorage &is){
 
-    if(!TableStorageImport::newImport(is)){
-        return false;
-    }
+    TableStorageImport::newImport(is);
 
     for(auto it2 : is.products){
-        if(!TableStorage::addCount(it2.id,it2.count))
-            return false;
+        TableStorage::addCount(it2.id,it2.count);
+
     }
 
 
     self().allImportCache_.list.clear();
     self().allImportCache_.isCache = false;
 
-    return true;
+
 }
 
 QVector<ImportStorage> ImportService::getAllImport(){

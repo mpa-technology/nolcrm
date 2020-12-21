@@ -72,12 +72,14 @@ void WidgetAddOrder::on_pushButton_clicked()
 
 
 
+    //TODO:move to serive
 
-    if(!OrderService::addOrder(products,ui->dateEdit->date())){
+    try {
+        OrderService::addOrder(products,ui->dateEdit->date());
+        QMessageBox::information(nullptr,tr("инфо"),tr("Заказ успешн добвалень"));
+    } catch (const retrunDBError& error) {
         QMessageBox::warning(nullptr,tr("Error"),"error");
         return;
-    }else{
-        QMessageBox::information(nullptr,tr("инфо"),tr("Заказ успешн добвалень"));
     }
 
 
@@ -96,9 +98,12 @@ void WidgetAddOrder::on_pushButton_clicked()
         stg.addProduct(pro);
     }
 
+    try {
+        ExportService::newExport(stg);
+    } catch (const retrunDBError& error) {
+        QMessageBox::warning(nullptr,tr("Импорт"),tr("ExportService ошыбка ")+error.what());
+    }
 
-    if(!ExportService::newExport(stg))
-        QMessageBox::warning(nullptr,tr("Импорт"),tr("ExportService ошыбка "));
 
 
     GlobalEmitService::self().emitGlobalUpdate();

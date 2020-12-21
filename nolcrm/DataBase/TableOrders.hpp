@@ -69,20 +69,20 @@ public:
 
     static QSqlError lastError();
 
-    static bool crateTable();
+    static void crateTable();
 
 
     static QVector<Order> getAllOrder();
 
     static Order getOrderByCode(const quint64& code);
 
-    static bool addOrder(const int& productId,const double& productPrice,const quint64& code,const QDate& data);
+    static void addOrder(const int& productId,const double& productPrice,const quint64& code,const QDate& data);
 
-    static bool addOrder(QVector<QPair<int,double>>products,const QDate& data);
+    static void addOrder(QVector<QPair<int,double>>products,const QDate& data);
 
-    static bool addOrder(QVector<QPair<int,double>>products,const quint64& code,const QDate& data);
+    static void addOrder(QVector<QPair<int,double>>products,const quint64& code,const QDate& data);
 
-    static bool removeOrderByCode(const quint64& code);
+    static void removeOrderByCode(const quint64& code);
 
     static Order getOrderByData(const QDate& data);
 

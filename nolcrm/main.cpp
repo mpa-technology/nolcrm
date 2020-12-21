@@ -68,8 +68,14 @@ App::App(int argc, char **argv){
 
     if(Settings::mainSettingsLoad()){
 
-        if(!GlobalService::waekup())
+
+        try {
+            GlobalService::waekup();
+
+        } catch (...) {
             throw std::runtime_error("error weakup");
+        }
+
 
         startWindow = new MainWindow();
     }else

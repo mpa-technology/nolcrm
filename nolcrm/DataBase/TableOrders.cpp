@@ -10,7 +10,7 @@
 TableOrders::TableOrders(){}
 
 
-bool TableOrders::addOrder(const int &productId, const double &productPrice, const quint64 &code, const QDate &data){
+void TableOrders::addOrder(const int &productId, const double &productPrice, const quint64 &code, const QDate &data){
 
     QSqlQuery query(DataBase::db());
     query.prepare( R"( INSERT INTO orders(Code,ProductsId,ProductsPrice,Data) VALUES(:Code,:ProductsId,:ProductsPrice,:Data); )" );
@@ -23,17 +23,26 @@ bool TableOrders::addOrder(const int &productId, const double &productPrice, con
 
     if(query.lastError().type()!=QSqlError::NoError){
         qWarning()<<query.lastError();
-        return false;
+        throw retrunDBError(query.lastError());
     }
 
-    return true;
+
 }
+
 
 quint64 TableOrders::findFreeCode_(){
 
     QSqlQuery query;
     query.prepare("SELECT Code FROM orders");
     query.exec();
+
+    if(query.lastError().type() != QSqlError::NoError){
+        qCritical()<<query.lastError();
+        self().tableCreate_ = false;
+        self().lastError_ = query.lastError();
+        throw retrunDBError(query.lastError());
+    }
+
 
     QVector<quint64>codes;
 
@@ -60,11 +69,11 @@ QSqlError TableOrders::lastError(){
     return TableOrders::self().lastError_;
 }
 
-bool TableOrders::crateTable(){
+void TableOrders::crateTable(){
 
     if(DataBase::table().contains("orders")){
         TableOrders::self().tableCreate_ = true;
-        return true;
+        return;
     }
 
     QSqlQuery query(DataBase::db());
@@ -84,12 +93,11 @@ bool TableOrders::crateTable(){
         qCritical()<<query.lastError();
         TableOrders::self().tableCreate_ = false;
         TableOrders::self().lastError_ = query.lastError();
-        return false;
+        throw retrunDBError(query.lastError());
     }
 
     TableOrders::self().tableCreate_ = true;
 
-    return true;
 }
 
 QVector<Order> TableOrders::getAllOrder(){
@@ -99,7 +107,7 @@ QVector<Order> TableOrders::getAllOrder(){
 
     if(query.lastError().type() != QSqlError::NoError){
         qWarning()<<query.lastError();
-        return {};
+       throw retrunDBError(query.lastError());
     }
 
 
@@ -147,29 +155,26 @@ QVector<Order> TableOrders::getAllOrder(){
 }
 
 
-bool TableOrders::addOrder(QVector<QPair<int, double> > products, const QDate &data){
+void TableOrders::addOrder(QVector<QPair<int, double> > products, const QDate &data){
 
     auto code = findFreeCode_();
 
     for(const auto&it:products){
-        if( !addOrder(it.first,it.second,code,data))
-            return false;
+       addOrder(it.first,it.second,code,data);
+
     }
 
 
-    return true;
 }
 
-bool TableOrders::addOrder(QVector<QPair<int, double> > products, const quint64 &code, const QDate &data){
+void TableOrders::addOrder(QVector<QPair<int, double> > products, const quint64 &code, const QDate &data){
 
 
-    for(const auto&it:products){
-        if( addOrder(it.first,it.second,code,data))
-            return false;
-    }
+    for(const auto&it:products)
+        addOrder(it.first,it.second,code,data);
 
 
-    return {};
+
 }
 
 Order TableOrders::getOrderByCode(const quint64 &code){
@@ -181,7 +186,7 @@ Order TableOrders::getOrderByCode(const quint64 &code){
     return {};
 }
 
-bool TableOrders::removeOrderByCode(const quint64 &code){
+void TableOrders::removeOrderByCode(const quint64 &code){
     QSqlQuery query;
     query.prepare("DELETE FROM orders WHERE Code = :code");
     query.bindValue(":code",code);
@@ -189,12 +194,10 @@ bool TableOrders::removeOrderByCode(const quint64 &code){
 
     if(query.lastError().type() != QSqlError::NoError){
         qDebug()<<query.lastError();
-        return false;
+        throw retrunDBError(query.lastError());
     }
 
 
-
-    return true;
 }
 
 Order TableOrders::getOrderByData(const QDate &data){

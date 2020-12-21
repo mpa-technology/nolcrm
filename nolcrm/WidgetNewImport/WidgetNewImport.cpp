@@ -85,11 +85,14 @@ void WidgetNewImport::on_btnNewImport_clicked()
         is.addProduct(pro);
     }
 
+    //TODO:move to serive
 
-    if(ImportService::newImport(is)){
+    try {
+        ImportService::newImport(is);
         QMessageBox::information(nullptr,tr("Импорт"),tr("импорт успешно создан"));
         GlobalEmitService::self().emitGlobalUpdate();
-    }
-    else
+    } catch (const retrunDBError& error) {
         QMessageBox::warning(nullptr,tr("Импорт"),tr("импорт ошыбка"));
+    }
+
 }

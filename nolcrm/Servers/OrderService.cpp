@@ -23,16 +23,13 @@ QVector<Order> OrderService::getAllOrder(){
     return sf.allOrderCache_.list;
 }
 
-bool OrderService::addOrder(const QVector<QPair<int, double> > &products, const QDate &data){
+void OrderService::addOrder(const QVector<QPair<int, double> > &products, const QDate &data){
 
-    if(!TableOrders::addOrder(products,data))
-        return false;
+    TableOrders::addOrder(products,data);
+
 
     self().allOrderCache_.isCache = false;
     self().allOrderCache_.list.clear();
-
-
-    return true;
 }
 
 

@@ -17,22 +17,20 @@ ExportService &ExportService::self(){
     return sig;
 }
 
-bool ExportService::newExport(const ExportStorage &is){
+void ExportService::newExport(const ExportStorage &is){
 
 
-    if(!TableStorageExport::newExport(is)){
-        return false;
-    }
+    TableStorageExport::newExport(is);
 
-    for(auto it2 : is.products){
-        if(!TableStorage::subCount(it2.id,it2.count))
-            return false;
-    }
+
+    for(auto it2 : is.products)
+        TableStorage::subCount(it2.id,it2.count);
+
 
     self().allExportCache_.isCache = false;
     self().allExportCache_.list.clear();
 
-    return true;
+
 }
 
 QVector<ExportStorage> ExportService::getAllExport(){

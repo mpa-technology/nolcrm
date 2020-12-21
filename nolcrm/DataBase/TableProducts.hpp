@@ -46,17 +46,15 @@ public:
 
     typedef  QVector<Product> productList;
 
-    static bool crateTable();
+    static void crateTable();
 
     static Product lastProduct();
 
-    static  bool addProduct( const Product& product);
+    static void addProduct( const Product& product);
 
-    static bool addProduct( const QString& name,const QString& category,const QString& manufacturer, const double& price, const double& manufacturerPrice,const QString& descriptions);
+    static void editProduct(const Product& product);
 
-    static bool editProduct(const Product& product);
-
-    static bool removeProduct(const quint64& id);
+    static void removeProduct(const quint64& id);
 
     static productList getAllProduct();
 

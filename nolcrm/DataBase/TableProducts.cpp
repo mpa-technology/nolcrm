@@ -19,11 +19,11 @@ QSqlError TableProducts::lastError(){
     return TableProducts::self().lastError_;
 }
 
-bool TableProducts::crateTable(){
+void TableProducts::crateTable(){
 
     if(DataBase::table().contains("products")){
         TableProducts::self().tableCreate_ = true;
-        return true;
+        return;
     }
 
     QSqlQuery query(DataBase::db());
@@ -45,12 +45,12 @@ bool TableProducts::crateTable(){
         qCritical()<<query.lastError();
         TableProducts::self().tableCreate_ = false;
         TableProducts::self().lastError_ = query.lastError();
-        return false;
+        throw retrunDBError(query.lastError());
     }
 
     TableProducts::self().tableCreate_ = true;
 
-    return true;
+
 }
 
 Product TableProducts::lastProduct(){
@@ -63,33 +63,29 @@ Product TableProducts::lastProduct(){
     return TableProducts::getProductById(id);
 }
 
-bool TableProducts::addProduct(const Product &product){
+void TableProducts::addProduct(const Product &product){
 
-    return addProduct(product.name,product.category,product.manufacturer,product.price,product.manufacturerPrice,product.descriptions);
-}
-
-bool TableProducts::addProduct(const QString &name, const QString &category, const QString &manufacturer, const double &price, const double &manufacturerPrice, const QString &descriptions){
     QSqlQuery query(DataBase::db());
     query.prepare( R"( INSERT INTO products(Name,Category,Manufacturer,Price,ManufacturerPrice,Descriptions) VALUES(:Name,:Category,:Manufacturer,:Price,:ManufacturerPrice,:Descriptions); )" );
-    query.bindValue(":Name",name);
-    query.bindValue(":Category",category);
-    query.bindValue(":Manufacturer",manufacturer);
-    query.bindValue(":Price",price);
-    query.bindValue(":ManufacturerPrice",manufacturerPrice);
-    query.bindValue(":Descriptions",descriptions);
+    query.bindValue(":Name",product.name);
+    query.bindValue(":Category",product.category);
+    query.bindValue(":Manufacturer",product.manufacturer);
+    query.bindValue(":Price",product.price);
+    query.bindValue(":ManufacturerPrice",product.manufacturerPrice);
+    query.bindValue(":Descriptions",product.descriptions);
 
     query.exec();
 
     if(query.lastError().type()!=QSqlError::NoError){
         qWarning()<<query.lastError();
-        return false;
+       throw retrunDBError(query.lastError());
     }
 
-
-    return true;
 }
 
-bool TableProducts::editProduct(const Product &product){
+
+
+void TableProducts::editProduct(const Product &product){
     QSqlQuery query(DataBase::db());
     query.prepare( R"(UPDATE products SET Name=:Name,Category=:Category,Manufacturer=:Manufacturer,Price=:Price,ManufacturerPrice=:ManufacturerPrice,Descriptions=:Descriptions WHERE Id=:Id )" );
     query.bindValue(":Id",product.id);
@@ -104,11 +100,11 @@ bool TableProducts::editProduct(const Product &product){
 
     if(query.lastError().type() != QSqlError::NoError){
         qWarning()<<query.lastError();
-        return false;
+        throw retrunDBError(query.lastError());
     }
 
 
-    return true;
+
 }
 
 TableProducts::productList TableProducts::getAllProduct(){
@@ -122,7 +118,7 @@ TableProducts::productList TableProducts::getAllProduct(){
     query.exec();
     if(query.lastError().type()!=QSqlError::NoError){
         qWarning()<<query.lastError();
-        return {};
+        throw retrunDBError(query.lastError());
     }
 
 
@@ -154,7 +150,7 @@ Product TableProducts::getProductById(const quint64 &id){
 
     if( QSqlError error = query.lastError(); error.type() != QSqlError::NoError){
         qWarning()<<error;
-        return {};
+        throw retrunDBError(query.lastError());
     }
 
 
@@ -170,16 +166,13 @@ Product TableProducts::getProductById(const quint64 &id){
     product.manufacturerPrice = query.value("ManufacturerPrice").toDouble();
     product.descriptions = query.value("Descriptions").toString();
 
-    if(query.lastError().type()!=QSqlError::NoError){
-        qWarning()<<query.lastError();
-        return {};
-    }
+
 
 
     return product;
 }
 
-bool TableProducts::removeProduct(const quint64 &id){
+void TableProducts::removeProduct(const quint64 &id){
     QSqlQuery query;
     query.prepare("DELETE FROM products WHERE Id = :id");
     query.bindValue(":id",id);
@@ -190,9 +183,9 @@ bool TableProducts::removeProduct(const quint64 &id){
 
     if(query.lastError().type()!=QSqlError::NoError){
         qWarning()<<query.lastError();
-        return false;
+        throw retrunDBError(query.lastError());
     }
 
 
-    return true;
+
 }

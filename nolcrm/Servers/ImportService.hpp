@@ -27,7 +27,7 @@ public:
 
     static ImportService& self();
 
-    static  bool newImport ( const ImportStorage& is);
+    static  void newImport ( const ImportStorage& is);
 
     static QVector<ImportStorage> getAllImport();
 

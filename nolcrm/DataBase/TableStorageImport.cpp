@@ -40,10 +40,10 @@ QSqlError TableStorageImport::lastError(){
     return self().lastError_;
 }
 
-bool TableStorageImport::crateTable(){
+void TableStorageImport::crateTable(){
     if(DataBase::table().contains("storageImport")){
         self().tableCreate_ = true;
-        return true;
+        return ;
     }
 
     QSqlQuery query(DataBase::db());
@@ -66,15 +66,15 @@ bool TableStorageImport::crateTable(){
         qCritical()<<query.lastError();
         self().tableCreate_ = false;
         self().lastError_ = query.lastError();
-        return false;
+        throw retrunDBError(query.lastError());
     }
-    return true;
+
 }
 
 
 
 
-bool TableStorageImport::newImport(const ImportStorage& importStorage){
+void TableStorageImport::newImport(const ImportStorage& importStorage){
     auto code = self().findFreeCode_();
     QSqlQuery query(DataBase::db());
 
@@ -92,7 +92,7 @@ bool TableStorageImport::newImport(const ImportStorage& importStorage){
 
         if(query.lastError().type() != QSqlError::NoError){
             qWarning()<<query.lastError();
-            return false;
+           throw retrunDBError(query.lastError());
         }
 
 
@@ -100,8 +100,6 @@ bool TableStorageImport::newImport(const ImportStorage& importStorage){
 
 
 
-
-    return true;
 }
 
 QVector<ImportStorage> TableStorageImport::getAllImport(){

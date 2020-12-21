@@ -80,12 +80,19 @@ void WidgetNewExport::on_pushButton_clicked()
     }
 
 
-    if(ExportService::newExport(is)){
-        QMessageBox::information(nullptr,tr("Импорт"),tr("export успешно создан"));
-        GlobalEmitService::self().emitGlobalUpdate();
+    try {
+       ExportService::newExport(is);
+       QMessageBox::information(nullptr,tr("Импорт"),tr("export успешно создан"));
+       GlobalEmitService::self().emitGlobalUpdate();
+    } catch (const retrunDBError& error) {
+        QString text;
+        text.append(tr("export ошыбка создан")).append(' ').append(error.qstring());
+        QMessageBox::warning(nullptr,tr("Импорт"),text);
     }
-    else
-        QMessageBox::warning(nullptr,tr("Импорт"),tr("export ошыбка создан"));
+
+
+
+
 }
 
 void WidgetNewExport::on_tableWidget_2_activated(const QModelIndex &index)

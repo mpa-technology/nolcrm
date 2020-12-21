@@ -17,14 +17,12 @@ ProductService &ProductService::self(){
 
 bool ProductService::addProduct(const Product &product){
 
-    if(!TableProducts::addProduct(product)){
-        return  false;
-    }
+    TableProducts::addProduct(product);
+
     auto newP = TableProducts::lastProduct();
 
-    if(!TableStorage::addItem(newP.id)){
-        return  false;
-    }
+    TableStorage::addItem(newP.id);
+
 
 
    self().allProductCache_.list.clear();

@@ -34,13 +34,14 @@ public:
 
     static QSqlError lastError();
 
-    static bool crateTable();
+    static void crateTable();
 
-    static bool addItem(const quint64& id);
+    static void addItem(const quint64& id);
 
-    static bool setCount(const quint64& id,const quint64& count);
-    static bool addCount(const quint64& id,const quint64& count);
-    static bool subCount(const quint64& id,const quint64& count);
+    static void setCount(const quint64& id,const quint64& count);
+    static void addCount(const quint64& id,const quint64& count);
+    static void subCount(const quint64& id,const quint64& count);
+
     static quint64 getCount(const quint64& id);
 
     static Storage getItem(const quint64& id);

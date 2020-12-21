@@ -26,7 +26,7 @@ public:
 
     static QVector<Order> getAllOrder();
 
-    static bool addOrder(const QVector<QPair<int,double>>& products,const QDate& data = QDate::currentDate());
+    static void addOrder(const QVector<QPair<int,double>>& products,const QDate& data = QDate::currentDate());
 
 
 

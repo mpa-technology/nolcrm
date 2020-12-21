@@ -38,10 +38,9 @@ QSqlError TableStorageExport::lastError(){
     return self().lastError_;
 }
 
-bool TableStorageExport::crateTable(){
+void TableStorageExport::crateTable(){
     if(DataBase::table().contains("storageExport")){
         self().tableCreate_ = true;
-        return true;
     }
 
     QSqlQuery query(DataBase::db());
@@ -64,12 +63,12 @@ bool TableStorageExport::crateTable(){
         qCritical()<<query.lastError();
         self().tableCreate_ = false;
         self().lastError_ = query.lastError();
-        return false;
+        throw retrunDBError(query.lastError());
     }
-    return true;
+
 }
 
-bool TableStorageExport::newExport(const ExportStorage &importStorage){
+void TableStorageExport::newExport(const ExportStorage &importStorage){
     auto code = self().findFreeCode_();
     QSqlQuery query(DataBase::db());
     for(const auto& it : importStorage.products){
@@ -86,11 +85,11 @@ bool TableStorageExport::newExport(const ExportStorage &importStorage){
 
         if(query.lastError().type() != QSqlError::NoError){
             qWarning()<<query.lastError();
-            return false;
+            throw  retrunDBError(query.lastError());
         }
     }
 
-    return true;
+
 }
 
 QVector<ExportStorage> TableStorageExport::getAllExport(){

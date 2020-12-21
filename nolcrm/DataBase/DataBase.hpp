@@ -48,6 +48,35 @@ public:
 
 };
 
+class retrunDBError : public std::exception{
+    QString errorText_;
+    QSqlError errorSql_;
+public:
+
+    retrunDBError(){}
+    retrunDBError(const QSqlError& error){
+        errorText_ =   error.text();
+        errorSql_ = error;
+    }
+    retrunDBError(const QString& errorText){
+        errorText_ = errorText;
+    }
+
+    virtual  ~retrunDBError(){}
+
+    virtual const char* wath()const{
+        return  errorText_.toStdString().data();
+    }
+
+    QSqlError error()const{
+        return  errorSql_;
+    }
+
+    QString qstring()const{
+        return  errorText_;
+    }
+
+};
 
 
 #endif
