@@ -73,7 +73,7 @@ void WidgetAddOrder::on_pushButton_clicked()
 
 
 
-    if(!TableOrders::addOrder(products,ui->dateEdit->date())){
+    if(!OrderService::addOrder(products,ui->dateEdit->date())){
         QMessageBox::warning(nullptr,tr("Error"),"error");
         return;
     }else{

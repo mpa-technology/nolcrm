@@ -8,8 +8,10 @@
 
 #include "../DataBase/TableProducts.hpp"
 #include "../DataBase/TableStorage.hpp"
+#include "GlobalEmitService.hpp"
+class ProductService : public QObject{
+    Q_OBJECT
 
-class ProductService{
     ProductService();
     ProductService(const ProductService& root) = delete;
     ProductService& operator=(const ProductService&) = delete;
@@ -28,22 +30,14 @@ public:
 
     bool addProduct( const Product& product);
 
-    static size_t cacheSize(){
-        return self().allProductCache_.list.size() * sizeof (Product);
-    }
+    static size_t cacheSize();
 
 
-    static  QVector<Product>getAllProduct(){
-        auto& th = self();
+    static  QVector<Product>getAllProduct();
 
-        if(th.allProductCache_.isCache)
-            return th.allProductCache_.list;
+public slots:
+    void gloablCacheClear();
 
-        th.allProductCache_.list = TableProducts::getAllProduct();
-        th.allProductCache_.isCache = true;
-
-        return th.allProductCache_.list;
-    }
 
 };
 

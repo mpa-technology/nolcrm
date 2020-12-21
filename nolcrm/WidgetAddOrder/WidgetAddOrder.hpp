@@ -16,7 +16,7 @@
 #include "../Servers/ExportService.hpp"
 #include "../DataBase/TableOrders.hpp"
 #include "../Servers/ProductService.hpp"
-
+#include "../Servers/OrderService.hpp"
 namespace Ui {
 class WidgetAddOrder;
 }
@@ -36,6 +36,7 @@ public:
 
 
 private slots:
+
 
     void on_pushButton_clicked();
     void btd(Product pro);

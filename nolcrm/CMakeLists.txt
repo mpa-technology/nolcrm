@@ -47,6 +47,7 @@ set(SOURCES
     "Servers/GlobalService.cpp"
     "DataBase/TableStorageExport.cpp"
     "Tool.cpp"
+    "Servers/OrderService.cpp"
     )
 
 set(HEADER
@@ -78,6 +79,7 @@ set(HEADER
     "Servers/GlobalService.hpp"
     "DataBase/TableStorageExport.hpp"
     "Tool.hpp"
+    "Servers/OrderService.hpp"
     )
 
 set(UI

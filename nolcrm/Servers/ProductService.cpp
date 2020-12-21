@@ -6,7 +6,9 @@
 #include "ProductService.hpp"
 
 
-ProductService::ProductService(){}
+ProductService::ProductService(){
+     QObject::connect(&GlobalEmitService::self(),SIGNAL(gloablCacheClear()),this,SLOT(gloablCacheClear()));
+}
 
 ProductService &ProductService::self(){
     static ProductService sig;
@@ -30,5 +32,27 @@ bool ProductService::addProduct(const Product &product){
 
 
     return true;
+}
+
+size_t ProductService::cacheSize(){
+    return self().allProductCache_.list.size() * sizeof (Product);
+}
+
+QVector<Product> ProductService::getAllProduct(){
+    auto& th = self();
+
+    if(th.allProductCache_.isCache)
+        return th.allProductCache_.list;
+
+    th.allProductCache_.list = TableProducts::getAllProduct();
+    th.allProductCache_.isCache = true;
+
+    return th.allProductCache_.list;
+}
+
+void ProductService::gloablCacheClear(){
+
+    self().allProductCache_.list.clear();
+    self().allProductCache_.isCache = false;
 }
 
