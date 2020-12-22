@@ -42,4 +42,4 @@ public:
 
 };
 
-#endif
+#endif //NOLCRM_SETTINGS_HPP

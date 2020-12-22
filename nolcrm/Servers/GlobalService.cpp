@@ -19,7 +19,6 @@
 GlobalService::GlobalService(){
 
     Timers_.cache = new QTimer();
-
     Timers_.cache->setInterval(Settings::value("cache/autoClearCacheTime",50000).toInt());
     QObject::connect(Timers_.cache,SIGNAL(timeout()),&GlobalEmitService::self(),SLOT(emitGloablCacheClear()));
 
@@ -63,10 +62,6 @@ void GlobalService::initTableBase(){
     if(!initDataBase_())
         throw std::runtime_error("Error init dataBase");
     else qDebug()<<"dataBase init: ok";
-
-
-
-
 
 
     TableProducts::crateTable();

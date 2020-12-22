@@ -9,7 +9,7 @@
 #include "ui_WidgetShowProducts.h"
 
 
-
+#include <utility>
 
 WidgetShowProducts::WidgetShowProducts(QWidget *parent) :
     QWidget(parent),
@@ -19,6 +19,7 @@ WidgetShowProducts::WidgetShowProducts(QWidget *parent) :
 
     QObject::connect(&GlobalEmitService::self(),SIGNAL(globalUpdate()),this,SLOT(globalUpdate()));
 
+    ui->tableWidget->hideColumn(0);
 
 }
 
@@ -27,53 +28,32 @@ WidgetShowProducts::~WidgetShowProducts()
     delete ui;
 }
 
-void WidgetShowProducts::btd(Product pro)
-{
-
-QMessageBox msg;
-
-
-msg.addButton(QMessageBox::StandardButton::Yes);
-msg.addButton(QMessageBox::StandardButton::No);
-msg.setText(tr("Вы хотите удалитьт товар"));
-
-if(msg.exec() == QMessageBox::No)
-    return;
-
-TableProducts::removeProduct(pro.id);
 
 
 
-}
 
-void WidgetShowProducts::btdr(Product pro){
+void WidgetShowProducts::globalUpdate(){
 
-  auto ptr =  new WidgetEditProduct(pro);
-  ptr->show();
+    ui->tableWidget->setRowCount(0);
 
 
-}
+    const auto pro = ProductService::getAllProduct();
 
-void WidgetShowProducts::globalUpdate()
-{
+    for(const auto& it : pro){
 
-    QLayoutItem* wgt;
+        auto row = ui->tableWidget->rowCount();
+        ui->tableWidget->setRowCount( row + 1 );
 
-    while ((wgt = ui->verticalLayout_fs->takeAt(0))!=0 ) {
-        delete wgt;
+        ui->tableWidget->setItem(row, 0, new QTableWidgetItem(QString::number(it.id)));
+        ui->tableWidget->setItem(row, 1, new QTableWidgetItem(it.name));
+        ui->tableWidget->setItem(row, 2, new QTableWidgetItem(it.category));
+        ui->tableWidget->setItem(row, 3, new QTableWidgetItem(it.manufacturer));
+        ui->tableWidget->setItem(row, 4, new QTableWidgetItem(QString::number(it.price)));
+        ui->tableWidget->setItem(row, 5, new QTableWidgetItem(QString::number(it.manufacturerPrice)));
+
+
     }
 
-
-
-    for(const auto& it : TableProducts::getAllProduct()){
-        auto* item = new WidgetProduct();
-        item->setProduct(it);
-        item->setButtonLeft(tr("Удалить"));
-        item->setButtonRight(tr("Изминить"));
-        QObject::connect(item,SIGNAL(leftBtnClicked(Product)),this,SLOT(btd(Product)));
-        QObject::connect(item,SIGNAL(rightBtnClicked(Product)),this,SLOT(btdr(Product)));
-        ui->verticalLayout_fs->addWidget(item);
-    }
 
 }
 
@@ -119,4 +99,65 @@ void WidgetShowProducts::on_pushButton_clicked()
 
     doc.setHtml(html);
     doc.print(&printer);
+}
+
+void WidgetShowProducts::on_lineEdit_textChanged(const QString &arg1)
+{
+    Q_UNUSED(arg1);
+
+    auto filter = ui->lineEdit->text();
+
+    int column = ui->comboBox->currentIndex()+1;
+
+    if(filter.isEmpty()){
+
+        for(int i = 0 ; i < ui->tableWidget->rowCount();++i){
+            ui->tableWidget->setRowHeight(i,1);
+
+        }
+        return;
+    }
+
+
+    for(int i = 0 ; i < ui->tableWidget->rowCount();++i){
+        auto item = ui->tableWidget->item(i,column);
+        if(item->text().contains(filter)){
+            continue;
+        }
+        ui->tableWidget->setRowHeight(i,0);
+
+    }
+
+
+
+
+}
+
+void WidgetShowProducts::on_pushButton_3_clicked()
+{
+
+    quint64 id = ui->tableWidget->currentIndex().siblingAtColumn(0).data().toUInt();
+
+    (new WidgetEditProduct(TableProducts::getProductById(id)))->show();
+}
+
+void WidgetShowProducts::on_pushButton_2_clicked(){
+
+    QMessageBox msg;
+
+
+    msg.addButton(QMessageBox::StandardButton::Yes);
+    msg.addButton(QMessageBox::StandardButton::No);
+    msg.setText(tr("Вы хотите удалитьт товар"));
+
+    if(msg.exec() == QMessageBox::No)
+        return;
+
+
+
+    quint64 id = ui->tableWidget->currentIndex().siblingAtColumn(0).data().toUInt();
+    ProductService::removeProduct(id);
+
+    GlobalEmitService::emitGlobalUpdate();
+
 }

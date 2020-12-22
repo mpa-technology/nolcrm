@@ -34,7 +34,7 @@ void WidgetAddProduct::on_pushButton_clicked()
     auto descriptions = ui->textEdit->toHtml();
 
     Product product;
-    product.id = -1;
+    product.id = 0;
     product.name = name;
     product.price = price;
     product.category = category;

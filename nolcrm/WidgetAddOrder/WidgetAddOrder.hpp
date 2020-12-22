@@ -10,13 +10,18 @@
 
 #include <QWidget>
 #include <QMessageBox>
+#include <QFileInfo>
+#include <QFileDialog>
+#include <QPrinter>
+#include <QTextDocument>
 
-#include "../WidgetProduct/WidgetProduct.hpp"
+
 #include "../Servers/GlobalEmitService.hpp"
 #include "../Servers/ExportService.hpp"
 #include "../DataBase/TableOrders.hpp"
 #include "../Servers/ProductService.hpp"
 #include "../Servers/OrderService.hpp"
+
 namespace Ui {
 class WidgetAddOrder;
 }
@@ -35,12 +40,26 @@ public:
     void show();
 
 
+public slots:
+
+
+    void globalUpdate();
+
+
 private slots:
 
 
     void on_pushButton_clicked();
-    void btd(Product pro);
 
+
+
+    void on_pushButton_2_clicked();
+
+    void on_tableWidget_2_activated(const QModelIndex &index);
+
+    void on_lineEdit_textChanged(const QString &arg1);
+
+    void on_tableWidget_cellActivated(int row, int column);
 
 private:
     Ui::WidgetAddOrder *ui;
@@ -49,4 +68,4 @@ private:
 
 };
 
-#endif
+#endif //NOLCRM_WIDGETADDORDER_HPP

@@ -15,15 +15,72 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string>Фильтер:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="lineEdit"/>
+     </item>
+     <item>
+      <widget class="QComboBox" name="comboBox">
+       <item>
+        <property name="text">
+         <string>Названия</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Катигоря</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Производите</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Количесвто на складе</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
     <widget class="QTableWidget" name="tableWidget">
+     <property name="editTriggers">
+      <set>QAbstractItemView::NoEditTriggers</set>
+     </property>
+     <property name="selectionBehavior">
+      <enum>QAbstractItemView::SelectRows</enum>
+     </property>
+     <attribute name="horizontalHeaderStretchLastSection">
+      <bool>true</bool>
+     </attribute>
      <column>
       <property name="text">
-       <string>name</string>
+       <string>Названия</string>
       </property>
      </column>
      <column>
       <property name="text">
-       <string>count</string>
+       <string>Катигория</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Производитель</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Количество на складе</string>
       </property>
      </column>
     </widget>

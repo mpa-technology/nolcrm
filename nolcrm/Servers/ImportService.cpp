@@ -47,6 +47,13 @@ QVector<ImportStorage> ImportService::getAllImport(){
     return th.allImportCache_.list;
 }
 
+void ImportService::removeImportByCode(const quint64 &code)
+{
+    TableStorageImport::removeImportByCode(code);
+    self().allImportCache_.list.clear();
+    self().allImportCache_.isCache = false;
+}
+
 void ImportService::gloablCacheClear(){
     allImportCache_.isCache = false;
     allImportCache_.list.clear();

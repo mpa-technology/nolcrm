@@ -7,7 +7,7 @@
 #ifndef NOLCRM_TABLESTORAGE_HPP
 #define NOLCRM_TABLESTORAGE_HPP
 
-#include "../Tool.hpp"
+#include <Utility/Tool.hpp>
 #include "DataBase.hpp"
 
 
@@ -52,4 +52,4 @@ public:
 };
 
 
-#endif
+#endif //NOLCRM_TABLESTORAGE_HPP

@@ -46,4 +46,4 @@ private:
     Ui::WidgetNewExport *ui;
 };
 
-#endif
+#endif //NOLCRM_WIDGETNEWEXPORT_HPP

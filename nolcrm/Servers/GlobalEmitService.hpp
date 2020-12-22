@@ -18,8 +18,8 @@ public:
 
 public slots:
 
-    void emitGlobalUpdate();
-    void emitGloablCacheClear();
+    static void emitGlobalUpdate();
+    static void emitGloablCacheClear();
 
 
 signals:
@@ -32,4 +32,4 @@ signals:
 
 
 
-#endif
+#endif //NOL_CRM_UPDATESERVICE_HPP

@@ -1,5 +1,5 @@
-#ifndef ORDERSERVICE_HPP
-#define ORDERSERVICE_HPP
+#ifndef NOL_CRM_ORDERSERVICE_HPP
+#define NOL_CRM_ORDERSERVICE_HPP
 
 
 #include "GlobalEmitService.hpp"
@@ -26,7 +26,7 @@ public:
 
     static QVector<Order> getAllOrder();
 
-    static void addOrder(const QVector<QPair<int,double>>& products,const QDate& data = QDate::currentDate());
+    static void addOrder(const QVector<QPair<quint64,double>>& products,const QDate& data = QDate::currentDate());
 
 
 
@@ -35,4 +35,4 @@ public slots:
 
 };
 
-#endif // ORDERSERVICE_HPP
+#endif // NOL_CRM_ORDERSERVICE_HPP

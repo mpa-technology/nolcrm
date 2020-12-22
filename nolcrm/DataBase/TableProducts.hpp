@@ -4,10 +4,8 @@
 */
 
 
-
 #ifndef NOLCRM_TABLEPRODUCTS_HPP
 #define NOLCRM_TABLEPRODUCTS_HPP
-
 
 #include <QVector>
 #include <QSqlError>
@@ -63,4 +61,4 @@ public:
 };
 
 
-#endif
+#endif //NOLCRM_TABLEPRODUCTS_HPP

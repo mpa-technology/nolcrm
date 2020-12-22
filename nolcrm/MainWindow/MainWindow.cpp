@@ -64,6 +64,11 @@ void MainWindow::initModule_(){
     ui->inlineVerticalLayout->addWidget(widgetNewExport_);
     ui->btnNewExport->setEnabled(true);
 
+
+    reportWidget_ = new ReportWidget();
+    ui->inlineVerticalLayout->addWidget(reportWidget_);
+    ui->btnShowReport->setEnabled(true);
+
     widgetList_.push_back(widgetAddProduct_);
     widgetList_.push_back(widgetAddOrder_);
     widgetList_.push_back(widgetShowOrder_);
@@ -73,6 +78,7 @@ void MainWindow::initModule_(){
     widgetList_.push_back(showImportWidget_);
     widgetList_.push_back(showExportWidget_);
     widgetList_.push_back(widgetNewExport_);
+    widgetList_.push_back(reportWidget_);
 
 
 
@@ -89,42 +95,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     this->setEnabled(true);
 
 
-    //Очйт
-    QString html;
-    auto data = QDate::currentDate();
-
-    double isum = 0;
-    double esum = 0;
-    double osum = 0;
-    for(auto& it : TableStorageImport::getAllImport()){
-
-        if( it.data.month() != data.month() || it.data.year() != data.year())
-            continue;
 
 
-        isum += it.getSum();
-    }
-
-    for(auto& it : ExportService::getAllExport()){
-        if( it.data.month() != data.month() || it.data.year() != data.year())
-            continue;
-        esum += it.getSum();
-    }
-
-    for(auto& it : TableOrders::getAllOrder()){
-        if( it.data.month() != data.month() || it.data.year() != data.year())
-            continue;
-
-       osum += it.getSum();
-    }
-
-
-    html.append("<p>Отчйт за месяц = ").append(data.toString()).append("</p>");
-    html.append("<p>Импорт сумм = ").append(QString::number(isum)).append("</p>");
-    html.append("<p>Export сумм = ").append(QString::number(esum)).append("</p>");
-    html.append("<p>раница ").append(QString::number(isum - esum)).append("</p>");
-    html.append("<p>сумма заказов ").append(QString::number(osum)).append("</p>");
-    ui->textBrowser->setHtml(html);
 
 
 
@@ -192,4 +164,9 @@ void MainWindow::on_btnAbout_clicked()
 void MainWindow::on_btnExit_clicked()
 {
         close();
+}
+
+void MainWindow::on_btnShowReport_clicked()
+{
+    showWidget_(reportWidget_);
 }

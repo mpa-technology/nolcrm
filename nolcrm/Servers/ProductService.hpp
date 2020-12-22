@@ -32,6 +32,11 @@ public:
 
     static  QVector<Product>getAllProduct();
 
+    static void editProduct(const Product& product );
+
+    static void removeProduct(const quint64& id);
+
+
 public slots:
     void gloablCacheClear();
 

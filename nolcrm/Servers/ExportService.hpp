@@ -33,7 +33,7 @@ public:
     
     static ExportStorage getExport(const quint64& code);
 
-    static size_t cacheSize();
+    static void removeExportByCode(const quint64 &code);
 
 
 public slots:

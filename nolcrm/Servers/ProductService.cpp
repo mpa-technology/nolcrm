@@ -7,7 +7,7 @@
 
 
 ProductService::ProductService(){
-     QObject::connect(&GlobalEmitService::self(),SIGNAL(gloablCacheClear()),this,SLOT(gloablCacheClear()));
+    QObject::connect(&GlobalEmitService::self(),SIGNAL(gloablCacheClear()),this,SLOT(gloablCacheClear()));
 }
 
 ProductService &ProductService::self(){
@@ -25,8 +25,8 @@ bool ProductService::addProduct(const Product &product){
 
 
 
-   self().allProductCache_.list.clear();
-   self().allProductCache_.isCache = false;
+    self().allProductCache_.list.clear();
+    self().allProductCache_.isCache = false;
 
 
     return true;
@@ -42,6 +42,25 @@ QVector<Product> ProductService::getAllProduct(){
     th.allProductCache_.isCache = true;
 
     return th.allProductCache_.list;
+}
+
+void ProductService::editProduct(const Product &product){
+
+    self().allProductCache_.list.clear();
+    self().allProductCache_.isCache = false;
+
+    TableProducts::editProduct(product);
+
+
+}
+
+void ProductService::removeProduct(const quint64 &id){
+
+    TableProducts::removeProduct(id);
+
+    self().allProductCache_.list.clear();
+    self().allProductCache_.isCache = false;
+
 }
 
 void ProductService::gloablCacheClear(){

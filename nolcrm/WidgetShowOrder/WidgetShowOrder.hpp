@@ -42,4 +42,4 @@ private:
     Ui::WidgetShowOrder *ui;
 };
 
-#endif
+#endif //NOLCRM_WIDGETSHOWORDER_HPP

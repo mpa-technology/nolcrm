@@ -32,6 +32,7 @@ public:
     static QVector<ImportStorage> getAllImport();
 
 
+    static void removeImportByCode(const quint64 &code);
 
 
 

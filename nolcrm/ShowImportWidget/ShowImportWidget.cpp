@@ -45,11 +45,9 @@ void ShowImportWidget::globalUpdate(){
 void ShowImportWidget::on_tableWidget_activated(const QModelIndex &index){
 
 
-    auto is = TableStorageImport::getImport(ui->tableWidget->item(index.row(),0)->text().toLongLong());
+    auto is = TableStorageImport::getImport(ui->tableWidget->item(index.row(),0)->text().toULong());
 
-    if(is.code == -1){
-        qCritical()<<"is code == -1";
-    }
+
 
 
     QString html;
@@ -66,4 +64,11 @@ void ShowImportWidget::on_tableWidget_activated(const QModelIndex &index){
     ui->textBrowser->setHtml(html);
 
 
+}
+
+void ShowImportWidget::on_pushButton_clicked()
+{
+
+    auto code = ui->tableWidget->currentIndex().siblingAtColumn(0).data().toULongLong();
+    ImportService::removeImportByCode(code);
 }

@@ -10,6 +10,8 @@
 
 #include <QWidget>
 #include "../Servers/GlobalEmitService.hpp"
+#include "../Servers/ProductService.hpp"
+#include "../DataBase/TableStorageExport.hpp"
 
 namespace Ui {
 class WidgetStorage;
@@ -27,9 +29,14 @@ public:
 public slots:
 void globalUpdate();
 
+private slots:
+void on_lineEdit_textChanged(const QString &arg1);
+
+
+
 private:
     Ui::WidgetStorage *ui;
 };
 
 
-#endif
+#endif //NOLCRM_WDGETSTORAGE_HPP

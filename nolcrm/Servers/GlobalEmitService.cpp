@@ -13,10 +13,10 @@ GlobalEmitService &GlobalEmitService::self(){
 
 void GlobalEmitService::emitGlobalUpdate(){
     qDebug()<<"emit globalUpdate";
-    emit globalUpdate();
+    emit self().globalUpdate();
 }
 
 void GlobalEmitService::emitGloablCacheClear(){
     qDebug()<<"emit gloablCacheClear";
-    emit gloablCacheClear();
+    emit self().gloablCacheClear();
 }

@@ -79,4 +79,4 @@ public:
 };
 
 
-#endif
+#endif //NOLCRM_DATABASE_HPP

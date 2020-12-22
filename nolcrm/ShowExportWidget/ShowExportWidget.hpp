@@ -32,8 +32,10 @@ public slots:
 private slots:
     void on_tableWidget_activated(const QModelIndex &index);
 
+    void on_pushButton_clicked();
+
 private:
     Ui::ShowExportWidget *ui;
 };
 
-#endif
+#endif //NOLCRM_SHOWEXPORTWIDGET_HPP

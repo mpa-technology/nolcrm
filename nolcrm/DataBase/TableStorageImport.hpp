@@ -15,12 +15,12 @@ struct ImportStorage{
     struct product{
         quint64 id;
         quint64 count;
-        quint64 price;
+        double price;
     };
 
 
     QVector<product>products;
-    qint64 code = -1;
+    quint64 code = -1;
     QDate data;
 
 
@@ -65,9 +65,12 @@ public:
 
     static QVector<ImportStorage> getAllImport();
 
-    static ImportStorage getImport(const quint64 code);
+    static ImportStorage getImport(const quint64 &code);
+
+
+    static void removeImportByCode(const quint64 &code);
 
 };
 
 
-#endif
+#endif //NOLCRM_TABLESTORAGEIMPORT_HPP

@@ -16,7 +16,6 @@
 #include <QFileDialog>
 
 #include "../Servers/GlobalEmitService.hpp"
-#include "../WidgetProduct/WidgetProduct.hpp"
 #include "../WidgetEditProduct/WidgetEditProduct.hpp"
 
 
@@ -33,8 +32,7 @@ public:
     ~WidgetShowProducts();
 
 public slots:
-    void btd(Product pro);
-    void btdr(Product pro);
+
 
     void globalUpdate();
 
@@ -42,8 +40,14 @@ private slots:
 
     void on_pushButton_clicked();
 
+    void on_lineEdit_textChanged(const QString &arg1);
+
+    void on_pushButton_3_clicked();
+
+    void on_pushButton_2_clicked();
+
 private:
     Ui::WidgetShowProducts *ui;
 };
 
-#endif
+#endif //NOLCRM_WIDGETSHOWPRODUCTS_HPP

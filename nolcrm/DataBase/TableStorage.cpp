@@ -71,7 +71,13 @@ void TableStorage::setCount(const quint64 &id, const quint64 &count){
     query.bindValue(":count",count);
     query.bindValue(":Id",id);
     query.exec();
+
+    if(query.lastError().type() != QSqlError::NoError){
+        qWarning()<<query.lastError();
     throw retrunDBError(query.lastError());
+    }
+
+
 }
 
 void TableStorage::addCount(const quint64 &id, const quint64 &count)

@@ -11,9 +11,9 @@
 
 
 
-#define NOLCRM_BUILD_TYPE "Debug";
+#define NOLCRM_BUILD_TYPE "Release";
 #define NOLCRM_VERSION_MAJOR "1"
-#define NOLCRM_VERSION_MINOR "2"
+#define NOLCRM_VERSION_MINOR "3"
 #define NOLCRM_VERSION_PATCH "0"
 
 

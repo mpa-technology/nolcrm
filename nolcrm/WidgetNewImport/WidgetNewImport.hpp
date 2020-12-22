@@ -44,4 +44,4 @@ private:
     Ui::WidgetNewImport *ui;
 };
 
-#endif
+#endif //NOLCRM_WIDGETNEWIMPORT_HPP

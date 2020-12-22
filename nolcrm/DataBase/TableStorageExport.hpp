@@ -12,12 +12,12 @@ struct ExportStorage{
     struct product{
         quint64 id;
         quint64 count;
-        quint64 price;
+        double price;
     };
 
 
     QVector<product>products;
-    qint64 code = -1;
+    quint64 code = 0;
     QDate data;
 
 
@@ -63,9 +63,10 @@ public:
 
     static ExportStorage getExport(const quint64& code);
 
+    static void removeExportByCode(const quint64 &code);
 
 };
 
 
 
-#endif // TABLESTORAGEEXPORT_HPP
+#endif // NOL_CRM_TABLESTORAGEEXPORT_HPP

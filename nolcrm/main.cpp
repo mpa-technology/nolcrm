@@ -6,12 +6,6 @@
 #include <main.hpp>
 
 
-
-
-
-
-
-
 int main(int argc, char *argv[]){
 
     App app(argc,argv);
@@ -30,9 +24,8 @@ void App::MessageOutput_(QtMsgType type, const QMessageLogContext &context, cons
     switch (type) {
     case QtDebugMsg:
 
-        if(ProgramService::buildType() != ProgramService::RELEASE){
+        if(ProgramService::buildType() != ProgramService::RELEASE)
             fprintf(stderr, "%s : %s Debug: %s : (%s:%u, %s)\n",data.toStdString().data(),time.toStdString().data(),localMsg.constData(), context.file, context.line, context.function);
-        }
 
         break;
     case QtInfoMsg:

@@ -125,8 +125,9 @@ TableProducts::productList TableProducts::getAllProduct(){
     while (query.next()) {
 
         Product product;
-        product.id = query.value("Id").toInt();
+        product.id = query.value("Id").toULongLong();
         product.name = query.value("Name").toString();
+        product.category = query.value("Category").toString();
         product.manufacturer = query.value("Manufacturer").toString();
         product.price = query.value("Price").toDouble();
         product.manufacturerPrice = query.value("ManufacturerPrice").toDouble();
@@ -159,13 +160,13 @@ Product TableProducts::getProductById(const quint64 &id){
     Product product;
 
 
-    product.id = query.value("Id").toInt();
+    product.id = query.value("Id").toUInt();
     product.name = query.value("Name").toString();
     product.manufacturer = query.value("Manufacturer").toString();
     product.price = query.value("Price").toDouble();
     product.manufacturerPrice = query.value("ManufacturerPrice").toDouble();
     product.descriptions = query.value("Descriptions").toString();
-
+    product.category = query.value("Category").toString();
 
 
 

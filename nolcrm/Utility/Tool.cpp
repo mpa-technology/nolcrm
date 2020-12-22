@@ -3,15 +3,12 @@
     SPDX-License-Identifier: BSD 3-Clause "New" or "Revised" License
 */
 
-
 #include "Tool.hpp"
-
-
 
 bool subOverflow(const quint64 &a, const quint64 &b){
 
-    const long long al = a;
-    const long long bl = b;
+    const long long al = static_cast<long long>(a);
+    const long long bl = static_cast<long long>(b);
 
     return al - bl < 0;
 }

@@ -25,12 +25,12 @@
 struct Order{
     struct product{
         quint64 id;
-        quint64 price;
+        double price;
     };
 
 
     QVector<product>products;
-    qint64 code = -1;
+    quint64 code = 0;
     QDate data;
 
 
@@ -76,11 +76,11 @@ public:
 
     static Order getOrderByCode(const quint64& code);
 
-    static void addOrder(const int& productId,const double& productPrice,const quint64& code,const QDate& data);
+    static void addOrder(const quint64 &productId, const double& productPrice, const quint64& code, const QDate& data);
 
-    static void addOrder(QVector<QPair<int,double>>products,const QDate& data);
+    static void addOrder(QVector<QPair<quint64,double>>products,const QDate& data);
 
-    static void addOrder(QVector<QPair<int,double>>products,const quint64& code,const QDate& data);
+    static void addOrder(QVector<QPair<quint64,double>>products,const quint64& code,const QDate& data);
 
     static void removeOrderByCode(const quint64& code);
 
@@ -94,4 +94,4 @@ public:
 };
 
 
-#endif
+#endif //NOLCRM_TABLEORDERS_HPP

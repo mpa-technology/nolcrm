@@ -15,7 +15,6 @@
 #include "../WidgetAddOrder/WidgetAddOrder.hpp"
 #include "../WidgetAddProduct/WidgetAddProduct.hpp"
 #include "../WidgetShowOrder/WidgetShowOrder.hpp"
-#include "../WidgetProduct/WidgetProduct.hpp"
 #include "../WidgetShowProducts/WidgetShowProducts.hpp"
 #include "../WidgetStorage/WidgetStorage.hpp"
 #include "../WidgetNewImport/WidgetNewImport.hpp"
@@ -24,7 +23,7 @@
 #include "../WidgetNewExport/WidgetNewExport.hpp"
 #include "../Servers/ProgramService.hpp"
 #include "../DataBase/TableOrders.hpp"
-
+#include "../ReportWidget/ReportWidget.hpp"
 namespace Ui {
 class MainWindow;
 }
@@ -43,6 +42,7 @@ class MainWindow : public QMainWindow
     ShowImportWidget* showImportWidget_ = nullptr;
     ShowExportWidget* showExportWidget_ = nullptr;
     WidgetNewExport* widgetNewExport_ = nullptr;
+    ReportWidget*  reportWidget_ = nullptr;
 
 
     QVector<QWidget*>widgetList_;
@@ -82,8 +82,10 @@ private slots:
 
     void on_btnExit_clicked();
 
+    void on_btnShowReport_clicked();
+
 private:
     Ui::MainWindow *ui = nullptr;
 };
 
-#endif
+#endif //NOLCRM_MAINWINDOW_HPP

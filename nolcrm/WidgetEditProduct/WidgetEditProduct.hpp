@@ -12,7 +12,7 @@
 #include <QWidget>
 #include <QMessageBox>
 
-#include "../DataBase/TableProducts.hpp"
+#include "../Servers/ProductService.hpp"
 
 namespace Ui {
 class WidgetEditProduct;
@@ -35,4 +35,4 @@ private:
     Ui::WidgetEditProduct *ui;
 };
 
-#endif
+#endif //NOLCRM_WIDGETEDITPRODUCT_HPP

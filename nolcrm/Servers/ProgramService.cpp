@@ -24,7 +24,10 @@ QString ProgramService::buildTypeString(){
 }
 
 QString ProgramService::version(){
-    return "1.2.0";
+    return QString(NOLCRM_VERSION_MAJOR).append('.')
+            .append(QString(NOLCRM_VERSION_MINOR))
+            .append('.')
+            .append(QString(NOLCRM_VERSION_PATCH));
 }
 
 QString ProgramService::name(){

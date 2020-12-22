@@ -10,7 +10,7 @@
 TableOrders::TableOrders(){}
 
 
-void TableOrders::addOrder(const int &productId, const double &productPrice, const quint64 &code, const QDate &data){
+void TableOrders::addOrder(const quint64 &productId, const double &productPrice, const quint64 &code, const QDate &data){
 
     QSqlQuery query(DataBase::db());
     query.prepare( R"( INSERT INTO orders(Code,ProductsId,ProductsPrice,Data) VALUES(:Code,:ProductsId,:ProductsPrice,:Data); )" );
@@ -117,9 +117,9 @@ QVector<Order> TableOrders::getAllOrder(){
 
 
     while (query.next()) {
-        auto code = query.value("Code").toLongLong();
+        auto code = query.value("Code").toUInt();
 
-        auto ProductsId = query.value("ProductsId").toLongLong();
+        auto ProductsId = query.value("ProductsId").toULongLong();
         auto ProductsPrice = query.value("ProductsPrice").toDouble();
         auto Data = query.value("Data").toDate();
 
@@ -155,7 +155,7 @@ QVector<Order> TableOrders::getAllOrder(){
 }
 
 
-void TableOrders::addOrder(QVector<QPair<int, double> > products, const QDate &data){
+void TableOrders::addOrder(QVector<QPair<quint64, double> > products, const QDate &data){
 
     auto code = findFreeCode_();
 
@@ -167,7 +167,7 @@ void TableOrders::addOrder(QVector<QPair<int, double> > products, const QDate &d
 
 }
 
-void TableOrders::addOrder(QVector<QPair<int, double> > products, const quint64 &code, const QDate &data){
+void TableOrders::addOrder(QVector<QPair<quint64, double> > products, const quint64 &code, const QDate &data){
 
 
     for(const auto&it:products)
@@ -216,7 +216,7 @@ QVector<Order> TableOrders::getOrderByData(const int &year, const int &month){
     QVector<Order> list;
 
     for(const auto& it : getAllOrder())
-        if(it.data.month() == month && it.data.year())
+        if(it.data.month() == month && year == it.data.year())
             list.push_back(it);
 
     return list;
@@ -227,7 +227,7 @@ QVector<Order> TableOrders::getOrderByData(const int &year, const int &month, co
     QVector<Order> list;
 
     for(const auto& it : getAllOrder())
-        if(it.data.month() == month && it.data.year() && it.data.day() == day)
+        if(it.data.month() == month &&  year == it.data.year() && it.data.day() == day)
             list.push_back(it);
 
     return list;

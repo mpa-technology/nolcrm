@@ -115,9 +115,9 @@ QVector<ImportStorage> TableStorageImport::getAllImport(){
 
 
     while (query.next()) {
-        auto code = query.value("Code").toLongLong();
-        auto ProductsCount = query.value("ProductsCount").toLongLong();
-        auto ProductsId = query.value("ProductsId").toLongLong();
+        auto code = query.value("Code").toUInt();
+        auto ProductsCount = query.value("ProductsCount").toUInt();
+        auto ProductsId = query.value("ProductsId").toUInt();
         auto ProductsPrice = query.value("ProductsPrice").toDouble();
         auto Data = query.value("Data").toDate();
 
@@ -153,12 +153,26 @@ QVector<ImportStorage> TableStorageImport::getAllImport(){
     return listExportStorage;
 }
 
-ImportStorage TableStorageImport::getImport(const quint64 code){
+ImportStorage TableStorageImport::getImport(const quint64& code){
 
     for(auto& it : getAllImport())
         if(it.code == code)
             return it;
 
-    return {};
+     throw retrunDBError("code not find");
+}
+
+void TableStorageImport::removeImportByCode(const quint64 &code){
+    QSqlQuery query;
+    query.prepare("DELETE FROM storageImport WHERE Code = :code");
+    query.bindValue(":code",code);
+    query.exec();
+
+    if(query.lastError().type() != QSqlError::NoError){
+        qDebug()<<query.lastError();
+        throw retrunDBError(query.lastError());
+    }
+
+
 }
 

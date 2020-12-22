@@ -42,12 +42,12 @@ void WidgetEditProduct::on_pushButton_clicked(){
     pro.manufacturerPrice = ui->doubleSpinBox_2->value();
 
 
-    //TODO:move to servie
 
     try {
-        TableProducts::editProduct(pro);
-                QMessageBox::information(nullptr,tr("Товар"),tr("Товар успешно имзенень"));
+        ProductService::editProduct(pro);
+        QMessageBox::information(nullptr,tr("Товар"),tr("Товар успешно имзенень"));
     } catch (const retrunDBError& error) {
+        Q_UNUSED(error);
         QMessageBox::warning(nullptr,tr("Импорт"),tr("Торвр ошыбка имзенень"));
     }
 

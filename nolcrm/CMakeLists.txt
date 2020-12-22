@@ -9,7 +9,7 @@ set_target_properties(${TARGET} PROPERTIES
 
 
 set(PROJECT_VERSION_MAJOR 1)
-set(PROJECT_VERSION_MINOR 2)
+set(PROJECT_VERSION_MINOR 3)
 set(PROJECT_VERSION_PATCH 0)
 set(NOLCRM_BUILD_TYPE ${CMAKE_BUILD_TYPE})
 set(NOLCRM_VERSION_MAJOR ${PROJECT_VERSION_MAJOR})
@@ -27,7 +27,6 @@ set(SOURCES
     "WidgetShowOrder/WidgetShowOrder.cpp"
     "DataBase/TableProducts.cpp"
     "DataBase/TableOrders.cpp"
-    "WidgetProduct/WidgetProduct.cpp"
     "WidgetShowProducts/WidgetShowProducts.cpp"
     "WidgetStorage/WidgetStorage.cpp"
     "DataBase/TableStorage.cpp"
@@ -46,8 +45,9 @@ set(SOURCES
     "Servers/ExportService.cpp"
     "Servers/GlobalService.cpp"
     "DataBase/TableStorageExport.cpp"
-    "Tool.cpp"
+    "Utility/Tool.cpp"
     "Servers/OrderService.cpp"
+    "ReportWidget/ReportWidget.cpp"
     )
 
 set(HEADER
@@ -56,7 +56,6 @@ set(HEADER
     "DataBase/DataBase.hpp"
     "WidgetAddOrder/WidgetAddOrder.hpp"
     "WidgetShowOrder/WidgetShowOrder.hpp"
-    "WidgetProduct/WidgetProduct.hpp"
     "WidgetShowProducts/WidgetShowProducts.hpp"
     "DataBase/TableProducts.hpp"
     "DataBase/TableOrders.hpp"
@@ -78,8 +77,9 @@ set(HEADER
     "Servers/ExportService.hpp"
     "Servers/GlobalService.hpp"
     "DataBase/TableStorageExport.hpp"
-    "Tool.hpp"
+    "Utility/Tool.hpp"
     "Servers/OrderService.hpp"
+    "ReportWidget/ReportWidget.hpp"
     )
 
 set(UI
@@ -87,7 +87,6 @@ set(UI
     "WidgetAddProduct/WidgetAddProduct.ui"
     "WidgetAddOrder/WidgetAddOrder.ui"
     "WidgetShowOrder/WidgetShowOrder.ui"
-    "WidgetProduct/WidgetProduct.ui"
     "WidgetShowProducts/WidgetShowProducts.ui"
     "WidgetStorage/WidgetStorage.ui"
     "WidgetNewImport/WidgetNewImport.ui"
@@ -96,6 +95,7 @@ set(UI
     "ShowImportWidget/ShowImportWidget.ui"
     "ShowExportWidget/ShowExportWidget.ui"
     "WidgetNewExport/WidgetNewExport.ui"
+    "ReportWidget/ReportWidget.ui"
     )
 
 
@@ -107,10 +107,10 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)
 
-find_package(Qt5 REQUIRED COMPONENTS Core Widgets Sql PrintSupport)
+find_package(Qt5 REQUIRED COMPONENTS Core Widgets Sql  Test PrintSupport)
 
 add_executable(${PROJECT_NAME} ${SOURCES} ${HEADER} ${UI})
 
 install(TARGETS ${PROJECT_NAME} DESTINATION bin)
 
-target_link_libraries(${PROJECT_NAME} Qt5::Core Qt5::Widgets Qt5::Sql Qt5::PrintSupport pthread)
+target_link_libraries(${PROJECT_NAME} Qt5::Core Qt5::Widgets Qt5::Sql Qt5::PrintSupport  Qt5::Test pthread)

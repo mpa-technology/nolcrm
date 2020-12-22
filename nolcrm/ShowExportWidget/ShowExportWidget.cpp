@@ -40,11 +40,8 @@ void ShowExportWidget::globalUpdate()
 
 void ShowExportWidget::on_tableWidget_activated(const QModelIndex &index)
 {
-    auto is = TableStorageExport::getExport(ui->tableWidget->item(index.row(),0)->text().toLongLong());
+    auto is = TableStorageExport::getExport(ui->tableWidget->item(index.row(),0)->text().toUInt());
 
-    if(is.code == -1){
-        qCritical()<<"is code == -1";
-    }
 
 
     QString str;
@@ -57,4 +54,11 @@ void ShowExportWidget::on_tableWidget_activated(const QModelIndex &index)
     }
 
     ui->textBrowser->setHtml(str);
+}
+
+void ShowExportWidget::on_pushButton_clicked()
+{
+    auto code = ui->tableWidget->currentIndex().siblingAtColumn(0).data().toULongLong();
+
+    ExportService::removeExportByCode(code);
 }

@@ -38,5 +38,5 @@ private:
 };
 
 
-#endif
+#endif //NOLCRM_LOGINWIDGET_HPP
 

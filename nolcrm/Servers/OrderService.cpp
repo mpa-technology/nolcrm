@@ -23,7 +23,7 @@ QVector<Order> OrderService::getAllOrder(){
     return sf.allOrderCache_.list;
 }
 
-void OrderService::addOrder(const QVector<QPair<int, double> > &products, const QDate &data){
+void OrderService::addOrder(const QVector<QPair<quint64, double> > &products, const QDate &data){
 
     TableOrders::addOrder(products,data);
 
