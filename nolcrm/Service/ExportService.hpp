@@ -3,12 +3,11 @@
     SPDX-License-Identifier: BSD 3-Clause "New" or "Revised" License
 */
 
-#ifndef NOL_CRM_EXPORTSERVICE_HPP
-#define NOL_CRM_EXPORTSERVICE_HPP
+#pragma once
 
-#include "GlobalEmitService.hpp"
-#include "../DataBase/TableStorage.hpp"
-#include "../DataBase/TableStorageExport.hpp"
+#include <Service/GlobalEmitService.hpp>
+#include <DataBase/TableStorage.hpp>
+#include <DataBase/TableStorageExport.hpp>
 
 class ExportService: public QObject{
     Q_OBJECT
@@ -42,4 +41,4 @@ public slots:
 
 };
 
-#endif // NOL_CRM_EXPORTSERVICE_HPP
+

@@ -4,9 +4,7 @@
 */
 
 
-#ifndef NOLCRM_WIDGETADDORDER_HPP
-#define NOLCRM_WIDGETADDORDER_HPP
-
+#pragma once
 
 #include <QWidget>
 #include <QMessageBox>
@@ -16,11 +14,11 @@
 #include <QTextDocument>
 
 
-#include "../Servers/GlobalEmitService.hpp"
-#include "../Servers/ExportService.hpp"
-#include "../DataBase/TableOrders.hpp"
-#include "../Servers/ProductService.hpp"
-#include "../Servers/OrderService.hpp"
+#include <Service/GlobalEmitService.hpp>
+#include <Service/ExportService.hpp>
+#include <DataBase/TableOrders.hpp>
+#include <Service/ProductService.hpp>
+#include <Service/OrderService.hpp>
 
 namespace Ui {
 class WidgetAddOrder;
@@ -67,5 +65,3 @@ private:
 
 
 };
-
-#endif //NOLCRM_WIDGETADDORDER_HPP

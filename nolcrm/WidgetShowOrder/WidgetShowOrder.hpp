@@ -4,15 +4,13 @@
 */
 
 
-#ifndef NOLCRM_WIDGETSHOWORDER_HPP
-#define NOLCRM_WIDGETSHOWORDER_HPP
-
+#pragma once
 
 #include <QWidget>
 
-#include "../DataBase/TableProducts.hpp"
-#include "../DataBase/TableOrders.hpp"
-#include "../Servers/GlobalEmitService.hpp"
+#include <DataBase/TableProducts.hpp>
+#include <DataBase/TableOrders.hpp>
+#include <Service/GlobalEmitService.hpp>
 
 namespace Ui {
 class WidgetShowOrder;
@@ -41,5 +39,3 @@ private slots:
 private:
     Ui::WidgetShowOrder *ui;
 };
-
-#endif //NOLCRM_WIDGETSHOWORDER_HPP

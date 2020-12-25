@@ -3,16 +3,13 @@
     SPDX-License-Identifier: BSD 3-Clause "New" or "Revised" License
 */
 
-
-
-#ifndef NOLCRM_WIDGETEDITPRODUCT_HPP
-#define NOLCRM_WIDGETEDITPRODUCT_HPP
+#pragma once
 
 
 #include <QWidget>
 #include <QMessageBox>
 
-#include "../Servers/ProductService.hpp"
+#include <Service/ProductService.hpp>
 
 namespace Ui {
 class WidgetEditProduct;
@@ -35,4 +32,4 @@ private:
     Ui::WidgetEditProduct *ui;
 };
 
-#endif //NOLCRM_WIDGETEDITPRODUCT_HPP
+

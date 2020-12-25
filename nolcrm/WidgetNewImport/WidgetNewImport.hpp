@@ -5,17 +5,15 @@
 
 
 
-#ifndef NOLCRM_WIDGETNEWIMPORT_HPP
-#define NOLCRM_WIDGETNEWIMPORT_HPP
-
+#pragma once
 
 #include <QWidget>
 #include <QMessageBox>
 
-#include "../DataBase/TableProducts.hpp"
-#include "../DataBase/TableStorageImport.hpp"
-#include "../Servers/GlobalEmitService.hpp"
-#include "../Servers/ImportService.hpp"
+#include <DataBase/TableProducts.hpp>
+#include <DataBase/TableStorageImport.hpp>
+#include <Service/GlobalEmitService.hpp>
+#include <Service/ImportService.hpp>
 
 namespace Ui {
 class WidgetNewImport;
@@ -44,4 +42,3 @@ private:
     Ui::WidgetNewImport *ui;
 };
 
-#endif //NOLCRM_WIDGETNEWIMPORT_HPP

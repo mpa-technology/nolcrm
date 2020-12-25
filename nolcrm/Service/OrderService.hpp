@@ -1,9 +1,7 @@
-#ifndef NOL_CRM_ORDERSERVICE_HPP
-#define NOL_CRM_ORDERSERVICE_HPP
+#pragma once
 
-
-#include "GlobalEmitService.hpp"
-#include "../DataBase/TableOrders.hpp"
+#include <Service/GlobalEmitService.hpp>
+#include <DataBase/TableOrders.hpp>
 
 
 class OrderService : public QObject{
@@ -35,4 +33,3 @@ public slots:
 
 };
 
-#endif // NOL_CRM_ORDERSERVICE_HPP

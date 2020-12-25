@@ -3,8 +3,7 @@
     SPDX-License-Identifier: BSD 3-Clause "New" or "Revised" License
 */
 
-#ifndef NOL_CRM_UPDATESERVICE_HPP
-#define NOL_CRM_UPDATESERVICE_HPP
+#pragma once
 
 #include <QObject>
 #include <QDebug>
@@ -32,4 +31,3 @@ signals:
 
 
 
-#endif //NOL_CRM_UPDATESERVICE_HPP

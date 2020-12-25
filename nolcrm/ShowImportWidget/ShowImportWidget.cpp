@@ -21,7 +21,7 @@ ShowImportWidget::ShowImportWidget(QWidget *parent) :
 ShowImportWidget::~ShowImportWidget(){
     delete ui;
 }
-#include "../Servers/GlobalService.hpp"
+#include "../Service/GlobalService.hpp"
 void ShowImportWidget::globalUpdate(){
 
 

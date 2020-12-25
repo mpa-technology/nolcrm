@@ -9,8 +9,8 @@
 #define NOLCRM_WDGETSTORAGE_HPP
 
 #include <QWidget>
-#include "../Servers/GlobalEmitService.hpp"
-#include "../Servers/ProductService.hpp"
+#include "../Service/GlobalEmitService.hpp"
+#include "../Service/ProductService.hpp"
 #include "../DataBase/TableStorageExport.hpp"
 
 namespace Ui {

@@ -3,15 +3,14 @@
     SPDX-License-Identifier: BSD 3-Clause "New" or "Revised" License
 */
 
+#pragma once
 
-#ifndef NOLCRM_DATABASE_HPP
-#define NOLCRM_DATABASE_HPP
 
 #include <QtSql>
 #include <QSqlDatabase>
 #include <QSqlError>
 #include <QSqlQuery>
-#include "../Settings/Settings.hpp"
+#include <Settings/Settings.hpp>
 
 
 class DataBase{
@@ -79,4 +78,3 @@ public:
 };
 
 
-#endif //NOLCRM_DATABASE_HPP

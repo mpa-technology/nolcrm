@@ -4,15 +4,14 @@
 */
 
 
-#ifndef NOLCRM_TABLEPRODUCTS_HPP
-#define NOLCRM_TABLEPRODUCTS_HPP
+#pragma once
 
 #include <QVector>
 #include <QSqlError>
 #include <QDebug>
 #include <QSqlQuery>
 
-#include "DataBase.hpp"
+#include <DataBase/DataBase.hpp>
 
 struct Product{
     quint64 id;
@@ -61,4 +60,3 @@ public:
 };
 
 
-#endif //NOLCRM_TABLEPRODUCTS_HPP

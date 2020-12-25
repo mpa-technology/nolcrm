@@ -4,11 +4,10 @@
 */
 
 
-#ifndef NOLCRM_TABLESTORAGE_HPP
-#define NOLCRM_TABLESTORAGE_HPP
+#pragma once
 
 #include <Utility/Tool.hpp>
-#include "DataBase.hpp"
+#include <DataBase/DataBase.hpp>
 
 
 struct Storage{
@@ -52,4 +51,4 @@ public:
 };
 
 
-#endif //NOLCRM_TABLESTORAGE_HPP
+

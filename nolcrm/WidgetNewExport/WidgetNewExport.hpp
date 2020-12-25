@@ -5,16 +5,15 @@
 
 
 
-#ifndef NOLCRM_WIDGETNEWEXPORT_HPP
-#define NOLCRM_WIDGETNEWEXPORT_HPP
+#pragma once
 
 
 #include <QWidget>
 #include <QMessageBox>
 
-#include "../DataBase/TableProducts.hpp"
-#include "../Servers/GlobalEmitService.hpp"
-#include "../Servers/ExportService.hpp"
+#include <DataBase/TableProducts.hpp>
+#include <Service/GlobalEmitService.hpp>
+#include <Service/ExportService.hpp>
 
 namespace Ui {
 class WidgetNewExport;
@@ -46,4 +45,4 @@ private:
     Ui::WidgetNewExport *ui;
 };
 
-#endif //NOLCRM_WIDGETNEWEXPORT_HPP
+

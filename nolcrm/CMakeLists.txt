@@ -16,7 +16,7 @@ set(NOLCRM_VERSION_MAJOR ${PROJECT_VERSION_MAJOR})
 set(NOLCRM_VERSION_MINOR ${PROJECT_VERSION_MINOR})
 set(NOLCRM_VERSION_PATCH ${PROJECT_VERSION_PATCH})
 
-configure_file(${PROJECT_SOURCE_DIR}/Servers/cmake_m.in ${PROJECT_SOURCE_DIR}/Servers/cmake_m.hpp)
+configure_file(${PROJECT_SOURCE_DIR}/Service/cmake_m.in ${PROJECT_SOURCE_DIR}/Service/cmake_m.hpp)
 
 set(SOURCES
     "main.cpp"
@@ -38,15 +38,15 @@ set(SOURCES
     "ShowImportWidget/ShowImportWidget.cpp"
     "ShowExportWidget/ShowExportWidget.cpp"
     "WidgetNewExport/WidgetNewExport.cpp"
-    "Servers/GlobalEmitService.cpp"
-    "Servers/ProgramService.cpp"
-    "Servers/ProductService.cpp"
-    "Servers/ImportService.cpp"
-    "Servers/ExportService.cpp"
-    "Servers/GlobalService.cpp"
+    "Service/GlobalEmitService.cpp"
+    "Service/ProgramService.cpp"
+    "Service/ProductService.cpp"
+    "Service/ImportService.cpp"
+    "Service/ExportService.cpp"
+    "Service/GlobalService.cpp"
     "DataBase/TableStorageExport.cpp"
     "Utility/Tool.cpp"
-    "Servers/OrderService.cpp"
+    "Service/OrderService.cpp"
     "ReportWidget/ReportWidget.cpp"
     )
 
@@ -70,15 +70,15 @@ set(HEADER
     "ShowExportWidget/ShowExportWidget.hpp"
     "WidgetNewExport/WidgetNewExport.hpp"
     "main.hpp"
-    "Servers/GlobalEmitService.hpp"
-    "Servers/ProgramService.hpp"
-    "Servers/ProductService.hpp"
-    "Servers/ImportService.hpp"
-    "Servers/ExportService.hpp"
-    "Servers/GlobalService.hpp"
+    "Service/GlobalEmitService.hpp"
+    "Service/ProgramService.hpp"
+    "Service/ProductService.hpp"
+    "Service/ImportService.hpp"
+    "Service/ExportService.hpp"
+    "Service/GlobalService.hpp"
     "DataBase/TableStorageExport.hpp"
     "Utility/Tool.hpp"
-    "Servers/OrderService.hpp"
+    "Service/OrderService.hpp"
     "ReportWidget/ReportWidget.hpp"
     )
 

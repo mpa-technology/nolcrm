@@ -3,27 +3,26 @@
     SPDX-License-Identifier: BSD 3-Clause "New" or "Revised" License
 */
 
-
-
-#ifndef NOLCRM_MAINWINDOW_HPP
-#define NOLCRM_MAINWINDOW_HPP
-
+#pragma once
 
 #include <QMainWindow>
 #include <QDate>
 
-#include "../WidgetAddOrder/WidgetAddOrder.hpp"
-#include "../WidgetAddProduct/WidgetAddProduct.hpp"
-#include "../WidgetShowOrder/WidgetShowOrder.hpp"
-#include "../WidgetShowProducts/WidgetShowProducts.hpp"
-#include "../WidgetStorage/WidgetStorage.hpp"
-#include "../WidgetNewImport/WidgetNewImport.hpp"
-#include "../ShowImportWidget/ShowImportWidget.hpp"
-#include "../ShowExportWidget/ShowExportWidget.hpp"
-#include "../WidgetNewExport/WidgetNewExport.hpp"
-#include "../Servers/ProgramService.hpp"
-#include "../DataBase/TableOrders.hpp"
-#include "../ReportWidget/ReportWidget.hpp"
+#include <WidgetAddOrder/WidgetAddOrder.hpp>
+#include <WidgetAddProduct/WidgetAddProduct.hpp>
+#include <WidgetShowOrder/WidgetShowOrder.hpp>
+#include <WidgetShowProducts/WidgetShowProducts.hpp>
+#include <WidgetStorage/WidgetStorage.hpp>
+#include <WidgetNewImport/WidgetNewImport.hpp>
+#include <ShowImportWidget/ShowImportWidget.hpp>
+#include <ShowExportWidget/ShowExportWidget.hpp>
+#include <WidgetNewExport/WidgetNewExport.hpp>
+#include <Service/ProgramService.hpp>
+#include <DataBase/TableOrders.hpp>
+#include <ReportWidget/ReportWidget.hpp>
+
+
+
 namespace Ui {
 class MainWindow;
 }
@@ -88,4 +87,3 @@ private:
     Ui::MainWindow *ui = nullptr;
 };
 
-#endif //NOLCRM_MAINWINDOW_HPP

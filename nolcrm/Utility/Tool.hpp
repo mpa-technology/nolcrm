@@ -3,8 +3,8 @@
     SPDX-License-Identifier: BSD 3-Clause "New" or "Revised" License
 */
 
-#ifndef NOL_CRM_TOOL_HPP
-#define NOL_CRM_TOOL_HPP
+#pragma once
+
 #include <numeric>
 #include <QtGlobal>
 
@@ -13,5 +13,4 @@ bool subOverflow(const quint64& a,const quint64& b);
 
 
 
-#endif // NOL_CRM_TOOL_HPP
 

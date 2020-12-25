@@ -4,11 +4,10 @@
 */
 
 
-#ifndef NOLCRM_TABLESTORAGEIMPORT_HPP
-#define NOLCRM_TABLESTORAGEIMPORT_HPP
+#pragma once
 
 
-#include "DataBase.hpp"
+#include <DataBase/DataBase.hpp>
 
 
 struct ImportStorage{
@@ -73,4 +72,4 @@ public:
 };
 
 
-#endif //NOLCRM_TABLESTORAGEIMPORT_HPP
+

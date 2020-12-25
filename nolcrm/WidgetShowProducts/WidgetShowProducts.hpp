@@ -4,8 +4,7 @@
 */
 
 
-#ifndef NOLCRM_WIDGETSHOWPRODUCTS_HPP
-#define NOLCRM_WIDGETSHOWPRODUCTS_HPP
+#pragma once
 
 #include <QWidget>
 #include <QMessageBox>
@@ -15,8 +14,8 @@
 #include <QFile>
 #include <QFileDialog>
 
-#include "../Servers/GlobalEmitService.hpp"
-#include "../WidgetEditProduct/WidgetEditProduct.hpp"
+#include <Service/GlobalEmitService.hpp>
+#include <WidgetEditProduct/WidgetEditProduct.hpp>
 
 
 namespace Ui {
@@ -50,4 +49,3 @@ private:
     Ui::WidgetShowProducts *ui;
 };
 
-#endif //NOLCRM_WIDGETSHOWPRODUCTS_HPP

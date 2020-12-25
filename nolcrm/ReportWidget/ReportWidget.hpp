@@ -1,12 +1,17 @@
-#ifndef REPORTWIDGET_HPP
-#define REPORTWIDGET_HPP
+/*
+    SPDX-FileCopyrightText: 2020 Maxim Palshin <palshin.maxim.alekseevich@gmail.com>
+    SPDX-License-Identifier: BSD 3-Clause "New" or "Revised" License
+*/
+
+#pragma once
+
 
 #include <QWidget>
 #include <QDate>
-#include "../Servers/GlobalEmitService.hpp"
-#include "../Servers/ExportService.hpp"
-#include "../Servers/ImportService.hpp"
-#include "../Servers/OrderService.hpp"
+#include <Service/GlobalEmitService.hpp>
+#include <Service/ExportService.hpp>
+#include <Service/ImportService.hpp>
+#include <Service/OrderService.hpp>
 
 
 
@@ -30,4 +35,3 @@ private:
     Ui::ReportWidget *ui;
 };
 
-#endif // REPORTWIDGET_HPP

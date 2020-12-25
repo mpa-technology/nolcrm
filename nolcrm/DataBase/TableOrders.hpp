@@ -4,9 +4,7 @@
 */
 
 
-#ifndef NOLCRM_TABLEORDERS_HPP
-#define NOLCRM_TABLEORDERS_HPP
-
+#pragma once
 
 #include <QVector>
 #include <QSqlError>
@@ -15,7 +13,7 @@
 #include <QDebug>
 
 
-#include "DataBase.hpp"
+#include <DataBase/DataBase.hpp>
 
 
 
@@ -94,4 +92,4 @@ public:
 };
 
 
-#endif //NOLCRM_TABLEORDERS_HPP
+

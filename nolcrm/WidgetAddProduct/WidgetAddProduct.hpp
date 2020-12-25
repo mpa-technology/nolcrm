@@ -3,17 +3,15 @@
     SPDX-License-Identifier: BSD 3-Clause "New" or "Revised" License
 */
 
-#ifndef NOLCRM_WIDGETADDPRODUCT_HPP
-#define NOLCRM_WIDGETADDPRODUCT_HPP
-
+#pragma once
 #include <QWidget>
 #include <QCloseEvent>
 #include <QSqlError>
 #include <QMessageBox>
 #include <QDebug>
 
-#include "../Servers/GlobalEmitService.hpp"
-#include "../Servers/ProductService.hpp"
+#include <Service/GlobalEmitService.hpp>
+#include <Service/ProductService.hpp>
 
 namespace Ui {
 class WidgetAddProduct;
@@ -38,4 +36,3 @@ private:
 
 };
 
-#endif //NOLCRM_WIDGETADDPRODUCT_HPP

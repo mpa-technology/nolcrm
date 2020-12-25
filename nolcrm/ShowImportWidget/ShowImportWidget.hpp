@@ -3,15 +3,13 @@
     SPDX-License-Identifier: BSD 3-Clause "New" or "Revised" License
 */
 
-#ifndef NOLCRM_SHOWIMPORTWIDGET_HPP
-#define NOLCRM_SHOWIMPORTWIDGET_HPP
-
+#pragma once
 
 
 #include <QWidget>
-#include "../Servers/GlobalEmitService.hpp"
-#include "../DataBase/TableProducts.hpp"
-#include "../Servers/ImportService.hpp"
+#include <Service/GlobalEmitService.hpp>
+#include <DataBase/TableProducts.hpp>
+#include <Service/ImportService.hpp>
 
 namespace Ui {
 class ShowImportWidget;
@@ -41,4 +39,4 @@ private:
     Ui::ShowImportWidget *ui;
 };
 
-#endif //NOLCRM_SHOWIMPORTWIDGET_HPP
+

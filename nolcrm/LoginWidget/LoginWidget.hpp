@@ -4,14 +4,14 @@
 */
 
 
-#ifndef NOLCRM_LOGINWIDGET_HPP
-#define NOLCRM_LOGINWIDGET_HPP
+#pragma once
+
 
 #include <QWidget>
 #include <QFileDialog>
-#include "../MainWindow/MainWindow.hpp"
-#include "../Settings/Settings.hpp"
-#include "../Servers/GlobalService.hpp"
+#include <MainWindow/MainWindow.hpp>
+#include <Settings/Settings.hpp>
+#include <Service/GlobalService.hpp>
 
 
 namespace Ui {
@@ -37,6 +37,4 @@ private:
     Ui::LoginWidget *ui;
 };
 
-
-#endif //NOLCRM_LOGINWIDGET_HPP
 

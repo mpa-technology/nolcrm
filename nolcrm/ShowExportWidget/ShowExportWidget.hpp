@@ -4,15 +4,13 @@
 */
 
 
-#ifndef NOLCRM_SHOWEXPORTWIDGET_HPP
-#define NOLCRM_SHOWEXPORTWIDGET_HPP
-
+#pragma once
 
 #include <QWidget>
 
-#include "../Servers/GlobalEmitService.hpp"
-#include "../Servers/ExportService.hpp"
-#include "../DataBase/TableProducts.hpp"
+#include <Service/GlobalEmitService.hpp>
+#include <Service/ExportService.hpp>
+#include <DataBase/TableProducts.hpp>
 
 namespace Ui {
 class ShowExportWidget;
@@ -37,5 +35,3 @@ private slots:
 private:
     Ui::ShowExportWidget *ui;
 };
-
-#endif //NOLCRM_SHOWEXPORTWIDGET_HPP

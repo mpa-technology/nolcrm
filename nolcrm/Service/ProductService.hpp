@@ -3,12 +3,13 @@
     SPDX-License-Identifier: BSD 3-Clause "New" or "Revised" License
 */
 
-#ifndef NOL_CRM_PRODUCTSERVICE_HPP
-#define NOL_CRM_PRODUCTSERVICE_HPP
+#pragma once
 
-#include "../DataBase/TableProducts.hpp"
-#include "../DataBase/TableStorage.hpp"
-#include "GlobalEmitService.hpp"
+#include <DataBase/TableProducts.hpp>
+#include <DataBase/TableStorage.hpp>
+#include <Service/GlobalEmitService.hpp>
+
+
 class ProductService : public QObject{
     Q_OBJECT
 
@@ -44,4 +45,3 @@ public slots:
 };
 
 
-#endif // NOL_CRM_PRODUCTSERVICE_HPP

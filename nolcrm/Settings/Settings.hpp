@@ -3,10 +3,7 @@
     SPDX-License-Identifier: BSD 3-Clause "New" or "Revised" License
 */
 
-
-
-#ifndef NOLCRM_SETTINGS_HPP
-#define NOLCRM_SETTINGS_HPP
+#pragma once
 
 #include <QSettings>
 #include <QDebug>
@@ -42,4 +39,3 @@ public:
 
 };
 
-#endif //NOLCRM_SETTINGS_HPP

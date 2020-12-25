@@ -3,9 +3,11 @@
     SPDX-License-Identifier: BSD 3-Clause "New" or "Revised" License
 */
 
-#ifndef NOL_CRM_TABLESTORAGEEXPORT_HPP
-#define NOL_CRM_TABLESTORAGEEXPORT_HPP
-#include "DataBase.hpp"
+#pragma once
+
+
+
+#include <DataBase/DataBase.hpp>
 
 
 struct ExportStorage{
@@ -69,4 +71,3 @@ public:
 
 
 
-#endif // NOL_CRM_TABLESTORAGEEXPORT_HPP

@@ -3,8 +3,7 @@
     SPDX-License-Identifier: BSD 3-Clause "New" or "Revised" License
 */
 
-#ifndef CRM_NOL_PROGRAMSERVICE_HPP
-#define CRM_NOL_PROGRAMSERVICE_HPP
+#pragma once
 
 #include <QString>
 #include "cmake_m.hpp"
@@ -32,4 +31,3 @@ public:
 };
 
 
-#endif // CRM_NOL_PROGRAMSERVICE_HPP

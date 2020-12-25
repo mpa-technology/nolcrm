@@ -3,9 +3,7 @@
     SPDX-License-Identifier: BSD 3-Clause "New" or "Revised" License
 */
 
-#ifndef NOL_CRM_GLOBALSERVICE_HPP
-#define NOL_CRM_GLOBALSERVICE_HPP
-
+#pragma once
 #include <QDebug>
 #include <QTimer>
 
@@ -45,4 +43,3 @@ public:
 
 
 
-#endif // NOL_CRM_GLOBALSERVICE_HPP

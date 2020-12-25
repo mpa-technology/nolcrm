@@ -3,9 +3,7 @@
     SPDX-License-Identifier: BSD 3-Clause "New" or "Revised" License
 */
 
-
-#ifndef NOLCRM_CRM_MAIN_HPP
-#define NOLCRM_CRM_MAIN_HPP
+#pragma once
 
 #include <QApplication>
 #include <QMessageBox>
@@ -15,14 +13,14 @@
 #include <QScopedPointer>
 #include <QSharedPointer>
 
-#include "LoginWidget/LoginWidget.hpp"
-#include "DataBase/DataBase.hpp"
-#include "DataBase/TableStorage.hpp"
-#include "Settings/Settings.hpp"
-#include "MainWindow/MainWindow.hpp"
-#include "Servers/ProgramService.hpp"
-#include "Servers/GlobalEmitService.hpp"
-#include "Servers/GlobalService.hpp"
+#include <LoginWidget/LoginWidget.hpp>
+#include <DataBase/DataBase.hpp>
+#include <DataBase/TableStorage.hpp>
+#include <Settings/Settings.hpp>
+#include <MainWindow/MainWindow.hpp>
+#include <Service/ProgramService.hpp>
+#include <Service/GlobalEmitService.hpp>
+#include <Service/GlobalService.hpp>
 
 class App{
 
@@ -52,6 +50,3 @@ public:
 
 int main(int argc, char *argv[]);
 
-
-
-#endif //NOLCRM_CRM_MAIN_HPP
