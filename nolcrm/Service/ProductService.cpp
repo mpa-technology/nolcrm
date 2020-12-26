@@ -63,6 +63,10 @@ void ProductService::removeProduct(const quint64 &id){
 
 }
 
+Product ProductService::getProductById(const quint64 &id){
+    return TableProducts::getProductById(id);
+}
+
 void ProductService::gloablCacheClear(){
 
     self().allProductCache_.list.clear();

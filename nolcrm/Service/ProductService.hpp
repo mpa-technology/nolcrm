@@ -37,6 +37,8 @@ public:
 
     static void removeProduct(const quint64& id);
 
+    static Product getProductById(const quint64& id);
+
 
 public slots:
     void gloablCacheClear();

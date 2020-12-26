@@ -28,6 +28,10 @@ void ReportWidget::globalUpdate(){
     double isum = 0;
     double esum = 0;
     double osum = 0;
+
+    double rsum = 0;
+
+
     for(auto& it : TableStorageImport::getAllImport()){
 
         if( it.data.month() != data.month() || it.data.year() != data.year())
@@ -48,7 +52,22 @@ void ReportWidget::globalUpdate(){
             continue;
 
         osum += it.getSum();
+
+
+        for( const auto& it : it.products){
+        const auto pro =  ProductService::getProductById(it.id);
+
+        rsum +=  pro.price - pro.manufacturerPrice;
+
+        }
+
+
+
     }
+
+
+
+
 
 
     html.append("<p>Отчйт за месяц = ").append(data.toString()).append("</p>");
@@ -56,6 +75,7 @@ void ReportWidget::globalUpdate(){
     html.append("<p>Export сумм = ").append(QString::number(esum)).append("</p>");
     html.append("<p>раница ").append(QString::number(isum - esum)).append("</p>");
     html.append("<p>сумма заказов ").append(QString::number(osum)).append("</p>");
+    html.append("<p>чистая сумма заказов ").append(QString::number(rsum)).append("</p>");
 
     ui->textBrowser->setHtml(html);
 }

@@ -12,7 +12,7 @@
 #include <Service/ExportService.hpp>
 #include <Service/ImportService.hpp>
 #include <Service/OrderService.hpp>
-
+#include <Service/ProductService.hpp>
 
 
 namespace Ui {
