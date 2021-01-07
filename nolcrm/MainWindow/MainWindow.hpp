@@ -83,6 +83,10 @@ private slots:
 
     void on_btnShowReport_clicked();
 
+    void on_btnHide_clicked();
+
+    void on_pushButton_clicked();
+
 private:
     Ui::MainWindow *ui = nullptr;
 };

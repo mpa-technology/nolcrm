@@ -96,7 +96,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 
 
 
-
+    ui->pushButton->hide();
 
 
 
@@ -169,4 +169,16 @@ void MainWindow::on_btnExit_clicked()
 void MainWindow::on_btnShowReport_clicked()
 {
     showWidget_(reportWidget_);
+}
+
+void MainWindow::on_btnHide_clicked()
+{
+    ui->frame->hide();
+    ui->pushButton->show();
+}
+
+void MainWindow::on_pushButton_clicked()
+{
+    ui->frame->show();
+    ui->pushButton->hide();
 }
