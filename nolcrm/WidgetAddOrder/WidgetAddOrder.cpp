@@ -186,7 +186,7 @@ void WidgetAddOrder::on_tableWidget_2_activated(const QModelIndex &index)
     ui->tableWidget->setItem(row,1,new QTableWidgetItem(pro.name));
     ui->tableWidget->setItem(row,2,new QTableWidgetItem(QString::number(pro.price)));
     ui->tableWidget->setItem(row,3,new QTableWidgetItem(pro.manufacturer));
-    ui->tableWidget->setItem(row,4,new QTableWidgetItem("Удалить"));
+    ui->tableWidget->setItem(row,4,new QTableWidgetItem(tr("Удалить")));
 }
 
 void WidgetAddOrder::on_lineEdit_textChanged(const QString &arg1)
