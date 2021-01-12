@@ -107,10 +107,10 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)
 
-find_package(Qt5 REQUIRED COMPONENTS Core Widgets Sql  Test PrintSupport)
+find_package(Qt6 REQUIRED COMPONENTS Core Widgets Sql  Test PrintSupport)
 
 add_executable(${PROJECT_NAME} ${SOURCES} ${HEADER} ${UI})
 
 install(TARGETS ${PROJECT_NAME} DESTINATION bin)
 
-target_link_libraries(${PROJECT_NAME} Qt5::Core Qt5::Widgets Qt5::Sql Qt5::PrintSupport  Qt5::Test pthread)
+target_link_libraries(${PROJECT_NAME} Qt6::Core Qt6::Widgets Qt6::Sql Qt6::PrintSupport  Qt6::Test pthread)

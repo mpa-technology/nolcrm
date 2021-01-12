@@ -67,13 +67,13 @@ void WidgetShowProducts::on_pushButton_clicked()
 
     QPrinter printer(QPrinter::PrinterResolution);
     printer.setOutputFormat(QPrinter::PdfFormat);
-    printer.setPageSize(QPrinter::A4);
+    //printer.setPageSize(QPrinter::A4);
     printer.setOutputFileName(fileName);
 
    auto ap =  TableProducts::getAllProduct();
 
     QTextDocument doc;
-    doc.setPageSize(printer.pageRect().size());
+    //doc.setPageSize(printer.pageRect().size());
     QString html;
 
 

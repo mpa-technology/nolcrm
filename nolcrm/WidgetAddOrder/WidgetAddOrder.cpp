@@ -136,13 +136,13 @@ void WidgetAddOrder::on_pushButton_2_clicked()
 
     QPrinter printer(QPrinter::PrinterResolution);
     printer.setOutputFormat(QPrinter::PdfFormat);
-    printer.setPageSize(QPrinter::A4);
+    //FIXMIX: size A4 printer.setPageSize();
     printer.setOutputFileName(fileName);
 
    auto ap =  ProductService::getAllProduct();
 
     QTextDocument doc;
-    doc.setPageSize(printer.pageRect().size());
+    //FIXMIX: size A4 doc.setPageSize(printer.pageRect().size());
     QString html;
 
 
