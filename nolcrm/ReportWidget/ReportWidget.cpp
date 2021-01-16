@@ -6,24 +6,8 @@
 #include "ReportWidget.hpp"
 #include "ui_ReportWidget.h"
 
-ReportWidget::ReportWidget(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::ReportWidget)
-{
-    ui->setupUi(this);
-    QObject::connect(&GlobalEmitService::self(),SIGNAL(globalUpdate()),this,SLOT(globalUpdate()));
-
-
-}
-
-ReportWidget::~ReportWidget()
-{
-    delete ui;
-}
-
-void ReportWidget::globalUpdate(){
+QString ReportWidget::rep(const QDate &data){
     QString html;
-    auto data = QDate::currentDate();
 
     double isum = 0;
     double esum = 0;
@@ -55,9 +39,9 @@ void ReportWidget::globalUpdate(){
 
 
         for( const auto& it : it.products){
-        const auto pro =  ProductService::getProductById(it.id);
+            const auto pro =  ProductService::getProductById(it.id);
 
-        rsum +=  pro.price - pro.manufacturerPrice;
+            rsum +=  pro.price - pro.manufacturerPrice;
 
         }
 
@@ -76,6 +60,33 @@ void ReportWidget::globalUpdate(){
     html.append("<p>раница ").append(QString::number(isum - esum)).append("</p>");
     html.append("<p>сумма заказов ").append(QString::number(osum)).append("</p>");
     html.append("<p>чистая сумма заказов ").append(QString::number(rsum)).append("</p>");
+    html.append("<p></p>");
+    html.append("<p></p>");
+    html.append("<p></p>");
+
+    return html;
+}
+
+ReportWidget::ReportWidget(QWidget *parent) :
+    QWidget(parent),
+    ui(new Ui::ReportWidget)
+{
+    ui->setupUi(this);
+    QObject::connect(&GlobalEmitService::self(),SIGNAL(globalUpdate()),this,SLOT(globalUpdate()));
+
+
+}
+
+ReportWidget::~ReportWidget()
+{
+    delete ui;
+}
+
+void ReportWidget::globalUpdate(){
+
+    QString html = rep(QDate::currentDate())+rep(QDate(2020,12,5));
+
+
 
     ui->textBrowser->setHtml(html);
 }

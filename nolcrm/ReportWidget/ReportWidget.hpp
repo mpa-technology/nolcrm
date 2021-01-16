@@ -23,6 +23,11 @@ class ReportWidget : public QWidget
 {
     Q_OBJECT
 
+
+
+    QString rep(const QDate &data);
+
+
 public:
     explicit ReportWidget(QWidget *parent = nullptr);
     ~ReportWidget();
